@@ -1,0 +1,22 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+    border-bottom: 2px solid #f9f9f9;
+}
+
+
+.header_logo {
+    object-fit: contain;
+    position:fixed;
+    left: 50%;
+    width: 100px;
+    margin-left: -50px;
+    border-radius: 20px;
+}
+
+
+.header_icon {
+    padding: 10px;
+}
