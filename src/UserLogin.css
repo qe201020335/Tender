@@ -1,0 +1,16 @@
+.userLogin_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.userLogin_header_logo {
+    object-fit: contain;
+    position:fixed;
+    left: 50%;
+    width: 100px;
+    margin-left: -50px;
+    border-radius: 20px;
+    margin-top: 20px;
+}
