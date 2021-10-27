@@ -4,7 +4,7 @@ import TinderCard from "react-tinder-card";
 //import axios from './axios';
 //import { useEffect } from 'react'
 
-function RestaurantCards() {
+const RestaurantCards = () => {
     const [restaurant, setRestaurant] = useState([
         // Hardcoded for phase 1
         {name: "Popeyes",
