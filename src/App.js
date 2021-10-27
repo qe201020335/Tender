@@ -1,12 +1,12 @@
 import React from "react";
 import './App.css';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
-import Header from "./Header";
+import NavBar from "./NavBar";
 import RestaurantCards from "./RestaurantCards";
 import SwipeButtons from "./SwipeButtons";
 import UserLogin from "./UserLogin";
 
-function App() {
+const App = () => {
   return (
     <div>
       <BrowserRouter>
@@ -14,7 +14,7 @@ function App() {
 
           <Route exact path="/" render={() => 
             <div>
-              <Header />
+              <NavBar />
               <RestaurantCards />
               <SwipeButtons />
             </div>

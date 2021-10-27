@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 import { IconButton } from '@material-ui/core';
 import logo from "./Images/tender_rec.png"
 
-function UserLogin() {
+const UserLogin = () => {
     return (
         <div className="userLogin_header">
             <Link to="/">

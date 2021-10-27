@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import "./Header.css"
+import "./NavBar.css"
 
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import { IconButton } from '@material-ui/core';
@@ -8,7 +8,7 @@ import StorefrontIcon from '@material-ui/icons/Storefront';
 import StarIcon from '@material-ui/icons/Star';
 import logo from "./Images/tender_rec.png"
 
-function Header() {
+const NavBar = () => {
     return (
         <div className='header'>
             <div className='header_left'>
@@ -34,4 +34,4 @@ function Header() {
     );
 }
 
-export default Header
+export default NavBar
