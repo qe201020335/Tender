@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "./RestaurantCards.css";
-import TinderCard from "react-tinder-card";
+import Card from "./Card";
 //import axios from './axios';
 //import { useEffect } from 'react'
 
@@ -28,34 +28,28 @@ const RestaurantCards = () => {
 
     console.log(restaurant);
 
-    const swiped = (direction, nameDelete) => {
+    const onCardSwipe = (direction, nameDelete) => {
         console.log("removing: " + nameDelete);
     };
 
-    const outOfFrame = (name) => {
+    const onCardLeft = (name) => {
         console.log(name + " out!");
+        console.log(restaurant);
     }
 
+    const onCardClick = (restaurant) => {
+        console.log(restaurant);
+    }
+    
     return (
         <div className="RestaurantCards">
             <div className="RestaurantCards_cardContainer">
-                {restaurant.map((rest) => (
-                    <TinderCard
-                        className="swipe"
-                        key={rest.name}
-                        preventSwipe={["up","down"]}
-                        onSwipe={(dir) => swiped(dir, rest.name)}
-                        onCardLeftScreen={() => outOfFrame(rest.name)}>
-
-                            <div
-                                style={{ backgroundImage: "url(" + rest.image + ")" }}
-                                className="card"
-                            >
-                                <h3>{rest.name}</h3>
-                                <h4>{rest.address}</h4>
-                            </div>
-                    </TinderCard>
-                ))}
+                { restaurant.map((restaurant) => (
+                    <Card restaurant={ restaurant }
+                          onCardClick={ onCardClick }
+                          onCardSwipe={ onCardSwipe }
+                          onCardLeft={ onCardLeft }/>
+                )) }
             </div>
         </div>
     )
