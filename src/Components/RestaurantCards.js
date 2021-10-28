@@ -4,7 +4,7 @@ import Card from "./Card";
 //import axios from './axios';
 //import { useEffect } from 'react'
 
-const RestaurantCards = () => {
+const RestaurantCards = ({ onCardClick }) => {
     const [restaurant, setRestaurant] = useState([
         // Hardcoded for phase 1
         {name: "Popeyes",
@@ -34,10 +34,6 @@ const RestaurantCards = () => {
 
     const onCardLeft = (name) => {
         console.log(name + " out!");
-        console.log(restaurant);
-    }
-
-    const onCardClick = (restaurant) => {
         console.log(restaurant);
     }
     
