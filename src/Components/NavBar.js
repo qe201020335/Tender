@@ -1,12 +1,12 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import "./NavBar.css"
+import React from 'react';
+import { Link } from 'react-router-dom';
+import "./NavBar.css";
 
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import { IconButton } from '@material-ui/core';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import StarIcon from '@material-ui/icons/Star';
-import logo from "./Images/tender_rec.png"
+import logo from "../Images/tender_rec.png";
 
 const NavBar = () => {
     return (
@@ -34,4 +34,4 @@ const NavBar = () => {
     );
 }
 
-export default NavBar
+export default NavBar;

@@ -1,10 +1,10 @@
 import React from "react";
 import './App.css';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
-import NavBar from "./NavBar";
-import RestaurantCards from "./RestaurantCards";
-import SwipeButtonsBar from "./SwipeButtonsBar";
-import UserLogin from "./UserLogin";
+import NavBar from "./Components/NavBar";
+import RestaurantCards from "./Components/RestaurantCards";
+import SwipeButtonsBar from "./Components/SwipeButtonsBar";
+import UserLogin from "./Components/UserLogin";
 
 const App = () => {
   return (

@@ -3,7 +3,7 @@ import "./UserLogin.css"
 import { Link } from "react-router-dom"
 
 import { IconButton } from '@material-ui/core';
-import logo from "./Images/tender_rec.png"
+import logo from "../Images/tender_rec.png"
 
 const UserLogin = () => {
     return (
