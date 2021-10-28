@@ -7,6 +7,7 @@ import RestaurantCards from "./Components/RestaurantCards";
 import SwipeButtonsBar from "./Components/SwipeButtonsBar";
 import UserLogin from "./Components/UserLogin";
 import RestaurantDetail from "./Components/RestaurantDetail";
+import Fav from "./Components/Fav";
 
 const App = () => {
   const [openRestDetail, setOpenRestDetail] = useState(false);
@@ -33,6 +34,14 @@ const App = () => {
           />
 
           <Route exact path="/UserLogin" component={UserLogin}/>
+
+          <Route exact path="/fav" render={() =>
+            <div>
+              <NavBar />
+              <div>
+                <Fav/>
+              </div>
+            </div>}/>
           
         </Switch>
       </BrowserRouter>

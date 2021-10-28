@@ -15,15 +15,16 @@ const NavBar = () => {
                 <IconButton component={Link} to="/userLogin">
                     <AccountBoxIcon frontSize="large" className="header_icon"/>
                 </IconButton>
-                <IconButton>
+                <IconButton component={Link} to="/fav">
                     <StarIcon frontSize="large" className="header_icon"/>
                 </IconButton>
             </div>
+           <Link to="/">
             <img
                 className="header_logo"
                 src={logo}
                 alt="TENDER"
-            />
+            /></Link>
 
             <div className='header_right'>
                 <IconButton>
