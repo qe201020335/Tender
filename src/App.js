@@ -3,7 +3,7 @@ import './App.css';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import NavBar from "./NavBar";
 import RestaurantCards from "./RestaurantCards";
-import SwipeButtons from "./SwipeButtons";
+import SwipeButtonsBar from "./SwipeButtonsBar";
 import UserLogin from "./UserLogin";
 
 const App = () => {
@@ -16,7 +16,7 @@ const App = () => {
             <div>
               <NavBar />
               <RestaurantCards />
-              <SwipeButtons />
+              <SwipeButtonsBar />
             </div>
           }/>
 
