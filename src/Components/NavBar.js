@@ -19,13 +19,9 @@ const NavBar = () => {
                     <StarIcon frontSize="large" className="header_icon"/>
                 </IconButton>
             </div>
-           <Link to="/">
-            <img
-                className="header_logo"
-                src={logo}
-                alt="TENDER"
-            /></Link>
-
+            <IconButton component={Link} to="/">
+                <img className="header_logo" src={logo} alt="TENDER"/>
+            </IconButton>
             <div className='header_right'>
                 <IconButton>
                     <StorefrontIcon frontSize="large" className="header_icon"/>
