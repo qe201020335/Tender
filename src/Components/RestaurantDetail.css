@@ -1,4 +1,5 @@
 .restDetailBackground {
+    z-index: 1;
     width: 100vw;
     height: 100vh;
     background-color:rgba(0, 0, 0, 0.8);
@@ -6,6 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    top: 0;
 }
 
 .restDetailContainer {
@@ -19,7 +21,7 @@
     padding: 25px;
 }
 
-.restaurantDetailContainer .body {
+.restaurantDetailContainer {
     flex: 50%;
     display: flex;
     justify-content: center;
