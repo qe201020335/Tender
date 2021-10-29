@@ -19,6 +19,10 @@ const App = () => {
     console.log(restaurant);
   }
 
+  const onClickOutside = () => {
+    setOpenRestDetail(false);
+  }
+
   return (
     <div>
       <BrowserRouter>
@@ -30,7 +34,7 @@ const App = () => {
           <Route exact path="/" render={() =>
             <div>
               <RestaurantCards onCardClick={onCardClick} />
-              {openRestDetail && <RestaurantDetail restaurant={clicked_restaurant}/>}
+              {openRestDetail && <RestaurantDetail restaurant={clicked_restaurant} OnClickOutside={onClickOutside}/>}
               <SwipeButtonsBar />
             </div>}
           />
