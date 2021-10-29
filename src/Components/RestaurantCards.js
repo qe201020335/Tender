@@ -10,7 +10,7 @@ const RestaurantCards = ({ onCardClick }) => {
     { name: "Popeyes",
       image: "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F20%2F2020%2F06%2F09%2Fpopeyes.jpg&q=85",
       address: "553 Bloor St W, Toronto, ON M5S 1Y6",
-      description: "Popeyes description."
+      description: "Popeyes Louisiana Kitchen, Inc., also known as Popeyes and formerly named Popeyes Chicken & Biscuits and Popeyes Famous Fried Chicken & Biscuits."
     },
     { name: "Mcdonald's",
       image: "https://www.eatthis.com/wp-content/uploads/sites/4/2021/06/mcdonalds-tray.jpg",
@@ -20,7 +20,7 @@ const RestaurantCards = ({ onCardClick }) => {
     { name: "Subway",
       image: "https://www.nrn.com/sites/nrn.com/files/Subway-Melts-Franchisee-Alert.jpg",
       address: "917 Bay St., Toronto, ON M5S 1Z9",
-      description: "Subway description."
+      description: "Subway is an American multi-national fast food restaurant franchise that primarily sells submarine sandwiches, wraps, salads and beverages. "
     }
     ]);
 
