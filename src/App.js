@@ -35,7 +35,7 @@ const App = () => {
 
           <Route exact path="/UserLogin" component={UserLogin}/>
 
-          <Route exact path="/fav"component={Fav}/>
+          <Route exact path="/fav" component={Fav}/>
           
         </Switch>
       </BrowserRouter>
