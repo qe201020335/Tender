@@ -1,13 +1,10 @@
 import React from 'react'
 import "./UserLogin.css"
 import NavBar from "./NavBar";
-import App from "../App.js";
 
 import { useState } from "react";
 import Parser from 'html-react-parser';
-import { Link } from "react-router-dom"
 import { Redirect } from 'react-router-dom';
-import { useHistory } from "react-router-dom";
 import { IconButton } from '@material-ui/core';
 
 const UserLogin = () => {
@@ -26,30 +23,30 @@ const UserLogin = () => {
     password = document.querySelector('#password_input').value
     if (username === "user" && password === "user"){
       console.log("correct");
-      setLoginStatus(true);
+      setLoginStatus(1);
       sessionStorage.setItem('loginStat', "1")
       sessionStorage.setItem('username', "user")
     }
-    else if (username == "admin" && password == "admin"){
+    else if (username === "admin" && password === "admin"){
       console.log("correct")
-      setLoginStatus(true);
+      setLoginStatus(1);
       sessionStorage.setItem('loginStat', "1")
       sessionStorage.setItem('username', "admin")
     }
     else{
       console.log("wrong password")
       alert("Wrong username or password!")
-      setLoginStatus(false);
+      setLoginStatus(0);
       sessionStorage.setItem('loginStat', "0")
     }
   }
 
   function LogoutHandler(){
-    setLoginStatus(false);
+    setLoginStatus(0);
     sessionStorage.setItem('loginStat', "0")
   }
 
-  if (loginStatus == true){
+  if (loginStatus === 1){
     let a = String(sessionStorage.getItem('username'))
     return (
       <div id="userInfo_container">
