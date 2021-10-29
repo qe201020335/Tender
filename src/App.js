@@ -10,10 +10,12 @@ import RestaurantDetail from "./Components/RestaurantDetail";
 import Fav from "./Components/Fav";
 
 const App = () => {
-  const [openRestDetail, setOpenRestDetail] = useState(false);
+  const [openRestDetail,  setOpenRestDetail] = useState(false);
+  const [clicked_restaurant, setRest] = useState(null);
 
   const onCardClick = (restaurant) => {
     setOpenRestDetail(true);
+    setRest(restaurant);
     console.log(restaurant);
   }
 
@@ -28,7 +30,7 @@ const App = () => {
           <Route exact path="/" render={() =>
             <div>
               <RestaurantCards onCardClick={onCardClick} />
-              {openRestDetail && <RestaurantDetail />}
+              {openRestDetail && <RestaurantDetail restaurant={clicked_restaurant}/>}
               <SwipeButtonsBar />
             </div>}
           />
