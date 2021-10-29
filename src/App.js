@@ -20,28 +20,22 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
+
+        <NavBar/>
+
         <Switch>
 
-          <Route exact path="/" render={() => 
+          <Route exact path="/" render={() =>
             <div>
-              <NavBar />
-              <div>
-                <RestaurantCards onCardClick={onCardClick} />
-                {openRestDetail && <RestaurantDetail />}
-                <SwipeButtonsBar />
-              </div>
+              <RestaurantCards onCardClick={onCardClick} />
+              {openRestDetail && <RestaurantDetail />}
+              <SwipeButtonsBar />
             </div>}
           />
 
           <Route exact path="/UserLogin" component={UserLogin}/>
 
-          <Route exact path="/fav" render={() =>
-            <div>
-              <NavBar />
-              <div>
-                <Fav/>
-              </div>
-            </div>}/>
+          <Route exact path="/fav"component={Fav}/>
           
         </Switch>
       </BrowserRouter>
