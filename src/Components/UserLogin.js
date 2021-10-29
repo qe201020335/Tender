@@ -6,18 +6,18 @@ import { IconButton } from '@material-ui/core';
 import logo from "../Images/tender_rec.png"
 
 const UserLogin = () => {
-    return (
-        <div className="userLogin_header">
-            <Link to="/">
-                <img 
-                    className="userLogin_header_logo"
-                    src={logo}
-                    alt="TENDER"
-                />
-            </Link>
-            <a>This is user login page</a>
-        </div>
-    );
+  return (
+    <div className="userLogin_header">
+      <Link to="/">
+        <img
+          className="userLogin_header_logo"
+          src={logo}
+          alt="TENDER"
+        />
+      </Link>
+      <a>This is user login page</a>
+    </div>
+  );
 }
 
 export default UserLogin

@@ -7,6 +7,7 @@ import RestaurantCards from "./Components/RestaurantCards";
 import SwipeButtonsBar from "./Components/SwipeButtonsBar";
 import UserLogin from "./Components/UserLogin";
 import RestaurantDetail from "./Components/RestaurantDetail";
+import Fav from "./Components/Fav";
 
 const App = () => {
   const [openRestDetail, setOpenRestDetail] = useState(false);
@@ -19,20 +20,22 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
+
+        <NavBar/>
+
         <Switch>
 
-          <Route exact path="/" render={() => 
+          <Route exact path="/" render={() =>
             <div>
-              <NavBar />
-              <div>
-                <RestaurantCards onCardClick={onCardClick} />
-                {openRestDetail && <RestaurantDetail />}
-                <SwipeButtonsBar />
-              </div>
+              <RestaurantCards onCardClick={onCardClick} />
+              {openRestDetail && <RestaurantDetail />}
+              <SwipeButtonsBar />
             </div>}
           />
 
           <Route exact path="/UserLogin" component={UserLogin}/>
+
+          <Route exact path="/fav" component={Fav}/>
           
         </Switch>
       </BrowserRouter>
