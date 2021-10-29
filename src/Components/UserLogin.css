@@ -15,7 +15,7 @@
     margin-top: 20px;
 }
 
-.login_form {
+#login_form {
     position: fixed;
     top: 40vh;
     left: 44vw;

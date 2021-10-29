@@ -12,15 +12,13 @@ const UserLogin = () => {
     sessionStorage.setItem('loginStat', "0");
   }
   const [loginStatus, setLoginStatus] = useState(parseInt(sessionStorage.getItem('loginStat')));
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  let username = '';
-  let password = '';
 
   function LoginHandler(){
     console.log("Checking log info");
     // hardcoded username & password
-    username = document.querySelector('#username_input').value
-    password = document.querySelector('#password_input').value
     if (username === "user" && password === "user"){
       console.log("correct");
       setLoginStatus(1);
@@ -46,6 +44,18 @@ const UserLogin = () => {
     sessionStorage.setItem('loginStat', "0")
   }
 
+  const changeHandlerUsername = (event) =>{
+    const target = event.target;
+    const value = target.value;
+    setUsername(value)
+  }
+
+  const changeHandlerPassword = (event) =>{
+    const target = event.target;
+    const value = target.value;
+    setPassword(value)
+  }
+
   if (loginStatus === 1){
     let a = String(sessionStorage.getItem('username'))
     return (
@@ -63,19 +73,17 @@ const UserLogin = () => {
 
   return (
     <div className="userLogin_header">
-      <form class="login_form">
-        <label for="uname"><b>Username</b></label>
-        <input id="username_input" type="text" placeholder="Enter Username" name="uname" required/>
-        <br/>
-        <label for="psw"><b>Password</b></label>
-        <input id="password_input" type="password" placeholder="Enter Password" name="psw" required/>
-        <br/>
-        <br/>
-        <button type="submit" className="login_submit" onClick={LoginHandler} >Login</button>
-      </form>
-
-    </div>
-
+    <form id="login_form">
+      <label><b>Username</b></label>
+      <input id="username_input" type="text" placeholder="Enter Username" name="uname" value = {username} onChange={changeHandlerUsername} required/>
+      <br/>
+      <label><b>Password</b></label>
+      <input id="password_input" type="password" placeholder="Enter Password" name="psw" value = {password} onChange={changeHandlerPassword} required/>
+      <br/>
+      <br/>
+      <button type="submit" className="login_submit" onClick={LoginHandler} >Login</button>
+    </form>
+  </div>
   );
 }
 
