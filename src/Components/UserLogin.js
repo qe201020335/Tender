@@ -3,7 +3,6 @@ import "./UserLogin.css"
 import NavBar from "./NavBar";
 
 import { useState } from "react";
-import Parser from 'html-react-parser';
 import { Redirect } from 'react-router-dom';
 import { IconButton } from '@material-ui/core';
 
@@ -47,10 +46,10 @@ const UserLogin = () => {
   }
 
   if (loginStatus === 1){
-    let a = String(sessionStorage.getItem('username'))
+    let userName = String(sessionStorage.getItem('username'))
     return (
       <div id="userInfo_container">
-        Username: {Parser(a)}
+        Username: {userName}
         <br/><br/>
         <button type="submit" className="logout_submit" onClick={LogoutHandler} >Log Out</button>
         {loginStatus
