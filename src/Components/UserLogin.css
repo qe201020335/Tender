@@ -14,3 +14,53 @@
     border-radius: 20px;
     margin-top: 20px;
 }
+
+.login_form {
+    position: fixed;
+    top: 40vh;
+    left: 44vw;
+    right: 43vw;
+    align-self: flex-start;
+    display: grid;
+    justify-items:left;
+    align-items:flex-start;
+    font-size: large;
+}
+
+.login_submit{
+    width: 91%;
+    padding: 7px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    background-color: #ca3b28;
+    cursor: pointer;
+    outline: none;
+}
+.logout_submit{
+    width: 91%;
+    padding: 7px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    background-color: #ca3b28;
+    cursor: pointer;
+    outline: none;
+}
+
+#userInfo_container{
+    position: fixed;
+    top: 40vh;
+    left: 44vw;
+    right: 43vw;
+    align-self: flex-start;
+    display: grid;
+    justify-items:left;
+    align-items:flex-start;
+    font-size: large;
+}
+
+  
+

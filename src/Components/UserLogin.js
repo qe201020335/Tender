@@ -1,23 +1,86 @@
 import React from 'react'
 import "./UserLogin.css"
-import { Link } from "react-router-dom"
+import NavBar from "./NavBar";
+import App from "../App.js";
 
+import { useState } from "react";
+import Parser from 'html-react-parser';
+import { Link } from "react-router-dom"
+import { Redirect } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import { IconButton } from '@material-ui/core';
-import logo from "../Images/tender_rec.png"
 
 const UserLogin = () => {
+  if (!sessionStorage.getItem('loginStat')){
+    sessionStorage.setItem('loginStat', "0");
+  }
+  const [loginStatus, setLoginStatus] = useState(parseInt(sessionStorage.getItem('loginStat')));
+
+  let username = '';
+  let password = '';
+
+  function LoginHandler(){
+    console.log("Checking log info");
+    // hardcoded username & password
+    username = document.querySelector('#username_input').value
+    password = document.querySelector('#password_input').value
+    if (username === "user" && password === "user"){
+      console.log("correct");
+      setLoginStatus(true);
+      sessionStorage.setItem('loginStat', "1")
+      sessionStorage.setItem('username', "user")
+    }
+    else if (username == "admin" && password == "admin"){
+      console.log("correct")
+      setLoginStatus(true);
+      sessionStorage.setItem('loginStat', "1")
+      sessionStorage.setItem('username', "admin")
+    }
+    else{
+      console.log("wrong password")
+      alert("Wrong username or password!")
+      setLoginStatus(false);
+      sessionStorage.setItem('loginStat', "0")
+    }
+  }
+
+  function LogoutHandler(){
+    setLoginStatus(false);
+    sessionStorage.setItem('loginStat', "0")
+  }
+
+  if (loginStatus == true){
+    let a = String(sessionStorage.getItem('username'))
+    return (
+      <div id="userInfo_container">
+        Username: {Parser(a)}
+        <br/><br/>
+        <button type="submit" className="logout_submit" onClick={LogoutHandler} >Log Out</button>
+        {loginStatus
+        ? <Redirect to='/UserLogin'/>
+        : <div></div>
+        }
+      </div>
+    );
+  }
+
   return (
     <div className="userLogin_header">
-      <Link to="/">
-        <img
-          className="userLogin_header_logo"
-          src={logo}
-          alt="TENDER"
-        />
-      </Link>
-      <a>This is user login page</a>
+      <form class="login_form">
+        <label for="uname"><b>Username</b></label>
+        <input id="username_input" type="text" placeholder="Enter Username" name="uname" required/>
+        <br/>
+        <label for="psw"><b>Password</b></label>
+        <input id="password_input" type="password" placeholder="Enter Password" name="psw" required/>
+        <br/>
+        <br/>
+        <button type="submit" className="login_submit" onClick={LoginHandler} >Login</button>
+      </form>
+
     </div>
+
   );
 }
+
 
 export default UserLogin
