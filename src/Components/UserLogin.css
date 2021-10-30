@@ -39,7 +39,7 @@
     outline: none;
 }
 .logout_submit{
-    width: 91%;
+    width: 150px;
     padding: 7px;
     border: none;
     border-radius: 5px;
@@ -52,14 +52,20 @@
 
 #userInfo_container{
     position: fixed;
-    top: 40vh;
-    left: 44vw;
-    right: 43vw;
+    top: 30%;
+    left: 35%;
+    right: 35%;
     align-self: flex-start;
     display: grid;
     justify-items:left;
     align-items:flex-start;
     font-size: large;
+}
+
+.edit_container{
+    position: fixed;
+    top: 45%;
+    left: 32%;
 }
 
   
