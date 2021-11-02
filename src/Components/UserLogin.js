@@ -1,11 +1,13 @@
 import React, { StrictMode } from 'react'
 import "./UserLogin.css"
 import NavBar from "./NavBar";
+import UserProfile from './UserProfile';
 
 import { useState } from "react";
 import { Redirect } from 'react-router-dom';
 import { IconButton } from '@material-ui/core';
-import { Description } from '@material-ui/icons';
+import EditProfile from './EditProfile';
+import LoginForm from './LoginForm';
 
 const UserLogin = () => {
   if (!sessionStorage.getItem('loginStat')){
@@ -18,7 +20,7 @@ const UserLogin = () => {
   const [editing, setEditing] = useState(false);
 
 
-  function LoginHandler(){
+  function loginHandler(){
     console.log("Checking log info");
     // hardcoded username & password
     if (username === "user" && password === "user"){
@@ -41,12 +43,12 @@ const UserLogin = () => {
     }
   }
 
-  function LogoutHandler(){
+  function logoutHandler(){
     setLoginStatus(0);
     sessionStorage.setItem('loginStat', "0")
   }
 
-  function EditHandler(){
+  function editHandler(){
     setEditing(true)
   }
 
@@ -74,63 +76,35 @@ const UserLogin = () => {
   }
 
   if (loginStatus === 1 && editing === false){
-    let userName = String(sessionStorage.getItem('username'))
+
     return (
-      <div id="userInfo_container">
-        <b>Username:</b> {userName}
-        <br/><br/>
-        <b>Description:</b> 
-        <br/>
-        {sessionStorage.getItem(userName) 
-         ? sessionStorage.getItem(userName)
-         : "You have no description! Click Edit Profile to set one!"}
-        <br/><br/>
-        <button type="button" className="logout_submit" onClick={EditHandler} >Edit Profile</button>
-        <br/>
-        <button type="submit" className="logout_submit" onClick={LogoutHandler} >Log Out</button>
-        {loginStatus
-        ? <Redirect to='/UserLogin'/>
-        : <div></div>
-        }
-        {editing
-        ? <Redirect to='/UserLogin'/>
-        : <div></div>
-        }
-      </div>
+      <UserProfile 
+        editHandler = {editHandler}
+        logoutHandler = {logoutHandler}
+        loginStatus = {loginStatus}
+        editing = {editing}
+      />
     );
   }
   if (editing === true){
     let userName = String(sessionStorage.getItem('username'))
     return(
-      <div className='edit_container'>
-        <label><b>New Description</b></label>
-        <br/>
-        
-        <textarea name='udesc' onChange={changeHandlerDesc} rows="6" cols="50">{sessionStorage.getItem(userName) ? sessionStorage.getItem(userName) : ''}</textarea>
-        <br/>
-        <br/>
-        <button type="submit" className="logout_submit" onClick={changeDescHandler}>Save changes</button>
-        {editing
-        ? <Redirect to='/UserLogin'/>
-        : <div></div>
-        }
-      </div>
+      <EditProfile
+        changeHandlerDesc = {changeHandlerDesc}
+        changeDescHandler = {changeDescHandler}
+        editing = {editing}
+      />
     );
   }
 
   return (
-    <div className="userLogin_header">
-    <form id="login_form">
-      <label><b>Username</b></label>
-      <input id="username_input" type="text" placeholder="Enter Username" name="uname" value = {username} onChange={changeHandlerUsername} required/>
-      <br/>
-      <label><b>Password</b></label>
-      <input id="password_input" type="password" placeholder="Enter Password" name="psw" value = {password} onChange={changeHandlerPassword} required/>
-      <br/>
-      <br/>
-      <button type="submit" className="login_submit" onClick={LoginHandler} >Login</button>
-    </form>
-  </div>
+    <LoginForm
+      username={username}
+      password={password}
+      changeHandlerUsername={changeHandlerUsername}
+      changeHandlerPassword={changeHandlerPassword}
+      loginHandler={loginHandler}
+    />
   );
 }
 
