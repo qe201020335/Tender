@@ -13,6 +13,7 @@ import Restaurant from "./Components/Restaurant";
 const App = () => {
   const [openRestDetail,  setOpenRestDetail] = useState(false);
   const [clicked_restaurant, setRest] = useState(null);
+  const [loginStatus, setLoginStatus] = useState(0);
 
   const onCardClick = (restaurant) => {
     setOpenRestDetail(true);
@@ -40,11 +41,23 @@ const App = () => {
             </div>}
           />
 
-          <Route exact path="/Profile" component={Profile}/>
+          <Route exact path="/Profile" render={() =>
+            <div>
+              <Profile loginStatus={loginStatus} setLoginStatus={setLoginStatus}/>
+            </div>}
+          />
 
-          <Route exact path="/fav" component={Fav}/>
+          <Route exact path="/fav" render={() =>
+            <div>
+              <Fav loginStatus={loginStatus}/>
+            </div>}
+          />
 
-          <Route exact path="/restaurant" component={Restaurant}/>
+          <Route exact path="/restaurant" render={() =>
+            <div>
+              <Profile loginStatus={loginStatus} setLoginStatus={setLoginStatus}/>
+            </div>}
+          />
           
         </Switch>
       </BrowserRouter>

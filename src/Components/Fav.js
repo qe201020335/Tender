@@ -2,8 +2,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 
-const Fav = () => {
-  let loginStatus = parseInt(sessionStorage.getItem('loginStat'))
+const Fav = ({loginStatus}) => {
   if (loginStatus === 1){
     return (
       <p>Favourite Page (Under construction)</p>
@@ -11,7 +10,7 @@ const Fav = () => {
   }
   else{
     return (
-      <Redirect to='/UserLogin'/>
+      <Redirect to='/Profile'/>
     )
   }
   

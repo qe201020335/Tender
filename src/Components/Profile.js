@@ -9,12 +9,12 @@ import { IconButton } from '@material-ui/core';
 import EditProfile from './EditProfile';
 import LoginForm from './LoginForm';
 
-const Profile = () => {
-  if (!sessionStorage.getItem('loginStat')){
-    sessionStorage.setItem('loginStat', "0");
-  }
+const Profile = ({loginStatus, setLoginStatus}) => {
+  // if (!sessionStorage.getItem('loginStat')){
+  //   sessionStorage.setItem('loginStat', "0");
+  // }
 
-  const [loginStatus, setLoginStatus] = useState(parseInt(sessionStorage.getItem('loginStat')));
+  // const [loginStatus, setLoginStatus] = useState(parseInt(sessionStorage.getItem('loginStat')));
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [editing, setEditing] = useState(false);
@@ -28,7 +28,7 @@ const Profile = () => {
       console.log("correct");
       setLoginStatus(1);
       setRestaurant(false);
-      sessionStorage.setItem('loginStat', "1")
+      //sessionStorage.setItem('loginStat', "1")
       sessionStorage.setItem('username', "user")
       sessionStorage.setItem('type', 'user')
     }
@@ -36,7 +36,7 @@ const Profile = () => {
       console.log("correct")
       setLoginStatus(1);
       setRestaurant(false);
-      sessionStorage.setItem('loginStat', "1")
+      //sessionStorage.setItem('loginStat', "1")
       sessionStorage.setItem('username', "admin")
       sessionStorage.setItem('type', 'admin')
     }
@@ -44,7 +44,7 @@ const Profile = () => {
       console.log("correct")
       setLoginStatus(1);
       setRestaurant(true);
-      sessionStorage.setItem('loginStat', "1")
+      //sessionStorage.setItem('loginStat', "1")
       sessionStorage.setItem('username', "rest")
       sessionStorage.setItem('type', 'rest')
     }
@@ -52,13 +52,13 @@ const Profile = () => {
       console.log("wrong password")
       alert("Wrong username or password!")
       setLoginStatus(0);
-      sessionStorage.setItem('loginStat', "0")
+      //sessionStorage.setItem('loginStat', "0")
     }
   }
 
   function logoutHandler(){
     setLoginStatus(0);
-    sessionStorage.setItem('loginStat', "0")
+    //sessionStorage.setItem('loginStat', "0")
   }
 
   function editHandler(){
