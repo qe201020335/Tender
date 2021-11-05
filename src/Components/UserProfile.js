@@ -1,5 +1,5 @@
 import React, { StrictMode } from 'react'
-import "./UserLogin.css"
+import "./Profile.css"
 import { Redirect } from 'react-router-dom';
 
 const UserProfile = ({editHandler, logoutHandler, loginStatus, editing}) => {
@@ -18,11 +18,11 @@ const UserProfile = ({editHandler, logoutHandler, loginStatus, editing}) => {
       <br/>
       <button type="submit" className="logout_submit" onClick={logoutHandler} >Log Out</button>
       {loginStatus
-      ? <Redirect to='/UserLogin'/>
+      ? <Redirect to='/Profile'/>
       : <div></div>
       }
       {editing
-      ? <Redirect to='/UserLogin'/>
+      ? <Redirect to='/Profile'/>
       : <div></div>
       }
     </div>

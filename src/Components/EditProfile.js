@@ -1,5 +1,5 @@
 import React, { StrictMode } from 'react'
-import "./UserLogin.css"
+import "./Profile.css"
 import { Redirect } from 'react-router-dom';
 
 const EditProfile = ({changeHandlerDesc, changeDescHandler, editing}) => {
@@ -14,7 +14,7 @@ const EditProfile = ({changeHandlerDesc, changeDescHandler, editing}) => {
         <br/>
         <button type="submit" className="logout_submit" onClick={changeDescHandler}>Save changes</button>
         {editing
-        ? <Redirect to='/UserLogin'/>
+        ? <Redirect to='/Profile'/>
         : <div></div>
         }
     </div>

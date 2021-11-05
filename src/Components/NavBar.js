@@ -12,7 +12,7 @@ const NavBar = () => {
   return (
     <div className='header'>
       <div className='header_left'>
-        <IconButton component={Link} to="/userLogin"><AccountBoxIcon frontSize="large" className="header_icon"/>
+        <IconButton component={Link} to="/Profile"><AccountBoxIcon frontSize="large" className="header_icon"/>
         </IconButton>
         <IconButton component={Link} to="/fav">
           <StarIcon frontSize="large" className="header_icon"/>
@@ -22,7 +22,7 @@ const NavBar = () => {
         <img className="header_logo" src={logo} alt="TENDER"/>
       </IconButton>
       <div className='header_right'>
-        <IconButton>
+        <IconButton component={Link} to="/restaurant">
           <StorefrontIcon frontSize="large" className="header_icon"/>
         </IconButton>
       </div>

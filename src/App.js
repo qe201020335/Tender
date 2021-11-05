@@ -5,9 +5,10 @@ import './App.css';
 import NavBar from "./Components/NavBar";
 import RestaurantCards from "./Components/RestaurantCards";
 import SwipeButtonsBar from "./Components/SwipeButtonsBar";
-import UserLogin from "./Components/UserLogin";
+import Profile from "./Components/Profile";
 import RestaurantDetail from "./Components/RestaurantDetail";
 import Fav from "./Components/Fav";
+import Restaurant from "./Components/Restaurant";
 
 const App = () => {
   const [openRestDetail,  setOpenRestDetail] = useState(false);
@@ -39,9 +40,11 @@ const App = () => {
             </div>}
           />
 
-          <Route exact path="/UserLogin" component={UserLogin}/>
+          <Route exact path="/Profile" component={Profile}/>
 
           <Route exact path="/fav" component={Fav}/>
+
+          <Route exact path="/restaurant" component={Restaurant}/>
           
         </Switch>
       </BrowserRouter>

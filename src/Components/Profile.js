@@ -1,5 +1,5 @@
 import React, { StrictMode } from 'react'
-import "./UserLogin.css"
+import "./Profile.css"
 import NavBar from "./NavBar";
 import UserProfile from './UserProfile';
 
@@ -9,7 +9,7 @@ import { IconButton } from '@material-ui/core';
 import EditProfile from './EditProfile';
 import LoginForm from './LoginForm';
 
-const UserLogin = () => {
+const Profile = () => {
   if (!sessionStorage.getItem('loginStat')){
     sessionStorage.setItem('loginStat', "0");
   }
@@ -18,6 +18,7 @@ const UserLogin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [editing, setEditing] = useState(false);
+  const [isRestaurant, setRestaurant] = useState(false);
 
 
   function loginHandler(){
@@ -26,14 +27,26 @@ const UserLogin = () => {
     if (username === "user" && password === "user"){
       console.log("correct");
       setLoginStatus(1);
+      setRestaurant(false);
       sessionStorage.setItem('loginStat', "1")
       sessionStorage.setItem('username', "user")
+      sessionStorage.setItem('type', 'user')
     }
     else if (username === "admin" && password === "admin"){
       console.log("correct")
       setLoginStatus(1);
+      setRestaurant(false);
       sessionStorage.setItem('loginStat', "1")
       sessionStorage.setItem('username', "admin")
+      sessionStorage.setItem('type', 'admin')
+    }
+    else if (username === "rest" && password === "rest"){
+      console.log("correct")
+      setLoginStatus(1);
+      setRestaurant(true);
+      sessionStorage.setItem('loginStat', "1")
+      sessionStorage.setItem('username', "rest")
+      sessionStorage.setItem('type', 'rest')
     }
     else{
       console.log("wrong password")
@@ -75,7 +88,11 @@ const UserLogin = () => {
     setPassword(value)
   }
 
-  if (loginStatus === 1 && editing === false){
+  if (loginStatus === 1 && sessionStorage.getItem('type') === 'rest'){
+    return (<Redirect to='/restaurant'/>)
+  }
+
+  if (loginStatus === 1 && editing === false && isRestaurant === false){
 
     return (
       <UserProfile 
@@ -86,8 +103,11 @@ const UserLogin = () => {
       />
     );
   }
-  if (editing === true){
-    let userName = String(sessionStorage.getItem('username'))
+  else if (loginStatus === 1 && editing === false && isRestaurant === true){
+
+  }
+
+  if (editing === true ){
     return(
       <EditProfile
         changeHandlerDesc = {changeHandlerDesc}
@@ -109,4 +129,4 @@ const UserLogin = () => {
 }
 
 
-export default UserLogin
+export default Profile

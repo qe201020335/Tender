@@ -1,0 +1,11 @@
+.logout_submit{
+  width: 150px;
+  padding: 7px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  background-color: #ca3b28;
+  cursor: pointer;
+  outline: none;
+}
