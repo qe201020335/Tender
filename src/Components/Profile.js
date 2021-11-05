@@ -9,7 +9,7 @@ import { IconButton } from '@material-ui/core';
 import EditProfile from './EditProfile';
 import LoginForm from './LoginForm';
 
-const Profile = ({loginStatus, setLoginStatus}) => {
+const Profile = ({loginStatus, setLoginStatus, isRestaurant, setRestaurant, restStatus}) => {
   // if (!sessionStorage.getItem('loginStat')){
   //   sessionStorage.setItem('loginStat', "0");
   // }
@@ -18,35 +18,75 @@ const Profile = ({loginStatus, setLoginStatus}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [editing, setEditing] = useState(false);
-  const [isRestaurant, setRestaurant] = useState(false);
-
 
   function loginHandler(){
     console.log("Checking log info");
     // hardcoded username & password
     if (username === "user" && password === "user"){
       console.log("correct");
-      setLoginStatus(1);
-      setRestaurant(false);
-      //sessionStorage.setItem('loginStat', "1")
-      sessionStorage.setItem('username', "user")
-      sessionStorage.setItem('type', 'user')
+      if (restStatus === true) {
+        alert("Please use user log in page!")
+      }
+      else{
+        setLoginStatus(1);
+        setRestaurant(false);
+        //sessionStorage.setItem('loginStat', "1")
+        sessionStorage.setItem('username', "user")
+        sessionStorage.setItem('type', 'user')
+      }
     }
     else if (username === "admin" && password === "admin"){
       console.log("correct")
-      setLoginStatus(1);
-      setRestaurant(false);
-      //sessionStorage.setItem('loginStat', "1")
-      sessionStorage.setItem('username', "admin")
-      sessionStorage.setItem('type', 'admin')
+      if (restStatus === true) {
+        alert("Please use user log in page!")
+      }
+      else{
+        setLoginStatus(1);
+        setRestaurant(false);
+        //sessionStorage.setItem('loginStat', "1")
+        sessionStorage.setItem('username', "admin")
+        sessionStorage.setItem('type', 'admin')
+      }
     }
-    else if (username === "rest" && password === "rest"){
+    else if (username === "popeyes" && password === "rest"){
       console.log("correct")
-      setLoginStatus(1);
-      setRestaurant(true);
-      //sessionStorage.setItem('loginStat', "1")
-      sessionStorage.setItem('username', "rest")
-      sessionStorage.setItem('type', 'rest')
+      if (restStatus === false) {
+        alert("Please use restaurant log in page!")
+      }
+      else{
+        setLoginStatus(1);
+        setRestaurant(true);
+        //sessionStorage.setItem('loginStat', "1")
+        sessionStorage.setItem('username', "popeyes")
+        sessionStorage.setItem('type', 'rest')
+      }
+      
+    }
+    else if (username === "mcdonalds" && password === "rest"){
+      console.log("correct")
+      if (restStatus === false) {
+        alert("Please use restaurant log in page!")
+      }
+      else{
+        setLoginStatus(1);
+        setRestaurant(true);
+        //sessionStorage.setItem('loginStat', "1")
+        sessionStorage.setItem('username', "mcdonalds")
+        sessionStorage.setItem('type', 'rest')
+      }
+    }
+    else if (username === "subway" && password === "rest"){
+      console.log("correct")
+      if (restStatus === false) {
+        alert("Please use restaurant log in page!")
+      }
+      else{
+        setLoginStatus(1);
+        setRestaurant(true);
+        //sessionStorage.setItem('loginStat', "1")
+        sessionStorage.setItem('username', "subway")
+        sessionStorage.setItem('type', 'rest')
+      }
     }
     else{
       console.log("wrong password")
@@ -88,9 +128,9 @@ const Profile = ({loginStatus, setLoginStatus}) => {
     setPassword(value)
   }
 
-  if (loginStatus === 1 && sessionStorage.getItem('type') === 'rest'){
-    return (<Redirect to='/restaurant'/>)
-  }
+  // if (loginStatus === 1 && sessionStorage.getItem('type') === 'rest'){
+  //   return (<Redirect to='/restaurant'/>)
+  // }
 
   if (loginStatus === 1 && editing === false && isRestaurant === false){
 
@@ -103,11 +143,13 @@ const Profile = ({loginStatus, setLoginStatus}) => {
       />
     );
   }
-  else if (loginStatus === 1 && editing === false && isRestaurant === true){
-
+  else if (loginStatus === 1 && isRestaurant === true){
+    return(
+      <Redirect to='/restaurant'/>
+    );
   }
 
-  if (editing === true ){
+  if (editing === true && isRestaurant === false){
     return(
       <EditProfile
         changeHandlerDesc = {changeHandlerDesc}

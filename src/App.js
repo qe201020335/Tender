@@ -14,6 +14,7 @@ const App = () => {
   const [openRestDetail,  setOpenRestDetail] = useState(false);
   const [clicked_restaurant, setRest] = useState(null);
   const [loginStatus, setLoginStatus] = useState(0);
+  const [isRestaurant, setRestaurant] = useState(false);
 
   const onCardClick = (restaurant) => {
     setOpenRestDetail(true);
@@ -43,7 +44,12 @@ const App = () => {
 
           <Route exact path="/Profile" render={() =>
             <div>
-              <Profile loginStatus={loginStatus} setLoginStatus={setLoginStatus}/>
+              <Profile 
+              loginStatus={loginStatus} 
+              setLoginStatus={setLoginStatus} 
+              restStatus={false}
+              isRestaurant={isRestaurant} 
+              setRestaurant={setRestaurant}/>
             </div>}
           />
 
@@ -55,7 +61,11 @@ const App = () => {
 
           <Route exact path="/restaurant" render={() =>
             <div>
-              <Profile loginStatus={loginStatus} setLoginStatus={setLoginStatus}/>
+              <Restaurant 
+              loginStatus={loginStatus} 
+              setLoginStatus={setLoginStatus} 
+              isRestaurant={isRestaurant} 
+              setRestaurant={setRestaurant}/>
             </div>}
           />
           
