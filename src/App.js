@@ -13,7 +13,11 @@ import Restaurant from "./Components/Restaurant";
 const App = () => {
   const [openRestDetail,  setOpenRestDetail] = useState(false);
   const [clicked_restaurant, setRest] = useState(null);
-  const [loginStatus, setLoginStatus] = useState(0);
+
+  if (!sessionStorage.getItem('loginStat')){ // prevent refresh & logged out
+    sessionStorage.setItem('loginStat', "0");
+  }
+  const [loginStatus, setLoginStatus] = useState(parseInt(sessionStorage.getItem('loginStat')));
   const [isRestaurant, setRestaurant] = useState(false);
 
   const onCardClick = (restaurant) => {

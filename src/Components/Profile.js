@@ -10,9 +10,6 @@ import EditProfile from './EditProfile';
 import LoginForm from './LoginForm';
 
 const Profile = ({loginStatus, setLoginStatus, isRestaurant, setRestaurant, restStatus}) => {
-  // if (!sessionStorage.getItem('loginStat')){
-  //   sessionStorage.setItem('loginStat', "0");
-  // }
 
   // const [loginStatus, setLoginStatus] = useState(parseInt(sessionStorage.getItem('loginStat')));
   const [username, setUsername] = useState('');
@@ -30,7 +27,7 @@ const Profile = ({loginStatus, setLoginStatus, isRestaurant, setRestaurant, rest
       else{
         setLoginStatus(1);
         setRestaurant(false);
-        //sessionStorage.setItem('loginStat', "1")
+        sessionStorage.setItem('loginStat', "1")
         sessionStorage.setItem('username', "user")
         sessionStorage.setItem('type', 'user')
       }
@@ -43,7 +40,7 @@ const Profile = ({loginStatus, setLoginStatus, isRestaurant, setRestaurant, rest
       else{
         setLoginStatus(1);
         setRestaurant(false);
-        //sessionStorage.setItem('loginStat', "1")
+        sessionStorage.setItem('loginStat', "1")
         sessionStorage.setItem('username', "admin")
         sessionStorage.setItem('type', 'admin')
       }
@@ -56,7 +53,7 @@ const Profile = ({loginStatus, setLoginStatus, isRestaurant, setRestaurant, rest
       else{
         setLoginStatus(1);
         setRestaurant(true);
-        //sessionStorage.setItem('loginStat', "1")
+        sessionStorage.setItem('loginStat', "1")
         sessionStorage.setItem('username', "popeyes")
         sessionStorage.setItem('type', 'rest')
       }
@@ -70,7 +67,7 @@ const Profile = ({loginStatus, setLoginStatus, isRestaurant, setRestaurant, rest
       else{
         setLoginStatus(1);
         setRestaurant(true);
-        //sessionStorage.setItem('loginStat', "1")
+        sessionStorage.setItem('loginStat', "1")
         sessionStorage.setItem('username', "mcdonalds")
         sessionStorage.setItem('type', 'rest')
       }
@@ -83,7 +80,7 @@ const Profile = ({loginStatus, setLoginStatus, isRestaurant, setRestaurant, rest
       else{
         setLoginStatus(1);
         setRestaurant(true);
-        //sessionStorage.setItem('loginStat', "1")
+        sessionStorage.setItem('loginStat', "1")
         sessionStorage.setItem('username', "subway")
         sessionStorage.setItem('type', 'rest')
       }
@@ -92,13 +89,13 @@ const Profile = ({loginStatus, setLoginStatus, isRestaurant, setRestaurant, rest
       console.log("wrong password")
       alert("Wrong username or password!")
       setLoginStatus(0);
-      //sessionStorage.setItem('loginStat', "0")
+      sessionStorage.setItem('loginStat', "0")
     }
   }
 
   function logoutHandler(){
     setLoginStatus(0);
-    //sessionStorage.setItem('loginStat', "0")
+    sessionStorage.setItem('loginStat', "0")
   }
 
   function editHandler(){
@@ -166,6 +163,7 @@ const Profile = ({loginStatus, setLoginStatus, isRestaurant, setRestaurant, rest
       changeHandlerUsername={changeHandlerUsername}
       changeHandlerPassword={changeHandlerPassword}
       loginHandler={loginHandler}
+      restStatus={restStatus}
     />
   );
 }
