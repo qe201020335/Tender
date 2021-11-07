@@ -2,7 +2,7 @@ import React, { useState }  from 'react'
 import { useHistory } from 'react-router-dom';
 import { getRestaurant } from "../Repository/RestaurantRepository";
 
-const Login = ({ setLoginStatus, setLoggedInAsRestaurant, setMyRestaurant, isRestaurant }) => {
+const Login = ({ setLoginStatus, setLoginType, setMyRestaurant, isRestaurant, setLoggedInAsAdmin }) => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -16,18 +16,24 @@ const Login = ({ setLoginStatus, setLoggedInAsRestaurant, setMyRestaurant, isRes
   };
 
   const loginHandler = () => {
-    if (isRestaurant) {
-      if (username === "admin" && password === "admin") {
-        setMyRestaurant(getRestaurant("123"))
-        setLoginStatus(true);
-        setLoggedInAsRestaurant(true);
-        history.push("/my-restaruant");
-      }
+    if (username === "admin" && password === "admin") {
+      setLoginStatus(true);
+      setLoginType("ADMIN");
+      history.push("/");
     } else {
-      if (username === "admin" && password === "admin") {
-        setLoginStatus(true);
-        setLoggedInAsRestaurant(false);
-        history.push("/");
+      if (isRestaurant) {
+        if (username === "rest" && password === "rest") {
+          setMyRestaurant(getRestaurant("123"))
+          setLoginStatus(true);
+          setLoginType("RESTAURANT");
+          history.push("/my-restaruant");
+        }
+      } else {
+        if (username === "user" && password === "user") {
+          setLoginStatus(true);
+          setLoginType("USER");
+          history.push("/");
+        }
       }
     }
   };

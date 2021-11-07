@@ -13,7 +13,7 @@ const App = () => {
   const [openRestDetail,  setOpenRestDetail] = useState(false);
   const [clicked_restaurant, setRest] = useState(null);
   const [loginStatus, setLoginStatus] = useState(false);
-  const [loggedInAsRestaurant, setLoggedInAsRestaurant] = useState(false);
+  const [loginType, setLoginType] = useState("LOGGED_OUT");
   const [myRestaurant, setMyRestaurant] = useState(null);
 
   const onCardClick = (restaurant) => {
@@ -58,7 +58,7 @@ const App = () => {
             <div>
               <Login
                 setLoginStatus={setLoginStatus}
-                setLoggedInAsRestaurant={setLoggedInAsRestaurant}
+                setLoginType={setLoginType}
                 isRestaurant={true}
                 setMyRestaurant={setMyRestaurant}/>
             </div>}
@@ -67,7 +67,7 @@ const App = () => {
             <div>
               <Login
                 setLoginStatus={setLoginStatus}
-                setLoggedInAsRestaurant={setLoggedInAsRestaurant}
+                setLoginType={setLoginType}
                 isRestaurant={false}/>
             </div>}
           />
