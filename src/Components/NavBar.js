@@ -26,11 +26,12 @@ const NavBar = () => {
 
       <div id='header_right'>
 
-        <IconButton component={Link} to="/restaurant">
+        <IconButton component={Link} to="/login-restaurant">
           <StorefrontIcon frontSize="large" className="header_icon"/>
         </IconButton>
 
-        <IconButton component={Link} to="/Profile"><AccountBoxIcon frontSize="large" className="header_icon"/>
+        <IconButton component={Link} to="/">
+          <AccountBoxIcon frontSize="large" className="header_icon"/>
         </IconButton>
 
       </div>

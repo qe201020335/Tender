@@ -1,24 +1,20 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import './App.css';
 import NavBar from "./Components/NavBar";
 import RestaurantCards from "./Components/RestaurantCards";
 import SwipeButtonsBar from "./Components/SwipeButtonsBar";
-import Profile from "./Components/Profile";
 import RestaurantDetail from "./Components/RestaurantDetail";
+import RestaurantProfile from "./Components/RestaurantProfile";
 import Fav from "./Components/Fav";
-import Restaurant from "./Components/Restaurant";
+import Login from "./Components/Login";
 
 const App = () => {
   const [openRestDetail,  setOpenRestDetail] = useState(false);
   const [clicked_restaurant, setRest] = useState(null);
-
-  if (!sessionStorage.getItem('loginStat')){ // prevent refresh & logged out
-    sessionStorage.setItem('loginStat', "0");
-  }
-  const [loginStatus, setLoginStatus] = useState(parseInt(sessionStorage.getItem('loginStat')));
-  const [isRestaurant, setRestaurant] = useState(false);
+  const [loginStatus, setLoginStatus] = useState(false);
+  const [loggedInAsRestaurant, setLoggedInAsRestaurant] = useState(false);
+  const [myRestaurant, setMyRestaurant] = useState(null);
 
   const onCardClick = (restaurant) => {
     setOpenRestDetail(true);
@@ -46,14 +42,9 @@ const App = () => {
             </div>}
           />
 
-          <Route exact path="/Profile" render={() =>
+          <Route exact path="/my-restaruant" render={() =>
             <div>
-              <Profile 
-              loginStatus={loginStatus} 
-              setLoginStatus={setLoginStatus} 
-              restStatus={false}
-              isRestaurant={isRestaurant} 
-              setRestaurant={setRestaurant}/>
+              <RestaurantProfile restaurant={myRestaurant} setMyRestaurant={setMyRestaurant}/>
             </div>}
           />
 
@@ -63,13 +54,13 @@ const App = () => {
             </div>}
           />
 
-          <Route exact path="/restaurant" render={() =>
+          <Route exact path="/login-restaurant" render={() =>
             <div>
-              <Restaurant 
-              loginStatus={loginStatus} 
-              setLoginStatus={setLoginStatus} 
-              isRestaurant={isRestaurant} 
-              setRestaurant={setRestaurant}/>
+              <Login
+                setLoginStatus={setLoginStatus}
+                setLoggedInAsRestaurant={setLoggedInAsRestaurant}
+                isRestaurant={true}
+                setMyRestaurant={setMyRestaurant}/>
             </div>}
           />
           
