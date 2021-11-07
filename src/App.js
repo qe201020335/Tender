@@ -6,7 +6,7 @@ import RestaurantCards from "./Components/RestaurantCards";
 import SwipeButtonsBar from "./Components/SwipeButtonsBar";
 import RestaurantDetail from "./Components/RestaurantDetail";
 import RestaurantProfile from "./Components/RestaurantProfile";
-import Fav from "./Components/Fav";
+import MyFavourites from "./Components/MyFavourites";
 import Login from "./Components/Login";
 
 const App = () => {
@@ -15,6 +15,7 @@ const App = () => {
   const [loginStatus, setLoginStatus] = useState(false);
   const [loginType, setLoginType] = useState("LOGGED_OUT");
   const [myRestaurant, setMyRestaurant] = useState(null);
+  const [myUser, setMyUser] = useState(null);
 
   const onCardClick = (restaurant) => {
     setOpenRestDetail(true);
@@ -48,9 +49,9 @@ const App = () => {
             </div>}
           />
 
-          <Route exact path="/fav" render={() =>
+          <Route exact path="/my-favourites" render={() =>
             <div>
-              <Fav loginStatus={loginStatus}/>
+              <MyFavourites user={myUser} setMyUser={setMyUser}/>
             </div>}
           />
 
@@ -68,6 +69,7 @@ const App = () => {
               <Login
                 setLoginStatus={setLoginStatus}
                 setLoginType={setLoginType}
+                setMyUser={setMyUser}
                 isRestaurant={false}/>
             </div>}
           />

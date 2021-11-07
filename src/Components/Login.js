@@ -1,8 +1,9 @@
 import React, { useState }  from 'react'
 import { useHistory } from 'react-router-dom';
 import { getRestaurant } from "../Repository/RestaurantRepository";
+import { getUser } from "../Repository/UserRepository";
 
-const Login = ({ setLoginStatus, setLoginType, setMyRestaurant, isRestaurant, setLoggedInAsAdmin }) => {
+const Login = ({ setLoginStatus, setLoginType, setMyRestaurant, setMyUser, isRestaurant }) => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -30,9 +31,10 @@ const Login = ({ setLoginStatus, setLoginType, setMyRestaurant, isRestaurant, se
         }
       } else {
         if (username === "user" && password === "user") {
+          setMyUser(getUser("123"))
           setLoginStatus(true);
           setLoginType("USER");
-          history.push("/");
+          history.push("/my-favourites");
         }
       }
     }

@@ -18,7 +18,7 @@ const NavBar = () => {
           <img className="header_icon, header_logo" src={logo} alt="TENDER"/>
         </IconButton>
 
-        <IconButton component={Link} to="/fav" className="icon_button">
+        <IconButton component={Link} to="/my-favourites" className="icon_button">
           <StarIcon fontSize="large" className="header_icon"/>
         </IconButton>
 
