@@ -51,7 +51,7 @@ const App = () => {
 
           <Route exact path="/my-favourites" render={() =>
             <div>
-              <MyFavourites user={myUser} setMyUser={setMyUser}/>
+              <MyFavourites user={myUser} setMyUser={setMyUser} loginType={loginType}/>
             </div>}
           />
 

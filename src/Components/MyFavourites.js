@@ -1,9 +1,16 @@
 "use strict";
 import React from 'react';
-import FavouritesCard from './FavouritesCard'
+import FavouritesCard from './FavouritesCard';
+import { Redirect } from 'react-router-dom';
 
-const MyFavourites = ({ user, setMyUser }) => {
+const MyFavourites = ({ user, setMyUser, loginType }) => {
   const onUnfavourite = (event) => {
+  }
+
+  if (loginType !== "USER") {
+    return (
+      <Redirect to="login-user"/>
+    )
   }
   return (
     <div>

@@ -34,7 +34,7 @@ const Login = ({ setLoginStatus, setLoginType, setMyRestaurant, setMyUser, isRes
           setMyUser(getUser("123"))
           setLoginStatus(true);
           setLoginType("USER");
-          history.push("/my-favourites");
+          history.push("/");
         }
       }
     }
