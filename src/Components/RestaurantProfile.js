@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react'
 import RestaurantProfileView from './RestaurantProfileView'
 import RestaurantProfileForm from './RestaurantProfileForm'
 import "./RestaurantProfile.css";
+import { Redirect } from 'react-router-dom';
 
-const RestaurantProfile = ({ restaurant, setMyRestaurant }) => {
+const RestaurantProfile = ({ restaurant, setMyRestaurant, loginType }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editingRestaruant, setEditingRestaruant] = useState(JSON.parse(JSON.stringify(restaurant)));
   const onEditClick = () => {
@@ -22,6 +23,12 @@ const RestaurantProfile = ({ restaurant, setMyRestaurant }) => {
       ...prevState,
       [event.target.name]: event.target.value
     }));
+  }
+
+  if (loginType !== "RESTAURANT") {
+    return (
+      <Redirect to="login-restaurant"/>
+    )
   }
 
   return(
