@@ -18,7 +18,7 @@ const NavBar = () => {
         </IconButton>
 
         <IconButton component={Link} to="/fav">
-          <StarIcon frontSize="large" className="header_icon"/>
+          <StarIcon fontSize="large" className="header_icon"/>
         </IconButton>
 
       </div>
@@ -27,10 +27,10 @@ const NavBar = () => {
       <div id='header_right'>
 
         <IconButton component={Link} to="/restaurant">
-          <StorefrontIcon frontSize="large" className="header_icon"/>
+          <StorefrontIcon fontSize="large" className="header_icon"/>
         </IconButton>
 
-        <IconButton component={Link} to="/Profile"><AccountBoxIcon frontSize="large" className="header_icon"/>
+        <IconButton component={Link} to="/Profile"><AccountBoxIcon fontSize="large" className="header_icon"/>
         </IconButton>
 
       </div>
