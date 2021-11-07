@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import "./NavBar.css";
 
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
+//import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import AccountCircleIcon from '@material-ui/icons/AccountCircleRounded';
 import { IconButton } from '@material-ui/core';
 import StorefrontIcon from '@material-ui/icons/Storefront';
@@ -27,12 +27,12 @@ const NavBar = () => {
 
       <div id='header_right'>
 
-        <IconButton component={Link} to="/login-restaurant">
-          <StorefrontIcon frontSize="large" className="icon_button"/>
+        <IconButton component={Link} to="/restaurant" className="/login-restaurant">
+          <StorefrontIcon fontSize="large" className="header_icon"/>
         </IconButton>
 
-        <IconButton component={Link} to="/">
-          <AccountBoxIcon frontSize="large" className="icon_button"/>
+        <IconButton component={Link} to="/" className="icon_button">
+          <AccountCircleIcon fontSize="large" className="header_icon"/>
         </IconButton>
 
       </div>
