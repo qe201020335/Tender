@@ -27,11 +27,11 @@ const NavBar = () => {
 
       <div id='header_right'>
 
-        <IconButton component={Link} to="/restaurant" className="/login-restaurant">
+        <IconButton component={Link} to="/login-restaurant" className="/login-restaurant">
           <StorefrontIcon fontSize="large" className="header_icon"/>
         </IconButton>
 
-        <IconButton component={Link} to="/" className="icon_button">
+        <IconButton component={Link} to="/login-user" className="icon_button">
           <AccountCircleIcon fontSize="large" className="header_icon"/>
         </IconButton>
 

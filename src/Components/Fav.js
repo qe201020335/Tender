@@ -10,10 +10,9 @@ const Fav = ({loginStatus}) => {
   }
   else{
     return (
-      <Redirect to='/Profile'/>
+      <Redirect to='/'/>
     )
-  }
-  
+  };
 }
 
 export default Fav;

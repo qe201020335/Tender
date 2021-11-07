@@ -16,11 +16,19 @@ const Login = ({ setLoginStatus, setLoggedInAsRestaurant, setMyRestaurant, isRes
   };
 
   const loginHandler = () => {
-    if (username === "admin" && password === "admin") {
-      setMyRestaurant(getRestaurant("123"))
-      setLoginStatus(true);
-      setLoggedInAsRestaurant(true);
-      history.push("/my-restaruant");
+    if (isRestaurant) {
+      if (username === "admin" && password === "admin") {
+        setMyRestaurant(getRestaurant("123"))
+        setLoginStatus(true);
+        setLoggedInAsRestaurant(true);
+        history.push("/my-restaruant");
+      }
+    } else {
+      if (username === "admin" && password === "admin") {
+        setLoginStatus(true);
+        setLoggedInAsRestaurant(false);
+        history.push("/");
+      }
     }
   };
 
@@ -41,4 +49,4 @@ const Login = ({ setLoginStatus, setLoggedInAsRestaurant, setMyRestaurant, isRes
     </div>
   );
 }
-export default Login
+export default Login;

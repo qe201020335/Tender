@@ -63,7 +63,14 @@ const App = () => {
                 setMyRestaurant={setMyRestaurant}/>
             </div>}
           />
-          
+          <Route exact path="/login-user" render={() =>
+            <div>
+              <Login
+                setLoginStatus={setLoginStatus}
+                setLoggedInAsRestaurant={setLoggedInAsRestaurant}
+                isRestaurant={false}/>
+            </div>}
+          />
         </Switch>
       </BrowserRouter>
     </div>
