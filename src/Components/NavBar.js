@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import "./NavBar.css";
 
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
+//import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import AccountCircleIcon from '@material-ui/icons/AccountCircleRounded';
 import { IconButton } from '@material-ui/core';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import StarIcon from '@material-ui/icons/Star';
@@ -13,11 +14,11 @@ const NavBar = () => {
     <div className='header'>
       <div id='header_left'>
 
-        <IconButton component={Link} to="/">
+        <IconButton component={Link} to="/" className="icon_button">
           <img className="header_icon, header_logo" src={logo} alt="TENDER"/>
         </IconButton>
 
-        <IconButton component={Link} to="/fav">
+        <IconButton component={Link} to="/fav" className="icon_button">
           <StarIcon fontSize="large" className="header_icon"/>
         </IconButton>
 
@@ -26,11 +27,12 @@ const NavBar = () => {
 
       <div id='header_right'>
 
-        <IconButton component={Link} to="/restaurant">
+        <IconButton component={Link} to="/restaurant" className="icon_button">
           <StorefrontIcon fontSize="large" className="header_icon"/>
         </IconButton>
 
-        <IconButton component={Link} to="/Profile"><AccountBoxIcon fontSize="large" className="header_icon"/>
+        <IconButton component={Link} to="/Profile" className="icon_button">
+          <AccountCircleIcon fontSize="large" className="header_icon"/>
         </IconButton>
 
       </div>
