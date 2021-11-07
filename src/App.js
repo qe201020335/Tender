@@ -31,7 +31,7 @@ const App = () => {
     <div>
       <BrowserRouter>
 
-        <NavBar/>
+        <NavBar loginStatus={loginStatus} loginType={loginType}/>
 
         <Switch>
 
@@ -45,7 +45,7 @@ const App = () => {
 
           <Route exact path="/my-restaruant" render={() =>
             <div>
-              <RestaurantProfile restaurant={myRestaurant} setMyRestaurant={setMyRestaurant}/>
+              <RestaurantProfile restaurant={myRestaurant} setMyRestaurant={setMyRestaurant} loginType={loginType}/>
             </div>}
           />
 
