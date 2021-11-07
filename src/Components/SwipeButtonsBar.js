@@ -14,13 +14,13 @@ const SwipeButtonsBar = () => {
                     <ReplayIcon frontSize="large" className="swipeButtons_repeat"/>
                 </IconButton> */}
         <IconButton>
-          <CloseIcon frontSize="large" className="swipeButtons_left"/>
+          <CloseIcon fontSize="large" className="swipeButtons_left"/>
         </IconButton>
         <IconButton>
-          <StarRateIcon frontSize="large" className="swipeButtons_star"/>
+          <StarRateIcon fontSize="large" className="swipeButtons_star"/>
         </IconButton>
         <IconButton>
-          <FavoriteIcon frontSize="large" className="swipeButtons_right"/>
+          <FavoriteIcon fontSize="large" className="swipeButtons_right"/>
         </IconButton>
       </div>
     </div>
