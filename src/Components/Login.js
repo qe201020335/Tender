@@ -20,7 +20,7 @@ const Login = ({ setLoginStatus, setLoginType, setMyRestaurant, setMyUser, isRes
     if (username === "admin" && password === "admin") {
       setLoginStatus(true);
       setLoginType("ADMIN");
-      history.push("/");
+      history.push("/admin");
     } else {
       if (isRestaurant) {
         if (username === "rest" && password === "rest") {

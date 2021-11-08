@@ -19,7 +19,7 @@ const NavBar = ({loginStatus, loginType}) => {
       case "RESTAURANT":
         return "/my-restaruant"
       case "ADMIN":
-        return "/"
+        return "/admin"
       default:
         return "/"
     }

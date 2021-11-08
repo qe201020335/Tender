@@ -8,6 +8,7 @@ import RestaurantDetail from "./Components/RestaurantDetail";
 import RestaurantProfile from "./Components/RestaurantProfile";
 import MyFavourites from "./Components/MyFavourites";
 import Login from "./Components/Login";
+import Admin from "./Components/Admin";
 
 const App = () => {
   const [openRestDetail,  setOpenRestDetail] = useState(false);
@@ -73,6 +74,14 @@ const App = () => {
                 isRestaurant={false}/>
             </div>}
           />
+
+          <Route exact path="/admin" render={ () =>
+            <div>
+              <Admin loginType={loginType}/>
+            </div>
+          }/>
+
+
         </Switch>
       </BrowserRouter>
     </div>
