@@ -25,15 +25,20 @@ const RestaurantProfile = ({ restaurant, setMyRestaurant, loginType }) => {
     }));
   }
 
-  if (loginType !== "RESTAURANT") {
+  if (loginType !== "RESTAURANT" && loginType !== "ADMIN") {
     return (
       <Redirect to="login-restaurant"/>
     )
   }
 
+  if (loginType === "ADMIN") {
+    setIsEditing(true)
+  }
+
   return(
     <div>
-      <br/>
+      <br/> <br/>
+      <h2 className='txtheader'>Store Profile</h2>
       { isEditing ? <RestaurantProfileForm restaurant={editingRestaruant} onRestaurantEdit={onRestaurantEdit}/>
         : <RestaurantProfileView restaurant={restaurant}/> }
       <div className='button_container'>

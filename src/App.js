@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import {Route, Switch, BrowserRouter, Redirect} from 'react-router-dom';
 import './App.css';
 import NavBar from "./Components/NavBar";
 import RestaurantCards from "./Components/RestaurantCards";
@@ -17,6 +17,9 @@ const App = () => {
   const [loginType, setLoginType] = useState("LOGGED_OUT");
   const [myRestaurant, setMyRestaurant] = useState(null);
   const [myUser, setMyUser] = useState(null);
+
+
+  // const [adminEditingRest , setAdminEditingRest] = useState(null);
 
   const onCardClick = (restaurant) => {
     setOpenRestDetail(true);
@@ -44,10 +47,12 @@ const App = () => {
             </div>}
           />
 
-          <Route exact path="/my-restaruant" render={() =>
-            <div>
-              <RestaurantProfile restaurant={myRestaurant} setMyRestaurant={setMyRestaurant} loginType={loginType}/>
-            </div>}
+          <Route exact path="/my-restaruant" render={() => {
+            if (loginType !== "RESTAURANT") {
+              return <Redirect to="login-restaurant"/>
+            }
+            return (<div><RestaurantProfile restaurant={myRestaurant} setMyRestaurant={setMyRestaurant} loginType={loginType}/></div>)
+          }}
           />
 
           <Route exact path="/my-favourites" render={() =>
@@ -80,6 +85,13 @@ const App = () => {
               <Admin loginType={loginType}/>
             </div>
           }/>
+
+          {/*<Route path="/adminEditing" render={() => {*/}
+          {/*  if (adminEditingRest === null) {*/}
+          {/*    return <Redirect to="/"/>*/}
+          {/*  }*/}
+          {/*  return (<div><RestaurantProfile restaurant={adminEditingRest} setMyRestaurant={setAdminEditingRest} loginType={loginType}/></div>)*/}
+          {/*}}/>*/}
 
 
         </Switch>
