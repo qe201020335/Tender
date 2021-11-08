@@ -16,6 +16,8 @@ const App = () => {
   const [loginType, setLoginType] = useState("LOGGED_OUT");
   const [myRestaurant, setMyRestaurant] = useState(null);
   const [myUser, setMyUser] = useState(null);
+  const [dislike, setDislike] = useState(false);
+  const [like, setLike] = useState(false);
 
   const onCardClick = (restaurant) => {
     setOpenRestDetail(true);
@@ -27,6 +29,7 @@ const App = () => {
     setOpenRestDetail(false);
   }
 
+
   return (
     <div>
       <BrowserRouter>
@@ -37,9 +40,9 @@ const App = () => {
 
           <Route exact path="/" render={() =>
             <div>
-              <RestaurantCards onCardClick={onCardClick} />
+              <RestaurantCards onCardClick={onCardClick} like={like} setLike={setLike} dislike={dislike} setDislike={setDislike}/>
               {openRestDetail && <RestaurantDetail restaurant={clicked_restaurant} OnClickOutside={onClickOutside}/>}
-              <SwipeButtonsBar />
+              <SwipeButtonsBar like={like} setLike={setLike} dislike={dislike} setDislike={setDislike}/>
             </div>}
           />
 

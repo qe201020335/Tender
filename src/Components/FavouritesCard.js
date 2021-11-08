@@ -1,7 +1,7 @@
 "use strict";
 import React from 'react';
 import "./FavouritesCard.css";
-import NotInterestedIcon from '@mui/icons-material/NotInterested';
+import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import { IconButton } from '@material-ui/core';
 
 const FavouritesCard = ({ restaurant, handleUnFavorite }) => {
@@ -13,7 +13,7 @@ const FavouritesCard = ({ restaurant, handleUnFavorite }) => {
         <div className="rest_info">
           <b className='restaurant_name'>{restaurant.name}</b>
           <IconButton className='unfav'>
-            <NotInterestedIcon onClick={() => {handleUnFavorite(restaurant)}}> unfavorite </NotInterestedIcon>
+            <DeleteTwoToneIcon onClick={() => {handleUnFavorite(restaurant)}}> unfavorite </DeleteTwoToneIcon>
           </IconButton>
           <br/><br/>
           <a>{restaurant.address}</a>

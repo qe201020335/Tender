@@ -8,10 +8,8 @@ import { IconButton } from '@material-ui/core';
 import { useState } from 'react';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 
-const SwipeButtonsBar = () => {
+const SwipeButtonsBar = ({like, setLike, dislike, setDislike}) => {
 
-  const [dislike, setDislike] = useState(false);
-  const [like, setLike] = useState(false)
 
   function handleDislike(){
     setDislike(!dislike);
