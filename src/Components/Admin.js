@@ -13,7 +13,6 @@ const Admin = ({ loginType}) => {
   const onClickEdit = (restaurant) => {
     setIsAdminEditing(true)
     setEditingRest(restaurant)
-    // setEditing(restaurant)
   }
 
   const setEditedRest = (rest) => {
@@ -27,18 +26,16 @@ const Admin = ({ loginType}) => {
   return (
     <div>
       <h1>Admin Page</h1>
-      <div className='rest_list_container'>
-        <ul>
-          { getAllRestaurant().map((restaurant) => {
-            return <AdminRestListEntry restaurant={restaurant} onClickEdit={onClickEdit}/>
-              }) }
-        </ul>
-      </div>
-
-      {isAdminEditing && <RestaurantProfile restaurant={editingRest} loginType={loginType} setMyRestaurant={setEditedRest}/>}
-
+      {isAdminEditing ? <RestaurantProfile restaurant={editingRest} loginType={loginType} setMyRestaurant={setEditedRest} editingState={true}/>
+        :(<div className='rest_list_container'>
+            <ul>
+              { getAllRestaurant().map((restaurant) => {
+                return <AdminRestListEntry restaurant={restaurant} onClickEdit={onClickEdit}/>
+                  })}
+            </ul>
+        </div>)
+      }
     </div>
-
   )
 }
 

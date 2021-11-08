@@ -12,7 +12,7 @@ const AdminRestListEntry = ( {restaurant, onClickEdit} ) => {
   }
   return (
     <li className="AdminRestEntry">
-      <p> <span><strong>{restaurant.name}</strong></span>  {restaurant.address} <button type="button" onClick={onClickEditButton}>Edit</button> </p>
+      <p> <span><strong>{restaurant.name}</strong></span>  {restaurant.address} <button type="button" onClick={onClickEditButton}>View</button> </p>
 
     </li>
   )

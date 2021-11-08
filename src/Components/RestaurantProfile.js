@@ -4,8 +4,8 @@ import RestaurantProfileForm from './RestaurantProfileForm'
 import "./RestaurantProfile.css";
 import { Redirect } from 'react-router-dom';
 
-const RestaurantProfile = ({ restaurant, setMyRestaurant, loginType }) => {
-  const [isEditing, setIsEditing] = useState(false);
+const RestaurantProfile = ({ restaurant, setMyRestaurant, loginType, editingState}) => {
+  const [isEditing, setIsEditing] = useState(editingState);
   const [editingRestaruant, setEditingRestaruant] = useState(JSON.parse(JSON.stringify(restaurant)));
   const onEditClick = () => {
     setIsEditing(true);
@@ -29,10 +29,6 @@ const RestaurantProfile = ({ restaurant, setMyRestaurant, loginType }) => {
     return (
       <Redirect to="login-restaurant"/>
     )
-  }
-
-  if (loginType === "ADMIN") {
-    setIsEditing(true)
   }
 
   return(

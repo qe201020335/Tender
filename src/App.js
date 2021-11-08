@@ -54,7 +54,7 @@ const App = () => {
             if (loginType !== "RESTAURANT") {
               return <Redirect to="login-restaurant"/>
             }
-            return (<div><RestaurantProfile restaurant={myRestaurant} setMyRestaurant={setMyRestaurant} loginType={loginType}/></div>)
+            return (<div><RestaurantProfile restaurant={myRestaurant} setMyRestaurant={setMyRestaurant} loginType={loginType} editingState={false}/></div>)
           }}
           />
 
