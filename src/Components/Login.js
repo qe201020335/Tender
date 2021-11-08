@@ -2,6 +2,7 @@ import React, { useState }  from 'react'
 import { useHistory } from 'react-router-dom';
 import { getRestaurant } from "../Repository/RestaurantRepository";
 import { getUser } from "../Repository/UserRepository";
+import "./Login.css";
 
 const Login = ({ setLoginStatus, setLoginType, setMyRestaurant, setMyUser, isRestaurant }) => {
 
