@@ -5,7 +5,11 @@ import { Redirect } from 'react-router-dom';
 import "./MyFavourites.css";
 
 const MyFavourites = ({ user, setMyUser, loginType }) => {
-  const onUnfavourite = (event) => {
+  const unfavourite = (restaurant) => {
+    const restaruantsLeft = user.favorites.filter((curRestaurant) => { 
+      return restaurant !== curRestaurant;
+    });
+    setMyUser({favorites: restaruantsLeft});
   }
 
   if (loginType !== "USER") {
@@ -19,7 +23,7 @@ const MyFavourites = ({ user, setMyUser, loginType }) => {
       <div className='list_container'>
         <ul>
           { user.favorites.map((restaurant) => {
-              return (<FavouritesCard restaurant={restaurant} onUnfavourite={onUnfavourite}/>);
+              return (<FavouritesCard restaurant={restaurant} handleUnFavorite={unfavourite}/>);
             })
           }
         </ul>
