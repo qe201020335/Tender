@@ -2,6 +2,7 @@
 import React from 'react';
 import FavouritesCard from './FavouritesCard';
 import { Redirect } from 'react-router-dom';
+import "./MyFavourites.css";
 
 const MyFavourites = ({ user, setMyUser, loginType }) => {
   const unfavourite = (restaurant) => {
@@ -18,13 +19,15 @@ const MyFavourites = ({ user, setMyUser, loginType }) => {
   }
   return (
     <div>
-      <h1>My Favourites</h1>
-      <ul>
-        { user.favorites.map((restaurant) => {
-            return <FavouritesCard name={restaurant.name} restaurant={restaurant} handleUnFavorite={unfavourite}/>;
-          })
-        }
-      </ul>
+      <h2 className="fav_title">My Favourites</h2>
+      <div className='list_container'>
+        <ul>
+          { user.favorites.map((restaurant) => {
+              return (<FavouritesCard restaurant={restaurant} handleUnFavorite={unfavourite}/>);
+            })
+          }
+        </ul>
+      </div>
     </div>
   );
 }
