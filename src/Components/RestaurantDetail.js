@@ -16,8 +16,11 @@ const RestaurantDetail = ({ restaurant, OnClickOutside}) => {
   return (
     <div className="restDetailBackground" onClick={onClick}>
       <div className="restDetailContainer">
+        <img className="image" src={restaurant.image}/>
+        <br/>
         <div className="title"><h1>{restaurant.name}</h1></div>
-        <div className="address"><h3>{restaurant.address}</h3></div>
+        <div className="address"><h4>{restaurant.address}</h4></div>
+        <br/>
         <div className="card_body"><p>{restaurant.description}</p></div>
       </div>
     </div>

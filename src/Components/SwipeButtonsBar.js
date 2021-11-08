@@ -1,12 +1,25 @@
 import React from 'react';
 import "./SwipeButtonsBar.css";
 import ReplayIcon from '@material-ui/icons/Replay';
-import CloseIcon from '@material-ui/icons/Close';
-import StarRateIcon from '@material-ui/icons/StarRate';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import ClearIcon from '@mui/icons-material/Clear';
+import StarIcon from '@mui/icons-material/Star';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import { IconButton } from '@material-ui/core';
+import { useState } from 'react';
+import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 
 const SwipeButtonsBar = () => {
+
+  const [dislike, setDislike] = useState(false);
+  const [like, setLike] = useState(false)
+
+  function handleDislike(){
+    setDislike(!dislike);
+  }
+  function handleLike(){
+    setLike(!like);
+  }
+
   return (
     <div className="SwipeButtonsBar">
       <div className="SwipeButtons">
@@ -14,13 +27,13 @@ const SwipeButtonsBar = () => {
                     <ReplayIcon frontSize="large" className="swipeButtons_repeat"/>
                 </IconButton> */}
         <IconButton>
-          <CloseIcon fontSize="large" className="swipeButtons_left"/>
+          <ClearIcon className="closeIcon" fontSize="large" className="swipeButtons_left" onClick={handleDislike}/>
         </IconButton>
         <IconButton>
-          <StarRateIcon fontSize="large" className="swipeButtons_star"/>
+          <StarIcon fontSize="large" className="swipeButtons_star"/>
         </IconButton>
         <IconButton>
-          <FavoriteIcon fontSize="large" className="swipeButtons_right"/>
+          <FavoriteIcon color={like ? "secondary" : ""} fontSize="large" className="swipeButtons_right" onClick={handleLike}/>
         </IconButton>
       </div>
     </div>
