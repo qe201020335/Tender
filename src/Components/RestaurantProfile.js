@@ -36,7 +36,7 @@ const RestaurantProfile = ({ restaurant, setMyRestaurant, loginType, editingStat
       <br/> <br/>
       <h2 className='txtheader'>Store Profile</h2>
       { isEditing ? <RestaurantProfileForm restaurant={editingRestaruant} onRestaurantEdit={onRestaurantEdit}/>
-        : <RestaurantProfileView restaurant={restaurant}/> }
+        : <RestaurantProfileView restaurant={editingRestaruant}/> }
       <div className='button_container'>
         { isEditing ? <button type="submit" onClick={onEditSubmit}>Save Changes</button>
           : <button type="submit" onClick={onEditClick}>Edit</button> }
