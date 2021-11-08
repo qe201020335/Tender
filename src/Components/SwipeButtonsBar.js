@@ -25,7 +25,7 @@ const SwipeButtonsBar = ({like, setLike, dislike, setDislike}) => {
                     <ReplayIcon frontSize="large" className="swipeButtons_repeat"/>
                 </IconButton> */}
         <IconButton>
-          <ClearIcon className="closeIcon" fontSize="large" className="swipeButtons_left" onClick={handleDislike}/>
+          <ClearIcon color={dislike ? "primary" : ""} className="closeIcon" fontSize="large" className="swipeButtons_left" onClick={handleDislike}/>
         </IconButton>
         <IconButton>
           <StarIcon fontSize="large" className="swipeButtons_star"/>
