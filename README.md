@@ -25,6 +25,9 @@ The app runs just like any other React app. Download (or git clone) the files in
 * Profile
   * Once logged in restaurant users can edit there information by pressing the profile icon on the top right. You can then change the information and save it.
 
+## Admin Guide
+* The main page will be the same as normal users. Onced logged in, you will be able to edit all the restaurant information.
+
 ## Log in credentials
 
 Since there are three types of users for our project, we have three preset accounts:
