@@ -1,0 +1,35 @@
+.rest_name {
+    font-size: large;
+}
+
+.rest_image {
+    width: 180px;
+    height: 100px;
+    vertical-align: text-top;
+    float: left;
+    border-radius: 10%;
+}
+
+.rest_info {
+    display: inline;
+    overflow: auto;
+    margin-left: 30px;
+}
+
+.li_container {
+    display: block;
+}
+
+a{
+    margin-left: 30px;
+    margin-bottom: 10px;
+}
+
+.AdminRestEntry {
+    display:block;
+    overflow: hidden;
+}
+
+.edit_button{
+    margin-left: 120px;
+}

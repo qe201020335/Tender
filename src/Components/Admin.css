@@ -1,0 +1,14 @@
+#admin_title {
+    text-align: center;
+    margin: 25px;
+}
+
+#rest_list_container {
+    margin: auto;
+    width: 70%;
+    padding: 10px;
+}
+
+ul {
+    list-style-type: none;
+}
