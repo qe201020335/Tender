@@ -1,3 +1,8 @@
+.image {
+  width: 700px;
+  height: 300px;
+}
+
 .restDetailBackground {
     z-index: 1;
     width: 100vw;
@@ -11,7 +16,7 @@
 }
 
 .restDetailContainer {
-    width: 500px;
+    width: 700px;
     height: 500px;
     border-radius: 12px;
     background-color: white;

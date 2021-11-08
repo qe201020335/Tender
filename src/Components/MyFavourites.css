@@ -1,0 +1,13 @@
+.fav_title{
+  text-align: center;
+}
+
+.list_container{
+  margin: auto;
+  width: 70%;
+  padding: 10px;
+}
+
+ul {
+  list-style-type: none;
+}
