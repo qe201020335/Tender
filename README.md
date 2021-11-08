@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# Tender Web App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A restaurant recommendation web application, created with React.
 
-## Available Scripts
+## Installation Instructions
 
-In the project directory, you can run:
+The app runs just like any other React app. Download (or git clone) the files into your local machine and cd into the directory. Run "npm install" to install all the dependencies of the app. Once done, run "npm start" to start the app. The app will be on [http://localhost:3000] given that port 3000 is not occupied.
 
-### `npm start`
+## User Guide
+* Main page
+  * The main page of our web app is where you can see the "restaurant cards" (the picture in the middle). They contain information about the name and the address of the restaurant. You can click on the restaurant picture to see the details about it. Click anywhere outside of the popup window to go back.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+  * To see the next "restaurant card", simply swipe away the current card (click on the picture, drag it quickly and release). You will see the next card presented to you.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+  * The three buttons below are the buttons for you to perform certain actions onto the current restaurant card. You can dislike, add to favourite and like the restaurant(from left to right). If you click on to the dislike/like button you will see that the colour will change.
 
-### `npm test`
+  * The top of the page is all about navigation. The left most icon is the logo for this web app. You can click it on any page to go back to the main page. The star icon next to it will link you to the favourite page. On the top right, you will see the icons for restaurant and user log in. Once clicked, you will be directed to the login page.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* Favourite page
+  * The favourite page is where you can see a list of restaurants that you have set as favourites. Be aware that you will be prompted to log in if you haven't done so yet. In the favourite page, you will see the picture of the restaurant that you set to favourite, its name and address. You can click the garbage bin icon to remove the restaurant from favourite.
 
-### `npm run build`
+* Login
+  * If you are not logged in, the top right hand side of the page will let you choose from user/restaurant log in. You will enter the usernames and passwords (provided below). Onced logged in, the top right becomes the check profile icon and log out icon.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Profile
+  * Once logged in restaurant users can edit there information by pressing the profile icon on the top right. You can then change the information and save it.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Admin Guide
+* The main page will be the same as normal users. Onced logged in, you will be able to edit all the restaurant information.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Log in credentials
 
-### `npm run eject`
+Since there are three types of users for our project, we have three preset accounts:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* username: user, password: user
+* username: rest, password: rest
+* username: admin, password: admin
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+They correspond to a normal end user, a restaurant user who wish to post their store, and admin user.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Third-parties
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* React
+* react-tinder-card
+* material-ui
