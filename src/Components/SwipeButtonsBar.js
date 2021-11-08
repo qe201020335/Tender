@@ -8,10 +8,8 @@ import { IconButton } from '@material-ui/core';
 import { useState } from 'react';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 
-const SwipeButtonsBar = () => {
+const SwipeButtonsBar = ({like, setLike, dislike, setDislike}) => {
 
-  const [dislike, setDislike] = useState(false);
-  const [like, setLike] = useState(false)
 
   function handleDislike(){
     setDislike(!dislike);
@@ -27,7 +25,7 @@ const SwipeButtonsBar = () => {
                     <ReplayIcon frontSize="large" className="swipeButtons_repeat"/>
                 </IconButton> */}
         <IconButton>
-          <ClearIcon className="closeIcon" fontSize="large" className="swipeButtons_left" onClick={handleDislike}/>
+          <ClearIcon color={dislike ? "primary" : ""} className="closeIcon" fontSize="large" className="swipeButtons_left" onClick={handleDislike}/>
         </IconButton>
         <IconButton>
           <StarIcon fontSize="large" className="swipeButtons_star"/>

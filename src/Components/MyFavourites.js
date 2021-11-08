@@ -20,6 +20,7 @@ const MyFavourites = ({ user, setMyUser, loginType }) => {
   return (
     <div>
       <h2 className="fav_title">My Favourites</h2>
+      <br/>
       <div className='list_container'>
         <ul>
           { user.favorites.map((restaurant) => {
