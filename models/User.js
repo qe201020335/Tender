@@ -20,7 +20,7 @@ const UserSchema = new mongoose.Schema({
     username: String,
     password: String,
     type: String,
-    restaurant: RestaurantSchema,
+    restaurant: { type: [RestaurantSchema], index: true },
     favourite: [String],
     likes: [String],
     dislikes: [String]
