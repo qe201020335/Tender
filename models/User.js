@@ -6,19 +6,14 @@ const CommentSchema = new mongoose.Schema({
     message: String
 });
 
-const LikeSchema = new mongoose.Schema({
-    userId: String,
-    date: String
-});
-
-
 const RestaurantSchema = new mongoose.Schema({
     name: String,
     image: String,
     address: String,
     description: String,
     comments: [CommentSchema],
-    likes: [LikeSchema]
+    likes: [String],
+    dislikes: [String]
 });
 
 const UserSchema = new mongoose.Schema({
@@ -26,7 +21,9 @@ const UserSchema = new mongoose.Schema({
     password: String,
     type: String,
     restaurant: RestaurantSchema,
-    favourite: [RestaurantSchema]
+    favourite: [String],
+    likes: [String],
+    dislikes: [String]
 });
 
 const User = mongoose.model('User', UserSchema);
