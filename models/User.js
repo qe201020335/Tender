@@ -69,7 +69,28 @@ UserSchema.pre('save', function(next) {
 	}
 })
 
+// A static method on the document model to find a User document by comparing the hashed password
+UserSchema.statics.findByEmailPassword = function(email, password) {
+    // binds this to the User model
+	const User = this
+	// First find the user by their email
+	return User.findOne({ email: email }).then((user) => {
+		if (!user) {
+            // return a rejected promise
+			return Promise.reject()
+		}
+		// if the user exists, make sure their password is correct
+		return new Promise((resolve, reject) => {
+			bcrypt.compare(password, user.password, (err, result) => {
+				if (result) {
+					resolve(user)
+				} else {
+					reject("wrong password")
+				}
+			})
+		})
+	})
+}
+
 const User = mongoose.model('User', UserSchema);
-
-
 module.exports = { User };
