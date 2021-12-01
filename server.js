@@ -1,8 +1,11 @@
 const express = require('express');
-const dotenv = require('dotenv');
+
 const session = require("express-session");
 // const MongoStore = require('connect-mongo');
-dotenv.config({path: './config/config.env'});
+if (process.env.NODE_ENV !== 'production') {
+   const dotenv = require('dotenv');
+   dotenv.config({path: './config/config.env'});
+ }
 
 const app = express();
 
@@ -23,6 +26,5 @@ if (env !== 'PROD') {
 }
 
 app.use('/login', login);
-
 app.listen(process.env.PORT, 
-  console.log(`Server running in ${process.env.PORT} mode on port ${process.env.PORT}`));
+  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${process.env.PORT}`));
