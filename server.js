@@ -1,11 +1,9 @@
 const express = require('express');
-
 const session = require("express-session");
+const dotenv = require('dotenv');
+const cors = require('cors')
 // const MongoStore = require('connect-mongo');
-if (process.env.NODE_ENV !== 'production') {
-   const dotenv = require('dotenv');
-   dotenv.config({path: './config/config.env'});
- }
+
 
 const app = express();
 
@@ -19,12 +17,11 @@ app.use(express.json());
 
 app.use(express.static(__dirname + '/client/build/'));
 
-// enable CORS if in development
-const cors = require('cors')
-if (env !== 'PROD') {
+if (process.env.NODE_ENV !== 'PROD') {
+   dotenv.config({path: './config/config.env'});
+   // enable CORS if in development
    app.use(cors())
 }
-
-app.use('/login', login);
+//app.use('/login', login);
 app.listen(process.env.PORT, 
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${process.env.PORT}`));
