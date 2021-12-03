@@ -1,13 +1,14 @@
 import axios from 'axios';
 
-const login = async (setMyUser, setLoginType, email, password) => {
+const login = async (setMyUser, setLoginType, username, password) => {
   try {
     const request = {
-      email: email,
+      username: username,
       password: password
     };
+    console.log(request)
     const response = await axios.post(
-      'localhost:5000/login',
+      'http://localhost:5000/login',
       request
     );
     if(response.data) {

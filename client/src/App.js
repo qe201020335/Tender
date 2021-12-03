@@ -67,7 +67,7 @@ const App = () => {
             </div>}
           />
 
-          <Route exact path="/login" render={() => <Login/>}/>
+          <Route exact path="/login" render={() => <Login setMyUser={setMyUser} loginType={loginType}/>}/>
 
           <Route exact path="/admin" render={ () =>
             <div>

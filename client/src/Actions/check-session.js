@@ -3,7 +3,7 @@ import axios from 'axios';
 const checkSession = async (setMyUser, setLoginType) => {
   try {
     const response = await axios.get(
-      'localhost:5000/check-session'
+      'http://localhost:5000/check-session'
     );
     if(response.data) {
       console.log(response.data.user)

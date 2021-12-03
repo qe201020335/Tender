@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import loginHandler from '../Actions/login';
 import "./Login.css";
 
-const Login = ({ setLoginStatus, setMyRestaurant, setMyUser, isRestaurant }) => {
+const Login = ({ setMyUser, setUserType }) => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -19,6 +19,10 @@ const Login = ({ setLoginStatus, setMyRestaurant, setMyUser, isRestaurant }) => 
   const onLoginTypeSelect = (e) => {
     console.log(e.target.value)
     setLoginType(e.target.value)
+  };
+
+  const onLoginClick = () => {
+    loginHandler(setMyUser, setUserType, username, password);
   };
 
   return(
@@ -40,7 +44,7 @@ const Login = ({ setLoginStatus, setMyRestaurant, setMyUser, isRestaurant }) => 
         <input id="password_input" type="password" placeholder="Enter Password" name="password" value = {password} onChange={onPasswordChange} required/>
         <br/>
         <br/>
-        <button type="submit" className="login_submit" onClick={loginHandler} >Login</button>
+        <button type="submit" className="login_submit" onClick={onLoginClick} >Login</button>
       </div>
     </div>
   );
