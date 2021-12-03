@@ -4,10 +4,11 @@ import { getRestaurant } from "../Repository/RestaurantRepository";
 import { getUser } from "../Repository/UserRepository";
 import "./Login.css";
 
-const Login = ({ setLoginStatus, setLoginType, setMyRestaurant, setMyUser, isRestaurant }) => {
+const Login = ({ setLoginStatus, setMyRestaurant, setMyUser, isRestaurant }) => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loginType, setLoginType] = useState("");
   const history = useHistory();
 
   const onUsernameChange = (event) => {
@@ -16,36 +17,27 @@ const Login = ({ setLoginStatus, setLoginType, setMyRestaurant, setMyUser, isRes
   const onPasswordChange = (event) => {
     setPassword(event.target.value)
   };
+  const onLoginTypeSelect = (e) => {
+    console.log(e.target.value)
+    setLoginType(e.target.value)
+  };
 
   const loginHandler = () => {
-    if (username === "admin" && password === "admin") {
-      setLoginStatus(true);
-      setLoginType("ADMIN");
-      history.push("/admin");
-    } else {
-      if (isRestaurant) {
-        if (username === "rest" && password === "rest") {
-          setMyRestaurant(getRestaurant("123"))
-          setLoginStatus(true);
-          setLoginType("RESTAURANT");
-          history.push("/my-restaruant");
-        }
-      } else {
-        if (username === "user" && password === "user") {
-          setMyUser(getUser("123"))
-          setLoginStatus(true);
-          setLoginType("USER");
-          history.push("/");
-        }
-      }
-    }
+    //TODO: Do login
   };
 
   return(
     <div>
-      {(isRestaurant === true) ? <h2 className='login_header'>Restaurant Login</h2> 
-      : <h2 className='login_header'>User Login</h2>}
+      <h2 className='login_header'>Login</h2>
       <div className="userLogin_header">
+        <div id="select_type" onChange={onLoginTypeSelect}>
+        <label><b>Login Type</b></label><br/>
+        <input type="radio" name="Login_Type" value="user"/>
+        <label >Normal User</label><br/>
+        <input type="radio" id="css" name="Login_Type" value="rest"/>
+        <label >Restaurant</label><br/>
+        </div>
+        <br/>
         <label><b>Username</b></label>
         <input id="username_input" type="text" placeholder="Enter Username" name="username" value = {username} onChange={onUsernameChange} required/>
         <br/>

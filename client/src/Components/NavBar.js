@@ -49,16 +49,9 @@ const NavBar = ({loginStatus, loginType}) => {
       <div id='header_right'>
 
         {!loginStatus &&
-        <IconButton component={Link} to="/login-restaurant" className="icon_button">
-          <StorefrontIcon fontSize="large" className="header_icon"/>
+        <IconButton component={Link} to="/login" className="icon_button">
+          <span className="header_icon">Login</span>
         </IconButton>}
-
-        {!loginStatus &&
-        <IconButton component={Link} to="/login-user" className="icon_button">
-          <AccountCircleIcon fontSize="large" className="header_icon"/>
-        </IconButton>}
-
-
 
         {loginStatus &&
         <IconButton component={Link} to={getRedirectLinkIfLogIn(loginType)} className="icon_button">
