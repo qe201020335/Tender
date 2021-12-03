@@ -67,24 +67,7 @@ const App = () => {
             </div>}
           />
 
-          <Route exact path="/login-restaurant" render={() =>
-            <div>
-              <Login
-                setLoginStatus={setLoginStatus}
-                setLoginType={setLoginType}
-                isRestaurant={true}
-                setMyRestaurant={setMyRestaurant}/>
-            </div>}
-          />
-          <Route exact path="/login-user" render={() =>
-            <div>
-              <Login
-                setLoginStatus={setLoginStatus}
-                setLoginType={setLoginType}
-                setMyUser={setMyUser}
-                isRestaurant={false}/>
-            </div>}
-          />
+          <Route exact path="/login" render={() => <Login/>}/>
 
           <Route exact path="/admin" render={ () =>
             <div>
