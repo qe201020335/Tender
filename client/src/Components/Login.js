@@ -1,7 +1,6 @@
 import React, { useState }  from 'react'
-import {Link, useHistory} from 'react-router-dom';
-import { getRestaurant } from "../Repository/RestaurantRepository";
-import { getUser } from "../Repository/UserRepository";
+import { useHistory } from 'react-router-dom';
+
 import "./Login.css";
 
 const Login = () => {
