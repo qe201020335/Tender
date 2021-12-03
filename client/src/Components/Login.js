@@ -1,9 +1,9 @@
 import React, { useState }  from 'react'
 import { useHistory } from 'react-router-dom';
-
+import loginHandler from '../Actions/login'
 import "./Login.css";
 
-const Login = ({ setMyUser, setUserType }) => {
+const Login = ({ setMyUser, setLoginType }) => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -22,7 +22,7 @@ const Login = ({ setMyUser, setUserType }) => {
       setErrorMsg("Invalid Username or Password!")
       return
     } else {
-      loginHandler(setMyUser, setUserType, username, password);
+      loginHandler(setMyUser, setLoginType, username, password);
       setErrorMsg("")
     }
   };

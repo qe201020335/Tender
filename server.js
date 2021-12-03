@@ -43,9 +43,9 @@ app.use('/', signUpRoute);
 
 // configure CORS
 const corsOptions ={
-   origin:'http://localhost:3000', 
-   credentials:true,            //access-control-allow-credentials:true
-   optionSuccessStatus:200
+   origin: 'http://localhost:3000',
+   methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
+   credentials: true
 }
 app.use(cors(corsOptions));
 
