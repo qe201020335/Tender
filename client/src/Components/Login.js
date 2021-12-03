@@ -1,7 +1,6 @@
 import React, { useState }  from 'react'
 import { useHistory } from 'react-router-dom';
-import { getRestaurant } from "../Repository/RestaurantRepository";
-import { getUser } from "../Repository/UserRepository";
+import loginHandler from '../Actions/login';
 import "./Login.css";
 
 const Login = ({ setLoginStatus, setMyRestaurant, setMyUser, isRestaurant }) => {
@@ -20,10 +19,6 @@ const Login = ({ setLoginStatus, setMyRestaurant, setMyUser, isRestaurant }) => 
   const onLoginTypeSelect = (e) => {
     console.log(e.target.value)
     setLoginType(e.target.value)
-  };
-
-  const loginHandler = () => {
-    //TODO: Do login
   };
 
   return(

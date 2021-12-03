@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
 import {Route, Switch, BrowserRouter, Redirect} from 'react-router-dom';
 import './App.css';
 import NavBar from "./Components/NavBar";
@@ -9,6 +9,7 @@ import RestaurantProfile from "./Components/RestaurantProfile";
 import MyFavourites from "./Components/MyFavourites";
 import Login from "./Components/Login";
 import Admin from "./Components/Admin";
+import checkSessionHandler from './Actions/check-session';
 
 const App = () => {
   const [openRestDetail,  setOpenRestDetail] = useState(false);
@@ -21,7 +22,9 @@ const App = () => {
   const [like, setLike] = useState(false);
 
 
-  // const [adminEditingRest , setAdminEditingRest] = useState(null);
+  useEffect(() => {
+    checkSessionHandler(setMyUser, setLoginType);
+  }, [])
 
   const onCardClick = (restaurant) => {
     setOpenRestDetail(true);

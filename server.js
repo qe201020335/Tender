@@ -2,9 +2,10 @@ const express = require('express');
 const session = require("express-session");
 const dotenv = require('dotenv');
 const cors = require('cors');
-const userRoute = require('./routes/user');
+const signUpRoute = require('./routes/signup');
 const loginRoute = require('./routes/login');
 const logoutRoute = require('./routes/logout');
+const checkSessionRoute = require('./routes/check-session');
 // const MongoStore = require('connect-mongo');
 
 const app = express();
@@ -38,7 +39,8 @@ app.use(express.static(__dirname + '/client/build/'));
 
 app.use('/', loginRoute);
 app.use('/', logoutRoute);
-app.use('/api', userRoute);
+app.use('/', checkSessionRoute);
+app.use('/', signUpRoute);
 
 app.listen(process.env.PORT, 
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${process.env.PORT}`));
