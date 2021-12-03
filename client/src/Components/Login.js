@@ -1,14 +1,14 @@
 import React, { useState }  from 'react'
-import { useHistory } from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import { getRestaurant } from "../Repository/RestaurantRepository";
 import { getUser } from "../Repository/UserRepository";
 import "./Login.css";
 
-const Login = ({ setLoginStatus, setMyRestaurant, setMyUser, isRestaurant }) => {
+const Login = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [loginType, setLoginType] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
   const history = useHistory();
 
   const onUsernameChange = (event) => {
@@ -17,12 +17,15 @@ const Login = ({ setLoginStatus, setMyRestaurant, setMyUser, isRestaurant }) => 
   const onPasswordChange = (event) => {
     setPassword(event.target.value)
   };
-  const onLoginTypeSelect = (e) => {
-    console.log(e.target.value)
-    setLoginType(e.target.value)
-  };
+
 
   const loginHandler = () => {
+    if (username === "" || password === "") {
+      setErrorMsg("Invalid Username or Password!")
+      return
+    } else {
+      setErrorMsg("")
+    }
     //TODO: Do login
   };
 
@@ -30,22 +33,17 @@ const Login = ({ setLoginStatus, setMyRestaurant, setMyUser, isRestaurant }) => 
     <div>
       <h2 className='login_header'>Login</h2>
       <div className="userLogin_header">
-        <div id="select_type" onChange={onLoginTypeSelect}>
-        <label><b>Login Type</b></label><br/>
-        <input type="radio" name="Login_Type" value="user"/>
-        <label >Normal User</label><br/>
-        <input type="radio" id="css" name="Login_Type" value="rest"/>
-        <label >Restaurant</label><br/>
-        </div>
-        <br/>
         <label><b>Username</b></label>
         <input id="username_input" type="text" placeholder="Enter Username" name="username" value = {username} onChange={onUsernameChange} required/>
         <br/>
         <label><b>Password</b></label>
         <input id="password_input" type="password" placeholder="Enter Password" name="password" value = {password} onChange={onPasswordChange} required/>
         <br/>
+        <span className="error_msg">{errorMsg}</span>
         <br/>
-        <button type="submit" className="login_submit" onClick={loginHandler} >Login</button>
+        <button type="submit" className="login_submit" onClick={loginHandler} >Login!</button>
+        <br/>
+        {/*<span>New user? Click <span className="login_reg_link" component={Link} to="/login" >HERE</span> to login!</span>*/}
       </div>
     </div>
   );

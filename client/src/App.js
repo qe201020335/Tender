@@ -9,6 +9,7 @@ import RestaurantProfile from "./Components/RestaurantProfile";
 import MyFavourites from "./Components/MyFavourites";
 import Login from "./Components/Login";
 import Admin from "./Components/Admin";
+import Register from "./Components/Register";
 
 const App = () => {
   const [openRestDetail,  setOpenRestDetail] = useState(false);
@@ -64,7 +65,8 @@ const App = () => {
             </div>}
           />
 
-          <Route exact path="/login" render={() => <Login/>}/>
+          <Route exact path="/login" component={Login}/>
+          <Route exact path="/register" component={Register}/>
 
           <Route exact path="/admin" render={ () =>
             <div>
