@@ -20,12 +20,13 @@ const SwipeButtonsBar = ({like, setLike, dislike, setDislike}) => {
 
   return (
     <div className="SwipeButtonsBar">
+      <label id="card_tut"><strong>Click for details. Drag to swipe!</strong></label>
       <div className="SwipeButtons">
         {/* <IconButton>
                     <ReplayIcon frontSize="large" className="swipeButtons_repeat"/>
                 </IconButton> */}
         <IconButton>
-          <ClearIcon color={dislike ? "primary" : ""} className="closeIcon" fontSize="large" className="swipeButtons_left" onClick={handleDislike}/>
+          <ClearIcon color={dislike ? "primary" : ""} fontSize="large" className="swipeButtons_left" onClick={handleDislike}/>
         </IconButton>
         <IconButton>
           <StarIcon fontSize="large" className="swipeButtons_star"/>

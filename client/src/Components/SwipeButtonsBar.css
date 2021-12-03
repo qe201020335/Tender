@@ -17,6 +17,11 @@
 .SwipeButtons .MuiIconButton-root {
     box-shadow: 0px 10px 53px 0px rgba(0, 0, 0, 0.3) !important;
 }
-.closeIcon {
-  background-color: white;
+
+#card_tut {
+    font-size: larger;
+    position: fixed;
+    bottom: 25vh;
+    color: #f96c56;
 }
+
