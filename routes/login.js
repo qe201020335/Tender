@@ -13,19 +13,16 @@ router.post('/login', mongoChecker, async (req, res) => {
       //res.redirect('/login');
       res.status(404).send("wrong credentials")
     } else {
-      res.status(200).send(user)
-        // req.session.user = user._id;
-        // req.session.email = user.email
-        // res.redirect('/dashboard');
+      req.session.user = user._id;
+      req.session.email = user.email
+      res.status(200).send({ user })
     }
   } catch (error) {
     if (isMongoError(error)) { 
       res.status(500)
-      //res.status(500).redirect('/login');
     } else {
       console.log(error)
       res.status(404).send("wrong credentials")
-      //res.status(400).redirect('/login');
     }
   }
 });

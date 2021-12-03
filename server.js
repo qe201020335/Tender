@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const userRoute = require('./routes/user');
 const loginRoute = require('./routes/login');
+const logoutRoute = require('./routes/logout');
 // const MongoStore = require('connect-mongo');
 
 const app = express();
@@ -21,9 +22,22 @@ const TEST_USER_EMAIL = 'test@user.com'
 
 app.use(express.json());
 
+app.use(session({
+   secret: 'our hardcoded secret',
+   cookie: {
+       expires: 60000,
+       httpOnly: true
+      },
+   // don't save the initial session if the session object is unmodified (for example, we didn't log in).
+   saveUninitialized: false,
+   // don't resave an session that hasn't been modified.
+   resave: false,
+}));
+
 app.use(express.static(__dirname + '/client/build/'));
 
 app.use('/', loginRoute);
+app.use('/', logoutRoute);
 app.use('/api', userRoute);
 
 app.listen(process.env.PORT, 
