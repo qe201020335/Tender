@@ -9,6 +9,7 @@ import RestaurantProfile from "./Components/RestaurantProfile";
 import MyFavourites from "./Components/MyFavourites";
 import Login from "./Components/Login";
 import Admin from "./Components/Admin";
+import Register from "./Components/Register";
 import checkSessionHandler from './Actions/check-session';
 
 const App = () => {
@@ -67,7 +68,12 @@ const App = () => {
             </div>}
           />
 
+<<<<<<< HEAD
           <Route exact path="/login" render={() => <Login setMyUser={setMyUser} loginType={loginType}/>}/>
+=======
+          <Route exact path="/login" component={Login}/>
+          <Route exact path="/register" component={Register}/>
+>>>>>>> e133162d4aa31cace33de0fe1823da798fc71561
 
           <Route exact path="/admin" render={ () =>
             <div>

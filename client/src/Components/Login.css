@@ -1,6 +1,6 @@
 .userLogin_header {
   position: fixed;
-  top: 40vh;
+  top: 30vh;
   left: 44vw;
   right: 43vw;
   align-self: flex-start;
@@ -65,4 +65,17 @@
 .login_header{
 margin-top: 5%;
 text-align: center;
+}
+
+.login_reg_link {
+  color: #66ccff;
+  font-weight: bold;
+}
+
+.radio_label{
+  margin-left: 0.5em;
+}
+
+.error_msg{
+  color: #ca3b28;
 }
