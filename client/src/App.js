@@ -42,7 +42,7 @@ const App = () => {
     <div>
       <BrowserRouter>
 
-        <NavBar loginStatus={loginStatus} loginType={loginType}/>
+        <NavBar loginStatus={myUser !== null} loginType={loginType}/>
 
         <Switch>
 

@@ -7,6 +7,7 @@ const loginRoute = require('./routes/login');
 const logoutRoute = require('./routes/logout');
 const checkSessionRoute = require('./routes/check-session');
 // const MongoStore = require('connect-mongo');
+const path = require('path')
 
 const app = express();
 
@@ -34,12 +35,26 @@ app.use(session({
    resave: false,
 }));
 
-app.use(express.static(__dirname + '/client/build/'));
+app.use(express.static(path.join(__dirname, '/client/build/')));
 
 app.use('/', loginRoute);
 app.use('/', logoutRoute);
 app.use('/', checkSessionRoute);
 app.use('/', signUpRoute);
+
+// All routes other than above will go to index.html
+app.get("*", (req, res) => {
+   // check for page routes that we expect in the frontend to provide correct status code.
+   const goodPageRoutes = ["/", "/login", "/dashboard"];
+   if (!goodPageRoutes.includes(req.url)) {
+      // if url not in expected page routes, set status to 404.
+      res.status(404);
+   }
+
+   // send index.html
+   res.sendFile(path.join(__dirname, "/client/build/index.html"));
+});
+
 
 // configure CORS
 const corsOptions ={
