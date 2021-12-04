@@ -12,7 +12,7 @@ const path = require('path')
 const app = express();
 
 if (process.env.NODE_ENV !== 'PROD') {
-   dotenv.config({path: './config/config.env'});
+  dotenv.config({path: './config/config.env'});
 }
 
 const { mongoose } = require('./config/mongoose')
@@ -24,15 +24,15 @@ const TEST_USER_EMAIL = 'test@user.com'
 app.use(express.json());
 
 app.use(session({
-   secret: 'our hardcoded secret',
-   cookie: {
-       expires: 60000,
-       httpOnly: true
-      },
-   // don't save the initial session if the session object is unmodified (for example, we didn't log in).
-   saveUninitialized: false,
-   // don't resave an session that hasn't been modified.
-   resave: false,
+  secret: 'our hardcoded secret',
+  cookie: {
+    expires: 60000,
+    httpOnly: true
+  },
+  // don't save the initial session if the session object is unmodified (for example, we didn't log in).
+  saveUninitialized: false,
+  // don't resave an session that hasn't been modified.
+  resave: false,
 }));
 
 app.use(express.static(path.join(__dirname, '/client/build/')));
@@ -44,23 +44,23 @@ app.use('/', signUpRoute);
 
 // All routes other than above will go to index.html
 app.get("*", (req, res) => {
-   // check for page routes that we expect in the frontend to provide correct status code.
-   const goodPageRoutes = ["/", "/login", "/dashboard"];
-   if (!goodPageRoutes.includes(req.url)) {
-      // if url not in expected page routes, set status to 404.
-      res.status(404);
-   }
+  // check for page routes that we expect in the frontend to provide correct status code.
+  const goodPageRoutes = ["/", "/login", "/dashboard"];
+  if (!goodPageRoutes.includes(req.url)) {
+    // if url not in expected page routes, set status to 404.
+    res.status(404);
+  }
 
-   // send index.html
-   res.sendFile(path.join(__dirname, "/client/build/index.html"));
+  // send index.html
+  res.sendFile(path.join(__dirname, "/client/build/index.html"));
 });
 
 
 // configure CORS
 const corsOptions ={
-   origin: 'http://localhost:3000',
-   methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
-   credentials: true
+  origin: 'http://localhost:3000',
+  methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
+  credentials: true
 }
 app.use(cors());
 
