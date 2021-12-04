@@ -5,6 +5,7 @@ const checkSession = async (setMyUser, setLoginType) => {
     const response = await axios.get(
       'http://localhost:5000/check-session'
     );
+    console.log(response)
     if(response.data) {
       console.log(response.data.user)
       setMyUser(response.data.user)

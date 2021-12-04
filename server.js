@@ -47,7 +47,6 @@ const corsOptions ={
    methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
    credentials: true
 }
-app.use(cors(corsOptions));
+app.use(cors());
 
-app.listen(process.env.PORT, 
-  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${process.env.PORT}`));
+app.listen(process.env.PORT, ()=>console.log(`Server running in ${process.env.NODE_ENV} mode on port ${process.env.PORT}`));

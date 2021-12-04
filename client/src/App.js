@@ -23,8 +23,8 @@ const App = () => {
   const [like, setLike] = useState(false);
 
 
-  useEffect(() => {
-    checkSessionHandler(setMyUser, setLoginType);
+  useEffect(async () => {
+    await checkSessionHandler(setMyUser, setLoginType);
   }, [])
 
   const onCardClick = (restaurant) => {
