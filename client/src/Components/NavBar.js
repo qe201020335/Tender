@@ -23,11 +23,14 @@ const NavBar = ({loginStatus, loginType}) => {
       default:
         return "/"
     }
-
   }
 
   const refreshPage = () => {
     window.location.reload(false);
+  }
+
+  const onLogoutClick = async (e) => {
+    //TODO: do logout
   }
 
   return (
@@ -59,7 +62,7 @@ const NavBar = ({loginStatus, loginType}) => {
         </IconButton>}
 
         {loginStatus &&
-        <IconButton onClick={refreshPage} className="icon_button">
+        <IconButton onClick={onLogoutClick} className="icon_button">
           <ExitIcon fontSize="large" className="header_icon"/>
         </IconButton>
         }

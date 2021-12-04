@@ -20,7 +20,6 @@ const Login = ({ setMyUser, setLoginType }) => {
   const onLoginClick = async () => {
     if (username === "" || password === "") {
       setErrorMsg("Invalid Username or Password!")
-      return
     } else {
       setErrorMsg("")
       const user = await loginHandler(username, password);
