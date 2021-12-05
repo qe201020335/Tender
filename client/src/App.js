@@ -55,7 +55,7 @@ const App = () => {
             if (loginType !== "RESTAURANT" || loginType !== "ADMIN") {
               return <Redirect to="/login"/>
             }
-            return <RestaurantProfile restaurant={myRestaurant} setMyRestaurant={setMyRestaurant} loginType={loginType} editingState={false}/>
+            return <RestaurantProfile myAccount={myAccount} editingState={false}/>
           }}
           />
 
@@ -69,7 +69,7 @@ const App = () => {
           />
 
           <Route exact path="/login" render={() => {
-            if (myUser != null) {
+            if (myAccount != null) {
               return <Redirect to="/"/>
             }
             return <Login setMyAccount={setMyAccount} setLoginType={setLoginType}/>}}/>
@@ -80,9 +80,12 @@ const App = () => {
             }
             return <Signup/>
           }}/>
-
-          <Route exact path="/admin" render={ () => <Admin loginType={loginType}/>
-          }/>
+          <Route exact path="/admin" render={ () => {
+            if (loginType !== "ADMIN") {
+              return <Redirect to="/login"/>
+            }
+            <Admin myAccount={myAccount}/>
+          }}/>
 
         </Switch>
       </BrowserRouter>

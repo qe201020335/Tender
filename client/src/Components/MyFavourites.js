@@ -4,13 +4,13 @@ import { Redirect } from 'react-router-dom';
 import "./MyFavourites.css";
 
 const MyFavourites = ({ myAccount }) => {
-  
-  const unfavourite = (restaurant) => {
-    const restaruantsLeft = user.favorites.filter((curRestaurant) => { 
-      return restaurant !== curRestaurant;
-    });
-    setMyUser({favorites: restaruantsLeft});
-  }
+
+  // const unfavourite = (restaurant) => {
+  //   const restaruantsLeft = user.favorites.filter((curRestaurant) => { 
+  //     return restaurant !== curRestaurant;
+  //   });
+  //   setMyUser({favorites: restaruantsLeft});
+  // }
 
   return (
     <div>
@@ -18,10 +18,10 @@ const MyFavourites = ({ myAccount }) => {
       <br/>
       <div className='list_container'>
         <ul>
-          { user.favorites.map((restaurant) => {
+          {/* { user.favorites.map((restaurant) => {
               return (<FavouritesCard restaurant={restaurant} handleUnFavorite={unfavourite}/>);
             })
-          }
+          } */}
         </ul>
       </div>
     </div>
