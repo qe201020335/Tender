@@ -14,13 +14,13 @@ import checkSessionHandler from './Actions/check-session';
 const App = () => {
   const [openRestDetail,  setOpenRestDetail] = useState(false);
   const [clicked_restaurant, setRest] = useState(null);
-  const [myAccount, setMyAccount] = useState(null);
+  const [myAccountID, setMyAccountID] = useState("");
   const [loginType, setLoginType] = useState("LOGGED_OUT");
 
   useEffect( () => {
     // React suggest this to avoid race condition
     async function fetchData() {
-      await checkSessionHandler(setMyAccount, setLoginType);
+      await checkSessionHandler(setMyAccountID, setLoginType);
     }
     fetchData()
   }, [])
@@ -40,7 +40,7 @@ const App = () => {
     <div>
       <BrowserRouter>
 
-        <NavBar loginStatus={myAccount !== null} loginType={loginType} setLoginType={setLoginType} setMyAccount={setMyAccount}/>
+        <NavBar loginStatus={myAccountID !== ""} loginType={loginType} setLoginType={setLoginType} setMyAccount={setMyAccountID}/>
 
         <Switch>
 
@@ -52,39 +52,40 @@ const App = () => {
           />
 
           <Route exact path="/my-restaurant" render={() => {
-            if (loginType !== "RESTAURANT" || loginType !== "ADMIN") {
+            if (loginType !== "RESTAURANT") {
               return <Redirect to="/login"/>
             }
-            return <RestaurantProfile myAccount={myAccount} editingState={false}/>
+            return <RestaurantProfile myAccount={myAccountID} editingState={false}/>
           }}
           />
 
           <Route exact path="/my-favourites" render={() =>
             {
-              if (loginType !== "USER" || loginType !== "ADMIN") {
+              if (loginType !== "USER") {
                 return <Redirect to="/login"/>
               }
-              return <MyFavourites  myAccount={myAccount}/>}
+              return <MyFavourites  myAccount={myAccountID}/>}
             }
           />
 
           <Route exact path="/login" render={() => {
-            if (myAccount != null) {
+            if (myAccountID !== "") {
               return <Redirect to="/"/>
             }
-            return <Login setMyAccount={setMyAccount} setLoginType={setLoginType}/>}}/>
+            return <Login setMyAccount={setMyAccountID} setLoginType={setLoginType}/>}}/>
 
           <Route exact path="/signup" render={() => {
-            if (myAccount != null) {
+            if (myAccountID !== "") {
               return <Redirect to="/"/>
             }
             return <Signup/>
           }}/>
+
           <Route exact path="/admin" render={ () => {
             if (loginType !== "ADMIN") {
               return <Redirect to="/login"/>
             }
-            <Admin myAccount={myAccount}/>
+            return <Admin myAccount={myAccountID}/>
           }}/>
 
         </Switch>

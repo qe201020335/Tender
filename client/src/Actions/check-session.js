@@ -1,16 +1,16 @@
 import axios from 'axios';
-import base from "./baseUrl";
+import {authBase} from "../config/baseUrl";
 
 const checkSession = async (setMyUser, setLoginType) => {
 
-  const url = "/auth/check-session"
+  const url = authBase + "/check-session"
 
   try {
     const response = await axios.get(url);
     console.log(response)
     if(response.data) {
-      console.log(response.data.user)
-      setMyUser(response.data.user)
+      console.log(response.data)
+      setMyUser(response.data.userId)
       setLoginType(response.data.user.userType)
     }
   } catch (error) {

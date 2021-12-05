@@ -29,7 +29,7 @@ router.post('/signup', mongoChecker, async (req, res) => {
 			})
 			await user.save()
 		}
-		// create restauarnt profile
+		// create restaurant profile
 		if (newAccount.userType === "RESTAURANT" || newAccount.userType === "ADMIN") {
 			const restaurant = new Restaurant({
 				_id: newAccount._id

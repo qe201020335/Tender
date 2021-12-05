@@ -1,9 +1,9 @@
 import axios from "axios";
-import base from "./baseUrl";
+import {authBase} from "../config/baseUrl";
 
 const logout = async () => {
 
-  const url = "/auth/logout"
+  const url = authBase + "/logout"
 
   try {
     console.log("try to logout")

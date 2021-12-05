@@ -27,10 +27,10 @@ const Login = ({ setMyUser, setLoginType }) => {
       setErrorMsg("Invalid Username or Password!")
     } else {
       setErrorMsg("")
-      const user = await loginHandler(username, password);
-      if(user) {
-        setLoginType(user.userType)
-        setMyUser(user)
+      const response = await loginHandler(username, password);
+      if(response) {
+        setLoginType(response.userType)
+        setMyUser(response.userId)
         history.push("/")
       } else {
         setErrorMsg("Invalid Username or Password!")

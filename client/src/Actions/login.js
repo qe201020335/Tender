@@ -1,9 +1,9 @@
 import axios from 'axios';
-import base from "./baseUrl";
+import {authBase} from "../config/baseUrl";
 
 const login = async (username, password) => {
 
-  const url = "/auth/login"
+  const url = authBase + "/login"
 
   try {
     const requestBody = {
