@@ -16,12 +16,12 @@ const Admin = ({ loginType}) => {
     setEditingRest(restaurant)
   }
 
-  const setEditedRest = (rest) => {
+  const setEditedRest = () => {
     setIsAdminEditing(false)
   }
 
   if (loginType !== "ADMIN") {
-    return (<Redirect to="/login-user"/>)
+    return (<Redirect to="/"/>)
   }
 
   return (

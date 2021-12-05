@@ -3,7 +3,6 @@ import {Route, Switch, BrowserRouter, Redirect} from 'react-router-dom';
 import './App.css';
 import NavBar from "./Components/NavBar";
 import RestaurantCards from "./Components/RestaurantCards";
-import SwipeButtonsBar from "./Components/SwipeButtonsBar";
 import RestaurantDetail from "./Components/RestaurantDetail";
 import RestaurantProfile from "./Components/RestaurantProfile";
 import MyFavourites from "./Components/MyFavourites";
@@ -58,27 +57,24 @@ const App = () => {
           />
 
           <Route exact path="/my-favourites" render={() =>
-            <div>
-              <MyFavourites user={myUser} setMyUser={setMyUser} loginType={loginType}/>
-            </div>}
+            <MyFavourites user={myUser} setMyUser={setMyUser} loginType={loginType}/>}
           />
 
-          <Route exact path="/login" render={() => <Login setMyUser={setMyUser} setLoginType={setLoginType}/>}/>
-          <Route exact path="/register" component={Register}/>
+          <Route exact path="/login" render={() => {
+            if (myUser != null) {
+              return <Redirect to="/"/>
+            }
+            return <Login setMyUser={setMyUser} setLoginType={setLoginType}/>}}/>
 
-          <Route exact path="/admin" render={ () =>
-            <div>
-              <Admin loginType={loginType}/>
-            </div>
+          <Route exact path="/register" render={() => {
+            if (myUser != null) {
+              return <Redirect to="/"/>
+            }
+            return <Register/>
+          }}/>
+
+          <Route exact path="/admin" render={ () => <Admin loginType={loginType}/>
           }/>
-
-          {/*<Route path="/adminEditing" render={() => {*/}
-          {/*  if (adminEditingRest === null) {*/}
-          {/*    return <Redirect to="/"/>*/}
-          {/*  }*/}
-          {/*  return (<div><RestaurantProfile restaurant={adminEditingRest} setMyRestaurant={setAdminEditingRest} loginType={loginType}/></div>)*/}
-          {/*}}/>*/}
-
 
         </Switch>
       </BrowserRouter>
