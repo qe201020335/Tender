@@ -6,6 +6,7 @@ const signUpRoute = require('./routes/signup');
 const loginRoute = require('./routes/login');
 const logoutRoute = require('./routes/logout');
 const checkSessionRoute = require('./routes/check-session');
+
 // const MongoStore = require('connect-mongo');
 const path = require('path')
 
@@ -15,6 +16,8 @@ if (process.env.NODE_ENV !== 'PROD') {
   dotenv.config({path: './config/config.env'});
   app.use(cors());
 }
+
+const { mongoose } = require("./config/mongoose");
 
 app.use(express.json());
 
