@@ -77,13 +77,13 @@ const Register = ({}) => {
         </div>
         <br/>
         <label><b>Username</b></label>
-        <input id="username_input" type="text" placeholder="Enter Username" name="username" value = {username} onChange={onUsernameChange} required/>
+        <input className="username_input" type="text" placeholder="Enter Username" name="username" value = {username} onChange={onUsernameChange} required/>
         <br/>
         <label><b>Password</b></label>
-        <input id="password_input" type="password" placeholder="Enter Password" name="password" value = {password} onChange={onPasswordChange} required/>
+        <input className="password_input" type="password" placeholder="Enter Password" name="password" value = {password} onChange={onPasswordChange} required/>
         <br/>
         <label><b>Reenter Password</b></label>
-        <input id="password_input" type="password" placeholder="Enter Password Again" name="password" value = {rePass} onChange={onRePasswordChange} required/>
+        <input className="password_input" type="password" placeholder="Enter Password Again" name="password" value = {rePass} onChange={onRePasswordChange} required/>
         <br/>
         <span className="error_msg">{errorMsg}</span>
         <br/>

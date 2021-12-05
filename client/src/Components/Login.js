@@ -57,10 +57,10 @@ const Login = ({ setMyUser, setLoginType }) => {
       <h2 className='login_header'>Login</h2>
       <div className="userLogin_header">
         <label><b>Username</b></label>
-        <input id="username_input" type="text" placeholder="Enter Username" name="username" value = {username} onChange={onUsernameChange} required/>
+        <input className="username_input" type="text" placeholder="Enter Username" name="username" value = {username} onChange={onUsernameChange} required/>
         <br/>
         <label><b>Password</b></label>
-        <input id="password_input" type="password" placeholder="Enter Password" name="password" value = {password} onChange={onPasswordChange} required/>
+        <input className="password_input" type="password" placeholder="Enter Password" name="password" value = {password} onChange={onPasswordChange} required/>
         <br/>
         <span className="error_msg">{errorMsg}</span>
         <br/>
