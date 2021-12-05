@@ -26,7 +26,7 @@ app.use(express.json());
 app.use(session({
   secret: 'our hardcoded secret',
   cookie: {
-    expires: 60000,
+    expires: 600000,
     httpOnly: true
   },
   // don't save the initial session if the session object is unmodified (for example, we didn't log in).
