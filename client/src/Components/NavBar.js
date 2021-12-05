@@ -46,6 +46,17 @@ const NavBar = ({loginStatus, loginType, setMyUser, setLoginType}) => {
     }
   }
 
+  const getAccountTitle = (type) => {
+    switch (type) {
+      case "ADMIN":
+        return "All Restaurants"
+      case "REST":
+        return "My Restaurant"
+      default:
+        return "My Account"
+    }
+  }
+
   return (
     <div className='header'>
       <div id='header_left'>
@@ -72,9 +83,9 @@ const NavBar = ({loginStatus, loginType, setMyUser, setLoginType}) => {
         }
 
         {loginStatus &&
-        <Tooltip title="My Account" placement="bottom">
+        <Tooltip title={getAccountTitle(loginType)} placement="bottom">
           <IconButton component={Link} to={getRedirectLinkIfLogIn(loginType)} className="icon_button">
-            <AccountCircleIcon fontSize="large" className="header_icon"/>
+            {loginType === "REST" ? <StorefrontIcon fontSize="large" className="header_icon"/> : <AccountCircleIcon fontSize="large" className="header_icon"/>}
           </IconButton>
         </Tooltip>
         }
