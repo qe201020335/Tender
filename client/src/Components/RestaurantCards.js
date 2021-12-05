@@ -9,10 +9,11 @@ const RestaurantCards = ({ onCardClick }) => {
   const [dislike, setDislike] = useState(false);
   const [like, setLike] = useState(false);
   const [fav, setFav] = useState(false);
-  const [currDisplayRest, setCurrDisplayRest] = useState(null)
+  const [currDisplayTop, setCurrDisplayTop] = useState(null)
+  const [currDisplayBottom, setCurrDisplayBottom] = useState(null)
 
   let swipeDirection;
-  let currDisplayRestIndex = 0;
+  let currDisplayRestTopIndex = 0;
   const restaurants = []
 
   useEffect(() => {
@@ -27,14 +28,20 @@ const RestaurantCards = ({ onCardClick }) => {
     nextCard()
   }, [])
 
-  console.log(restaurants);
-
   const nextCard = () => {
-    console.log("try to display card " + currDisplayRestIndex)
-    if (currDisplayRestIndex < restaurants.length) {
-      setCurrDisplayRest(restaurants[currDisplayRestIndex])
-      currDisplayRestIndex++
+    console.log(`try to display card ${currDisplayRestTopIndex} and ${currDisplayRestTopIndex +1}`)
+    if (currDisplayRestTopIndex < restaurants.length - 1) {
+      setCurrDisplayTop(restaurants[currDisplayRestTopIndex])
+      setCurrDisplayBottom(restaurants[currDisplayRestTopIndex + 1])
+      currDisplayRestTopIndex++
+    } else if (currDisplayRestTopIndex === restaurants.length -1) {
+      setCurrDisplayTop(restaurants[currDisplayRestTopIndex])
+      setCurrDisplayBottom(null)
+      console.log(`no card ${currDisplayRestTopIndex +1}`)
+      currDisplayRestTopIndex++
     } else {
+      setCurrDisplayTop(null)
+      setCurrDisplayBottom(null)
       console.log("no more cards!")
     }
   }
@@ -58,7 +65,8 @@ const RestaurantCards = ({ onCardClick }) => {
   return (
     <div className="RestaurantCards">
       <div className="RestaurantCards_cardContainer">
-        {currDisplayRest!==null && currDisplayRest.card}
+        {currDisplayBottom!==null && currDisplayBottom.card}
+        {currDisplayTop!==null && currDisplayTop.card}
       </div>
       <SwipeButtonsBar like={like} setLike={setLike} dislike={dislike} setDislike={setDislike} fav={fav} setFav={setFav}/>
     </div>
