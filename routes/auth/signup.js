@@ -36,7 +36,7 @@ router.post('/signup', mongoChecker, async (req, res) => {
 			})
 			await restaurant.save()
 		}
-		res.send("success")
+		res.send({ userId: newAccount._id, userType: newAccount.userType })
 	} catch (error) {
 		console.log(error)
 		if (isMongoError(error)) {
