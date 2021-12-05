@@ -1,6 +1,9 @@
 import React, { useState }  from 'react'
-import { useHistory } from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import "./Login.css";
+import Button from "@mui/material/Button";
+import MuiLink from "@mui/material/Link";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const Register = ({}) => {
 
@@ -26,7 +29,7 @@ const Register = ({}) => {
     setRegType(e.target.value)
   };
 
-  const regHandler = () => {
+  const onRegClick = () => {
     if (regType === "") {
       setErrorMsg("Please select an account type!")
       return
@@ -45,6 +48,21 @@ const Register = ({}) => {
 
     //TODO: Do register
   };
+
+
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#0971f1',
+        darker: '#053e85',
+      },
+      tender: {
+        main: '#ca3b28',
+        contrastText: '#ffffff',
+      },
+    },
+  });
 
   return(
     <div>
@@ -69,7 +87,13 @@ const Register = ({}) => {
         <br/>
         <span className="error_msg">{errorMsg}</span>
         <br/>
-        <button type="submit" className="login_submit" onClick={regHandler} >Register!</button>
+        <ThemeProvider theme={theme}>
+          <Button type="submit" className="login_submit" onClick={onRegClick} variant="contained" color="tender">
+            Login!
+          </Button>
+        </ThemeProvider>
+        <br/>
+        <span>New user? <MuiLink className="login_reg_link" variant="inherit" color="#66ccff" component={Link} to="/login" underline="hover">Login!</MuiLink></span>
       </div>
     </div>
   );

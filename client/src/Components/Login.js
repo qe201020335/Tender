@@ -1,7 +1,11 @@
 import React, { useState }  from 'react'
-import { useHistory } from 'react-router-dom';
-import loginHandler from '../Actions/login'
+import {Link, useHistory} from 'react-router-dom';
 import "./Login.css";
+import Button from "@mui/material/Button";
+import MuiLink from "@mui/material/Link";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+import loginHandler from '../Actions/login'
 
 const Login = ({ setMyUser, setLoginType }) => {
 
@@ -33,6 +37,21 @@ const Login = ({ setMyUser, setLoginType }) => {
     }
   };
 
+
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#0971f1',
+        darker: '#053e85',
+      },
+      tender: {
+        main: '#ca3b28',
+        contrastText: '#ffffff',
+      },
+    },
+  });
+
   return(
     <div>
       <h2 className='login_header'>Login</h2>
@@ -45,9 +64,13 @@ const Login = ({ setMyUser, setLoginType }) => {
         <br/>
         <span className="error_msg">{errorMsg}</span>
         <br/>
-        <button type="submit" className="login_submit" onClick={onLoginClick} >Login!</button>
+        <ThemeProvider theme={theme}>
+          <Button type="submit" className="login_submit" onClick={onLoginClick} variant="contained" color="tender">
+            Login!
+          </Button>
+        </ThemeProvider>
         <br/>
-        {/*<span>New user? Click <span className="login_reg_link" component={Link} to="/login" >HERE</span> to login!</span>*/}
+        <span>New user? <MuiLink className="login_reg_link" variant="inherit" color="#66ccff" component={Link} to="/register" underline="hover">Register!</MuiLink></span>
       </div>
     </div>
   );
