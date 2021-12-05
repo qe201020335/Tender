@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { UserCredential } = require('../models/userCredential');
+const { Account } = require('../models/Account');
 const { mongoChecker, isMongoError } = require("./helpers/mongo_helpers");
 
 router.post('/login', mongoChecker, async (req, res) => {
@@ -8,14 +8,14 @@ router.post('/login', mongoChecker, async (req, res) => {
   const password = req.body.password
 
   try {
-    const user = await UserCredential.findByUsernamePassword(username, password);
-    if (!user) {
-      //res.redirect('/login');
+    const account = await Account.findByUsernamePassword(username, password);
+    if (!account) {
       res.status(404).send("wrong credentials")
     } else {
-      console.log(user)
-      req.session.user = user
-      res.status(200).send({ user })
+      console.log(account)
+      req.session.userId = account._id
+      req.session.userType = account.userType
+      res.status(200).send({ userId: account._id, userType: account.userType })
     }
   } catch (error) {
     if (isMongoError(error)) { 

@@ -3,7 +3,7 @@ import base from "./baseUrl";
 
 const checkSession = async (setMyUser, setLoginType) => {
 
-  const url = base + "/check-session"
+  const url = "/auth/check-session"
 
   try {
     const response = await axios.get(url);

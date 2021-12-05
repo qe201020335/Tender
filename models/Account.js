@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-const UserCredentialSchema = new mongoose.Schema({
+const AccountSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
@@ -21,7 +21,7 @@ const UserCredentialSchema = new mongoose.Schema({
 });
 
 // Mongoose middleware runs prior to saving the document in the database.
-UserCredentialSchema.pre('save', function(next) {
+AccountSchema.pre('save', function(next) {
     // binds this to User document instance
 	const user = this; 
 	// checks to ensure we don't hash password more than once
@@ -39,7 +39,7 @@ UserCredentialSchema.pre('save', function(next) {
 })
 
 // A static method on the document model to find a User document by comparing the hashed password
-UserCredentialSchema.statics.findByUsernamePassword = function(username, password) {
+AccountSchema.statics.findByUsernamePassword = function(username, password) {
     // binds this to the User model
 	const User = this
 	// First find the user by their username
@@ -61,5 +61,5 @@ UserCredentialSchema.statics.findByUsernamePassword = function(username, passwor
 	})
 }
 
-const UserCredential = mongoose.model('UserCrential', UserCredentialSchema);
-module.exports = { UserCredential };
+const Account = mongoose.model('Account', AccountSchema);
+module.exports = { Account };

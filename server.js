@@ -13,13 +13,8 @@ const app = express();
 
 if (process.env.NODE_ENV !== 'PROD') {
   dotenv.config({path: './config/config.env'});
+  app.use(cors());
 }
-
-const { mongoose } = require('./config/mongoose')
-
-const TEST_USER_ID = '5fb8b011b864666580b4efe3' // the id of our test user (you will have to replace it with a test user that you made). can also put this into a separate configutation file
-
-const TEST_USER_EMAIL = 'test@user.com'
 
 app.use(express.json());
 
@@ -35,12 +30,12 @@ app.use(session({
   resave: false,
 }));
 
-app.use(express.static(path.join(__dirname, '/client/build/')));
+app.use('/auth', loginRoute);
+app.use('/auth', logoutRoute);
+app.use('/auth', checkSessionRoute);
+app.use('/auth', signUpRoute);
 
-app.use('/api', loginRoute);
-app.use('/api', logoutRoute);
-app.use('/api', checkSessionRoute);
-app.use('/api', signUpRoute);
+app.use(express.static(path.join(__dirname, '/client/build/')));
 
 // All routes other than above will go to index.html
 app.get("*", (req, res) => {
@@ -62,13 +57,4 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "/client/build/index.html"));
 });
 
-
-// configure CORS
-const corsOptions ={
-  origin: 'http://localhost:3000',
-  methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
-  credentials: true
-}
-app.use(cors());
-
-app.listen(process.env.PORT, ()=>console.log(`Server running in ${process.env.NODE_ENV} mode on port ${process.env.PORT}`));
+app.listen(process.env.PORT, () => console.log(`Server running in ${process.env.NODE_ENV} mode on port ${process.env.PORT}`));

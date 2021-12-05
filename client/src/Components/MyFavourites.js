@@ -3,7 +3,8 @@ import FavouritesCard from './FavouritesCard';
 import { Redirect } from 'react-router-dom';
 import "./MyFavourites.css";
 
-const MyFavourites = ({ user, setMyUser, loginType }) => {
+const MyFavourites = ({ myAccount }) => {
+  
   const unfavourite = (restaurant) => {
     const restaruantsLeft = user.favorites.filter((curRestaurant) => { 
       return restaurant !== curRestaurant;
@@ -11,11 +12,6 @@ const MyFavourites = ({ user, setMyUser, loginType }) => {
     setMyUser({favorites: restaruantsLeft});
   }
 
-  if (loginType !== "USER") {
-    return (
-      <Redirect to="login"/>
-    )
-  }
   return (
     <div>
       <h2 className="fav_title">My Favourites</h2>

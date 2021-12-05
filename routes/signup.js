@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { UserCredential } = require('../models/userCredential');
+const { Account } = require('../models/Account');
+const { User } = require('../models/User');
+const { Restaurant } = require('../models/Restaurant');
 const { mongoChecker, isMongoError } = require("./helpers/mongo_helpers");
 const userTypes = ["ADMIN", "USER", "RESTAURANT"]
 
@@ -10,18 +12,31 @@ router.post('/signup', mongoChecker, async (req, res) => {
   //   return
   // }
   if (!userTypes.includes(req.body.userType)) {
-		console.log("missing usertype")
-    res.status(400).send('Bad Request')
+    res.status(400).send('Bad Request missing usertype')
     return
   }
-	const userCredential = new UserCredential({
+	const account = new Account({
 		username: req.body.username,
 		password: req.body.password,
     userType: req.body.userType
 	})
 	try {
-		const newUser = await userCredential.save()
-		res.send(newUser)
+		const newAccount = await account.save()
+		// create user profile
+		if(newAccount.userType === "USER" || newAccount.userType === "ADMIN") {
+			const user = new User({
+				_id: newAccount._id
+			})
+			await user.save()
+		}
+		// create restauarnt profile
+		if (newAccount.userType === "RESTAURANT" || newAccount.userType === "ADMIN") {
+			const restaurant = new Restaurant({
+				_id: newAccount._id
+			})
+			await restaurant.save()
+		}
+		res.send("success")
 	} catch (error) {
 		console.log(error)
 		if (isMongoError(error)) {

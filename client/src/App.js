@@ -8,22 +8,21 @@ import RestaurantProfile from "./Components/RestaurantProfile";
 import MyFavourites from "./Components/MyFavourites";
 import Login from "./Components/Login";
 import Admin from "./Components/Admin";
-import Register from "./Components/Register";
+import Signup from "./Components/Signup";
 import checkSessionHandler from './Actions/check-session';
 
 const App = () => {
   const [openRestDetail,  setOpenRestDetail] = useState(false);
   const [clicked_restaurant, setRest] = useState(null);
+  const [myAccount, setMyAccount] = useState(null);
   const [loginType, setLoginType] = useState("LOGGED_OUT");
-  const [myRestaurant, setMyRestaurant] = useState(null);
-  const [myUser, setMyUser] = useState(null);
 
   useEffect( () => {
+    // React suggest this to avoid race condition
     async function fetchData() {
-      await checkSessionHandler(setMyUser, setLoginType);
+      await checkSessionHandler(setMyAccount, setLoginType);
     }
     fetchData()
-    // React suggest this to avoid race condition
   }, [])
 
   const onCardClick = (restaurant) => {
@@ -41,7 +40,7 @@ const App = () => {
     <div>
       <BrowserRouter>
 
-        <NavBar loginStatus={myUser !== null} loginType={loginType} setLoginType={setLoginType} setMyUser={setMyUser}/>
+        <NavBar loginStatus={myAccount !== null} loginType={loginType} setLoginType={setLoginType} setMyAccount={setMyAccount}/>
 
         <Switch>
 
@@ -53,7 +52,7 @@ const App = () => {
           />
 
           <Route exact path="/my-restaurant" render={() => {
-            if (loginType !== "RESTAURANT") {
+            if (loginType !== "RESTAURANT" || loginType !== "ADMIN") {
               return <Redirect to="/login"/>
             }
             return <RestaurantProfile restaurant={myRestaurant} setMyRestaurant={setMyRestaurant} loginType={loginType} editingState={false}/>
@@ -61,20 +60,25 @@ const App = () => {
           />
 
           <Route exact path="/my-favourites" render={() =>
-            <MyFavourites user={myUser} setMyUser={setMyUser} loginType={loginType}/>}
+            {
+              if (loginType !== "USER" || loginType !== "ADMIN") {
+                return <Redirect to="/login"/>
+              }
+              return <MyFavourites  myAccount={myAccount}/>}
+            }
           />
 
           <Route exact path="/login" render={() => {
             if (myUser != null) {
               return <Redirect to="/"/>
             }
-            return <Login setMyUser={setMyUser} setLoginType={setLoginType}/>}}/>
+            return <Login setMyAccount={setMyAccount} setLoginType={setLoginType}/>}}/>
 
-          <Route exact path="/register" render={() => {
-            if (myUser != null) {
+          <Route exact path="/signup" render={() => {
+            if (myAccount != null) {
               return <Redirect to="/"/>
             }
-            return <Register/>
+            return <Signup/>
           }}/>
 
           <Route exact path="/admin" render={ () => <Admin loginType={loginType}/>

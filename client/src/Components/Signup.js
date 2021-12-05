@@ -6,7 +6,7 @@ import MuiLink from "@mui/material/Link";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {FormControlLabel, Radio, RadioGroup, TextField} from "@material-ui/core";
 
-const Register = () => {
+const Signup = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -67,7 +67,7 @@ const Register = () => {
 
   return(
     <div>
-      <h2 className='login_header'>Register</h2>
+      <h2 className='login_header'>Sign Up</h2>
       <div className="userLogin_header">
         <div id="select_type" onChange={onRegTypeSelect}>
           <label><b>Account Type</b></label><br/>
@@ -95,7 +95,7 @@ const Register = () => {
         <ThemeProvider theme={theme}>
           <Button type="submit" className="login_submit" onClick={onRegClick}
                   variant="contained" color="tender" fullWidth>
-            Register!
+            Sign Up!
           </Button>
         </ThemeProvider>
         <br/>
@@ -109,4 +109,4 @@ const Register = () => {
     </div>
   );
 }
-export default Register;
+export default Signup;

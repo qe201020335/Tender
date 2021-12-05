@@ -3,7 +3,7 @@ import base from "./baseUrl";
 
 const logout = async () => {
 
-  const url = base + "/logout"
+  const url = "/auth/logout"
 
   try {
     console.log("try to logout")
