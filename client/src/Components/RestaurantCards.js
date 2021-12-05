@@ -27,7 +27,8 @@ const RestaurantCards = ({ onCardClick }) => {
     ))
     console.log(restaurants)
     nextCard()
-  })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const nextCard = () => {
     console.log(`try to display card ${currDisplayRestTopIndex} and ${currDisplayRestTopIndex +1}`)
