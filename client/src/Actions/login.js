@@ -1,9 +1,9 @@
 import axios from 'axios';
-import base from "./baseUrl";
+import {authBase} from "../config/baseUrl";
 
 const login = async (username, password) => {
 
-  const url = "/auth/login"
+  const url = authBase + "/login"
 
   try {
     const requestBody = {
@@ -12,8 +12,8 @@ const login = async (username, password) => {
     };
     const response = await axios.post(url, requestBody);
     if(response.data) {
-      console.log(response.data.user)
-      return response.data.user
+      console.log(response.data)
+      return response.data
     }
     return null
   } catch (error) {

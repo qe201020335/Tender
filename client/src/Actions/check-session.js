@@ -1,9 +1,9 @@
 import axios from 'axios';
-import base from "./baseUrl";
+import {authBase} from "../config/baseUrl";
 
 const checkSession = async (setMyUser, setLoginType) => {
 
-  const url = "/auth/check-session"
+  const url = authBase + "/check-session"
 
   try {
     const response = await axios.get(url);
