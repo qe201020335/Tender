@@ -9,8 +9,8 @@ const checkSession = async (setMyUser, setLoginType) => {
     const response = await axios.get(url);
     console.log(response)
     if(response.data) {
-      console.log(response.data.user)
-      setMyUser(response.data.user)
+      console.log(response.data)
+      setMyUser(response.data.userId)
       setLoginType(response.data.user.userType)
     }
   } catch (error) {
