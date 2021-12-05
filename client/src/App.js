@@ -18,8 +18,12 @@ const App = () => {
   const [myRestaurant, setMyRestaurant] = useState(null);
   const [myUser, setMyUser] = useState(null);
 
-  useEffect(async () => {
-    await checkSessionHandler(setMyUser, setLoginType);
+  useEffect( () => {
+    async function fetchData() {
+      await checkSessionHandler(setMyUser, setLoginType);
+    }
+    fetchData()
+    // React suggest this to avoid race condition
   }, [])
 
   const onCardClick = (restaurant) => {

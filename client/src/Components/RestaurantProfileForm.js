@@ -20,7 +20,7 @@ const RestaurantProfileForm = ({ restaurant, onRestaurantEdit }) => {
         <br/><br/><br/>
       </div>
       <div className="restaurant_pic">
-        <img className="restaurant_pic" src={restaurant.image}/>
+        <img className="restaurant_pic" src={restaurant.image} alt="restaurant"/>
       </div>
     </div>
   )

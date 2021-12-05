@@ -6,7 +6,7 @@ import MuiLink from "@mui/material/Link";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {FormControlLabel, Radio, RadioGroup, TextField} from "@material-ui/core";
 
-const Register = ({}) => {
+const Register = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

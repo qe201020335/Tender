@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import RestaurantProfileView from './RestaurantProfileView'
 import RestaurantProfileForm from './RestaurantProfileForm'
 import "./RestaurantProfile.css";
@@ -42,7 +42,7 @@ const RestaurantProfile = ({ restaurant, setMyRestaurant, loginType, editingStat
           : <button type="submit" onClick={onEditClick}>Edit</button> }
       </div>
       <div className="restaurant_pic">
-        <img className="restaurant_pic" src={restaurant.image} />
+        <img className="restaurant_pic" src={restaurant.image} alt="restaurant"/>
       </div>
     </div>
   )

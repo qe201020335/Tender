@@ -20,7 +20,7 @@
     display: block;
 }
 
-a{
+.rest_info_span {
     margin-left: 30px;
     margin-bottom: 10px;
 }

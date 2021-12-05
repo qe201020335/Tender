@@ -1,4 +1,3 @@
-"use strict";
 import React, {useState} from 'react';
 import { Redirect } from 'react-router-dom';
 import {getAllRestaurant} from "../Repository/RestaurantRepository";

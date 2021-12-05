@@ -27,7 +27,7 @@ const RestaurantCards = ({ onCardClick }) => {
     ))
     console.log(restaurants)
     nextCard()
-  }, [])
+  })
 
   const nextCard = () => {
     console.log(`try to display card ${currDisplayRestTopIndex} and ${currDisplayRestTopIndex +1}`)

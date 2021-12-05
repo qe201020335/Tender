@@ -60,11 +60,11 @@ const Login = ({ setMyUser, setLoginType }) => {
       <div className="userLogin_header">
 
         <TextField className="username_input" type="text" placeholder="Username"
-                   name="username" variant="outlined" value={username} error={errorMsg}
+                   name="username" variant="outlined" value={username} error={errorMsg !== ""}
                    onChange={onUsernameChange} autoFocus required fullWidth/>
         <br/>
         <TextField className="password_input" type="password" placeholder="Password"
-                   name="password" variant="outlined" value={password} error={errorMsg}
+                   name="password" variant="outlined" value={password} error={errorMsg !== ""}
                    onChange={onPasswordChange} required fullWidth/>
         <br/>
         <span className="error_msg">{errorMsg}</span>

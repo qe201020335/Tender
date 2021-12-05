@@ -1,4 +1,3 @@
-"use strict";
 import React from 'react';
 import FavouritesCard from './FavouritesCard';
 import { Redirect } from 'react-router-dom';
