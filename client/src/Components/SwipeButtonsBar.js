@@ -9,18 +9,7 @@ import { useState } from 'react';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const SwipeButtonsBar = ({like, setLike, dislike, setDislike, fav, setFav}) => {
-
-  function handleDislike(){
-    setDislike(!dislike);
-  }
-  function handleLike(){
-    setLike(!like);
-  }
-  function handleFav() {
-    setFav(!fav)
-    //TODO: async handle in backend
-  }
+const SwipeButtonsBar = ({like, onLikeClick, dislike, onDislikeClick, fav, onFavClick}) => {
 
   const theme = createTheme({
     palette: {
@@ -41,13 +30,13 @@ const SwipeButtonsBar = ({like, setLike, dislike, setDislike, fav, setFav}) => {
       <label id="card_tut"><strong>Click for details. Drag to swipe!</strong></label>
       <div className="SwipeButtons">
         <ThemeProvider theme={theme}>
-          <IconButton onClick={handleDislike}>
+          <IconButton onClick={onDislikeClick}>
             <ClearIcon color={dislike ? "dislike" : ""} fontSize="large" className="swipeButtons_left" />
           </IconButton>
-          <IconButton onClick={handleFav}>
+          <IconButton onClick={onFavClick}>
             <StarIcon fontSize="large" color={fav ? "fav": ""} className="swipeButtons_star"/>
           </IconButton>
-          <IconButton onClick={handleLike}>
+          <IconButton onClick={onLikeClick}>
             <FavoriteIcon color={like ? "like" : ""} fontSize="large" className="swipeButtons_right" />
           </IconButton>
         </ThemeProvider>

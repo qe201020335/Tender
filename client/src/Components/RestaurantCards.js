@@ -17,6 +17,7 @@ const RestaurantCards = ({ onCardClick }) => {
   const restaurants = []
 
   useEffect(() => {
+    // TODO: get rests from backend
     const rests = getAllRestaurant()
     rests.forEach((restaurant) => (restaurants.push(
       {
@@ -61,6 +62,30 @@ const RestaurantCards = ({ onCardClick }) => {
     nextCard()
   }
 
+  const onLikeClick = () => {
+    if (currDisplayTop) {
+      console.log("like " + currDisplayTop.restaurant.name)
+      setLike(!like)
+
+    }
+  }
+
+  const onDislikeClick = () => {
+    if (currDisplayTop) {
+      console.log("dislike " + currDisplayTop.restaurant.name)
+      setDislike(!dislike)
+    }
+  }
+
+  const onFavClick = () => {
+    if (currDisplayTop) {
+      console.log("fav " + currDisplayTop.restaurant.name)
+      setFav(!fav)
+      // TODO: add to fav backend
+    }
+
+  }
+
 
   return (
     <div className="RestaurantCards">
@@ -68,7 +93,7 @@ const RestaurantCards = ({ onCardClick }) => {
         {currDisplayBottom!==null && currDisplayBottom.card}
         {currDisplayTop!==null && currDisplayTop.card}
       </div>
-      <SwipeButtonsBar like={like} setLike={setLike} dislike={dislike} setDislike={setDislike} fav={fav} setFav={setFav}/>
+      <SwipeButtonsBar like={like} onLikeClick={onLikeClick} dislike={dislike} onDislikeClick={onDislikeClick} fav={fav} onFavClick={onFavClick}/>
     </div>
   )
 }
