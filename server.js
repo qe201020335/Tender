@@ -2,10 +2,11 @@ const express = require('express');
 const session = require("express-session");
 const dotenv = require('dotenv');
 const cors = require('cors');
-const signUpRoute = require('./routes/signup');
-const loginRoute = require('./routes/login');
-const logoutRoute = require('./routes/logout');
-const checkSessionRoute = require('./routes/check-session');
+const signUpRoute = require('./routes/auth/signup');
+const loginRoute = require('./routes/auth/login');
+const logoutRoute = require('./routes/auth/logout');
+const checkSessionRoute = require('./routes/auth/check-session');
+const restaurantRoute = require('./routes/api/restaurant');
 
 // const MongoStore = require('connect-mongo');
 const path = require('path')
@@ -37,6 +38,7 @@ app.use('/auth', loginRoute);
 app.use('/auth', logoutRoute);
 app.use('/auth', checkSessionRoute);
 app.use('/auth', signUpRoute);
+app.use('/api', restaurantRoute);
 
 app.use(express.static(path.join(__dirname, '/client/build/')));
 
