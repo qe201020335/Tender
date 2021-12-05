@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { Account } = require('../models/Account');
-const { mongoChecker, isMongoError } = require("./helpers/mongo_helpers");
+const { Account } = require('../../models/Account');
+const { mongoChecker, isMongoError } = require("../helpers/mongo_helpers");
 
 router.post('/login', mongoChecker, async (req, res) => {
 	const username = req.body.username
