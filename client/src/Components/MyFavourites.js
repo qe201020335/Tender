@@ -14,7 +14,7 @@ const MyFavourites = ({ user, setMyUser, loginType }) => {
 
   if (loginType !== "USER") {
     return (
-      <Redirect to="login-user"/>
+      <Redirect to="login"/>
     )
   }
   return (
