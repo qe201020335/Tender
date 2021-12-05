@@ -6,6 +6,7 @@ import MuiLink from "@mui/material/Link";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import loginHandler from '../Actions/login'
+import {TextField} from "@material-ui/core";
 
 const Login = ({ setMyUser, setLoginType }) => {
 
@@ -55,22 +56,32 @@ const Login = ({ setMyUser, setLoginType }) => {
   return(
     <div>
       <h2 className='login_header'>Login</h2>
+
       <div className="userLogin_header">
-        <label><b>Username</b></label>
-        <input className="username_input" type="text" placeholder="Enter Username" name="username" value = {username} onChange={onUsernameChange} required/>
+
+        <TextField className="username_input" type="text" placeholder="Username"
+                   name="username" variant="outlined" value={username} error={errorMsg}
+                   onChange={onUsernameChange} autoFocus required fullWidth/>
         <br/>
-        <label><b>Password</b></label>
-        <input className="password_input" type="password" placeholder="Enter Password" name="password" value = {password} onChange={onPasswordChange} required/>
+        <TextField className="password_input" type="password" placeholder="Password"
+                   name="password" variant="outlined" value={password} error={errorMsg}
+                   onChange={onPasswordChange} required fullWidth/>
         <br/>
         <span className="error_msg">{errorMsg}</span>
         <br/>
         <ThemeProvider theme={theme}>
-          <Button type="submit" className="login_submit" onClick={onLoginClick} variant="contained" color="tender">
+          <Button type="submit" className="login_submit" onClick={onLoginClick}
+                  variant="contained" color="tender" fullWidth>
             Login!
           </Button>
         </ThemeProvider>
         <br/>
-        <span>New user? <MuiLink className="login_reg_link" variant="inherit" color="#66ccff" component={Link} to="/register" underline="hover">Register!</MuiLink></span>
+        <span>New user?
+          <MuiLink className="login_reg_link" variant="inherit" color="#66ccff"
+                   component={Link} to="/register" underline="hover">
+            Register!
+          </MuiLink>
+        </span>
       </div>
     </div>
   );
