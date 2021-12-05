@@ -1,10 +1,13 @@
 import axios from "axios";
+import base from "./baseUrl";
 
 const logout = async () => {
+
+  const url = base + "/logout"
+
   try {
     console.log("try to logout")
-    const response = await axios.get(
-      'http://localhost:5000/logout');
+    const response = await axios.get(url);
     if(response.status === 200) {
       console.log("logout!")
       return true

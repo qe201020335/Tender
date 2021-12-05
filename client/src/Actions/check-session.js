@@ -1,10 +1,12 @@
 import axios from 'axios';
+import base from "./baseUrl";
 
 const checkSession = async (setMyUser, setLoginType) => {
+
+  const url = base + "/check-session"
+
   try {
-    const response = await axios.get(
-      'http://localhost:5000/check-session'
-    );
+    const response = await axios.get(url);
     console.log(response)
     if(response.data) {
       console.log(response.data.user)

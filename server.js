@@ -37,10 +37,10 @@ app.use(session({
 
 app.use(express.static(path.join(__dirname, '/client/build/')));
 
-app.use('/', loginRoute);
-app.use('/', logoutRoute);
-app.use('/', checkSessionRoute);
-app.use('/', signUpRoute);
+app.use('/api', loginRoute);
+app.use('/api', logoutRoute);
+app.use('/api', checkSessionRoute);
+app.use('/api', signUpRoute);
 
 // All routes other than above will go to index.html
 app.get("*", (req, res) => {
