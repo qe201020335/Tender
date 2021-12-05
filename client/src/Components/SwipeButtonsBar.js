@@ -7,9 +7,11 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { IconButton } from '@material-ui/core';
 import { useState } from 'react';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const SwipeButtonsBar = ({like, setLike, dislike, setDislike}) => {
 
+  const [fav, setFav] = useState(false);
 
   function handleDislike(){
     setDislike(!dislike);
@@ -17,23 +19,40 @@ const SwipeButtonsBar = ({like, setLike, dislike, setDislike}) => {
   function handleLike(){
     setLike(!like);
   }
+  function handleFav() {
+    setFav(!fav)
+    //TODO: async handle in backend
+  }
+
+  const theme = createTheme({
+    palette: {
+      dislike: {
+        main: '#1976d2',
+      },
+      like: {
+        main: '#F93B1D',
+      },
+      fav: {
+        main: '#ff8458'
+      }
+    },
+  });
 
   return (
     <div className="SwipeButtonsBar">
       <label id="card_tut"><strong>Click for details. Drag to swipe!</strong></label>
       <div className="SwipeButtons">
-        {/* <IconButton>
-                    <ReplayIcon frontSize="large" className="swipeButtons_repeat"/>
-                </IconButton> */}
-        <IconButton>
-          <ClearIcon color={dislike ? "primary" : ""} fontSize="large" className="swipeButtons_left" onClick={handleDislike}/>
-        </IconButton>
-        <IconButton>
-          <StarIcon fontSize="large" className="swipeButtons_star"/>
-        </IconButton>
-        <IconButton>
-          <FavoriteIcon color={like ? "secondary" : ""} fontSize="large" className="swipeButtons_right" onClick={handleLike}/>
-        </IconButton>
+        <ThemeProvider theme={theme}>
+          <IconButton onClick={handleDislike}>
+            <ClearIcon color={dislike ? "dislike" : ""} fontSize="large" className="swipeButtons_left" />
+          </IconButton>
+          <IconButton onClick={handleFav}>
+            <StarIcon fontSize="large" color={fav ? "fav": ""} className="swipeButtons_star"/>
+          </IconButton>
+          <IconButton onClick={handleLike}>
+            <FavoriteIcon color={like ? "like" : ""} fontSize="large" className="swipeButtons_right" />
+          </IconButton>
+        </ThemeProvider>
       </div>
     </div>
 
