@@ -18,9 +18,6 @@ const App = () => {
   const [loginType, setLoginType] = useState("LOGGED_OUT");
   const [myRestaurant, setMyRestaurant] = useState(null);
   const [myUser, setMyUser] = useState(null);
-  const [dislike, setDislike] = useState(false);
-  const [like, setLike] = useState(false);
-
 
   useEffect(async () => {
     await checkSessionHandler(setMyUser, setLoginType);
@@ -47,9 +44,8 @@ const App = () => {
 
           <Route exact path="/" render={() =>
             <div>
-              <RestaurantCards onCardClick={onCardClick} like={like} setLike={setLike} dislike={dislike} setDislike={setDislike}/>
+              <RestaurantCards onCardClick={onCardClick}/>
               {openRestDetail && <RestaurantDetail restaurant={clicked_restaurant} OnClickOutside={onClickOutside}/>}
-              <SwipeButtonsBar like={like} setLike={setLike} dislike={dislike} setDislike={setDislike}/>
             </div>}
           />
 

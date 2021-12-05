@@ -9,9 +9,7 @@ import { useState } from 'react';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const SwipeButtonsBar = ({like, setLike, dislike, setDislike}) => {
-
-  const [fav, setFav] = useState(false);
+const SwipeButtonsBar = ({like, setLike, dislike, setDislike, fav, setFav}) => {
 
   function handleDislike(){
     setDislike(!dislike);

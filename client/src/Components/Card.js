@@ -2,7 +2,7 @@ import React from 'react';
 import "./RestaurantCards.css";
 import TinderCard from "react-tinder-card";
 
-const Card = ({ restaurant, onCardClick, onCardSwipe, onCardLeft }) => {
+const Card = ({ restaurant, onCardClick, onCardSwipe, onCardLeftScreen }) => {
 
   let downx;
   let downy;
@@ -30,7 +30,7 @@ const Card = ({ restaurant, onCardClick, onCardSwipe, onCardLeft }) => {
         key={restaurant.name}
         preventSwipe={["up","down"]}
         onSwipe={(direction) => onCardSwipe(direction, restaurant)}
-        onCardLeftScreen={() => onCardLeft(restaurant)}
+        onCardLeftScreen={() => onCardLeftScreen(restaurant)}
       >
         <div
           style={{ backgroundImage: "url(" + restaurant.image + ")" }}
