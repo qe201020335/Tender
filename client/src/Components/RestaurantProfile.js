@@ -12,10 +12,10 @@ const RestaurantProfile = ({ restaurant, setMyRestaurant, loginType, editingStat
   }
 
   const onEditSubmit = () => {
-    // update the database
-    // putRestaurant(editingRestaruant)
     setMyRestaurant(editingRestaruant);
     setIsEditing(false);
+    console.log(editingRestaruant)
+    //TODO: update database
   }
 
   const onRestaurantEdit = (event) => {
@@ -27,7 +27,7 @@ const RestaurantProfile = ({ restaurant, setMyRestaurant, loginType, editingStat
 
   if (loginType !== "RESTAURANT" && loginType !== "ADMIN") {
     return (
-      <Redirect to="login-restaurant"/>
+      <Redirect to="/"/>
     )
   }
 
