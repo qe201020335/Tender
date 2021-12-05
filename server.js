@@ -45,7 +45,14 @@ app.use('/api', signUpRoute);
 // All routes other than above will go to index.html
 app.get("*", (req, res) => {
   // check for page routes that we expect in the frontend to provide correct status code.
-  const goodPageRoutes = ["/", "/login", "/dashboard"];
+  const goodPageRoutes = [
+    "/",
+    "/my-restaurant",
+    "/my-favourites",
+    "/login",
+    "/register",
+    "/admin",
+  ];
   if (!goodPageRoutes.includes(req.url)) {
     // if url not in expected page routes, set status to 404.
     res.status(404);
