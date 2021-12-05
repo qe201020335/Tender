@@ -15,7 +15,6 @@ import checkSessionHandler from './Actions/check-session';
 const App = () => {
   const [openRestDetail,  setOpenRestDetail] = useState(false);
   const [clicked_restaurant, setRest] = useState(null);
-  const [loginStatus, setLoginStatus] = useState(false);
   const [loginType, setLoginType] = useState("LOGGED_OUT");
   const [myRestaurant, setMyRestaurant] = useState(null);
   const [myUser, setMyUser] = useState(null);
@@ -42,7 +41,7 @@ const App = () => {
     <div>
       <BrowserRouter>
 
-        <NavBar loginStatus={myUser !== null} loginType={loginType}/>
+        <NavBar loginStatus={myUser !== null} loginType={loginType} setLoginType={setLoginType} setMyUser={setMyUser}/>
 
         <Switch>
 

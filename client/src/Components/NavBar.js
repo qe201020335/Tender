@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import "./NavBar.css";
 
-//import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import logoutHandler from "../Actions/logout";
+
 import AccountCircleIcon from '@material-ui/icons/AccountCircleRounded';
 import { IconButton } from '@material-ui/core';
 import StorefrontIcon from '@material-ui/icons/Storefront';
@@ -12,7 +13,9 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import logo from "../Images/tender_sq.png";
 
-const NavBar = ({loginStatus, loginType}) => {
+const NavBar = ({loginStatus, loginType, setMyUser, setLoginType}) => {
+
+  const history = useHistory()
 
   const getRedirectLinkIfLogIn = (loginType) => {
     switch (loginType){
@@ -31,8 +34,16 @@ const NavBar = ({loginStatus, loginType}) => {
     window.location.reload(false);
   }
 
-  const onLogoutClick = async (e) => {
-    //TODO: do logout
+  const onLogoutClick = async () => {
+    const result = await logoutHandler()
+    if (!result) {
+      console.log("Cannot logout!")
+    } else {
+      setMyUser(null)
+      setLoginType("LOGGED_OUT")
+      history.push("/")
+      refreshPage()
+    }
   }
 
   return (
