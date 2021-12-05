@@ -53,11 +53,11 @@ const App = () => {
             </div>}
           />
 
-          <Route exact path="/my-restaruant" render={() => {
+          <Route exact path="/my-restaurant" render={() => {
             if (loginType !== "RESTAURANT") {
-              return <Redirect to="login-restaurant"/>
+              return <Redirect to="/login"/>
             }
-            return (<div><RestaurantProfile restaurant={myRestaurant} setMyRestaurant={setMyRestaurant} loginType={loginType} editingState={false}/></div>)
+            return <RestaurantProfile restaurant={myRestaurant} setMyRestaurant={setMyRestaurant} loginType={loginType} editingState={false}/>
           }}
           />
 
