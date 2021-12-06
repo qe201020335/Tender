@@ -2,19 +2,6 @@
   text-align: center;
 }
 
-.logout_submit{
-  display:inline-block;
-  width: 150px;
-  padding: 7px;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  font-weight: bold;
-  background-color: #ca3b28;
-  cursor: pointer;
-  outline: none;
-}
-
 .restaurantInfo_container{
   position: fixed;
   top: 25%;
@@ -30,14 +17,15 @@
 .button_container{
   position: fixed;
   display: flex;
-  bottom: 5%;
-  left: 20%;
-  right: 20%;
+  bottom: 20%;
+  left: 40%;
+  right: 40%;
   justify-content: space-evenly;
 }
 
 .restaurant_pic{
   position: fixed;
+  margin: 1em;
   top: 25%;
   right: 20%;
   height: 30vh;
