@@ -53,11 +53,11 @@ const RestaurantProfile = ({restaurantID, editingState, setEditedRest}) => {
     // save the new image url
     console.log(currRestaurant)
 
-    await saveRestaurant(currRestaurant, restaurantID)
+    const saved = await saveRestaurant(currRestaurant, restaurantID)
 
     if (setEditedRest) {
       // for admin viewing state change
-      setEditedRest(currRestaurant)
+      setEditedRest(saved)
     }
   }
 

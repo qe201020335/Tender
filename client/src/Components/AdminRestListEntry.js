@@ -6,7 +6,7 @@ import "./AdminRestListEntry.css"
 const AdminRestListEntry = ( {restaurant, onClickEdit} ) => {
 
   const onClickEditButton = () => {
-    onClickEdit(restaurant)
+    onClickEdit(restaurant._id)
   }
 
   return (
