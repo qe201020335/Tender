@@ -9,8 +9,9 @@ const CommentSchema = new mongoose.Schema({
 
 const RestaurantSchema = new mongoose.Schema({
   name: String,
-  image: String,
   address: String,
+  phoneNumber: String,
+  image: String,
   description: String,
   comments: [CommentSchema],
   likes: [String],
