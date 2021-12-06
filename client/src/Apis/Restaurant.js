@@ -14,3 +14,14 @@ export const getAllRestaurant = async () => {
     return [];
   }
 };
+
+export const getOneRestaurant = async (id) => {
+  const allRests = await getAllRestaurant();
+
+  for (const rest of allRests) {
+    if (rest._id === id) {
+      return rest
+    }
+  }
+  return null;
+}

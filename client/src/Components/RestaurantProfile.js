@@ -4,6 +4,8 @@ import { styled } from '@mui/material/styles';
 import {TextField} from "@material-ui/core";
 import Button from "@mui/material/Button";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {getOneRestaurant} from "../Apis/Restaurant";
+import defaultImg from "../Images/tender_rec.png";
 
 const RestaurantProfile = ({restaurantID, editingState, setEditedRest}) => {
   const [isEditing, setIsEditing] = useState(editingState);
@@ -12,16 +14,32 @@ const RestaurantProfile = ({restaurantID, editingState, setEditedRest}) => {
 
   useEffect(() => {
     // TODO: get current restaurant from backend
-    console.log(restaurantID)
-    const restaurant = { name: "McDonald's",
-      contact: "+1(416)413-1442",
-      image: "https://www.eatthis.com/wp-content/uploads/sites/4/2021/06/mcdonalds-tray.jpg",
-      address: "675 Yonge St, Toronto, ON M4Y 1T2",
-      description: "McDonald's is an American fast food company, founded in 1940 as a restaurant operated by Richard and Maurice McDonald, in San Bernardino, California, United States."
+    const fetchRest = async () => {
+      console.log(restaurantID)
+
+      // const restaurant = { name: "McDonald's",
+      //   phoneNumber: "+1(416)413-1442",
+      //   image: "https://www.eatthis.com/wp-content/uploads/sites/4/2021/06/mcdonalds-tray.jpg",
+      //   address: "675 Yonge St, Toronto, ON M4Y 1T2",
+      //   description: "McDonald's is an American fast food company, founded in 1940 as a restaurant operated by Richard and Maurice McDonald, in San Bernardino, California, United States."
+      // }
+
+      let restaurant = await getOneRestaurant(restaurantID)
+      console.log(restaurant)
+
+      if(!restaurant) {
+        restaurant = {
+          name: "",
+          phoneNumber: "",
+          image: "",
+          address: "",
+          description: ""
+        }
+      }
+      setCurrRestaurant(restaurant)
+      setCurrImage(restaurant.image)
     }
-    console.log(restaurant)
-    setCurrRestaurant(restaurant)
-    setCurrImage(restaurant.image)
+    fetchRest()
   }, [])
 
   const onEditClick = () => {
@@ -107,7 +125,9 @@ const RestaurantProfile = ({restaurantID, editingState, setEditedRest}) => {
         </div>
 
         <div className="restaurant_pic_div">
-          <img className="restaurant_pic" src={currRestaurant.image} alt="restaurant"/> <br/><br/>
+          <div className="pic_container">
+            <img className="restaurant_pic" src={currRestaurant.image === "" ? defaultImg : currRestaurant.image} alt="restaurant"/> <br/><br/>
+          </div>
           <TextField className="restaurant_image_input" type="url" placeholder="Restaurant Image URL" disabled={!isEditing}
                      name="image" label="Image URL" variant="outlined" value={currImage} margin="normal"
                      onChange={(e) => setCurrImage(e.target.value)} />
