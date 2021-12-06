@@ -19,7 +19,7 @@ const App = () => {
 
   useEffect( () => {
     // React suggest this to avoid race condition
-    async function fetchData() {
+    const fetchData = async () => {
       await checkSessionHandler(setMyAccountID, setLoginType);
     }
     fetchData()

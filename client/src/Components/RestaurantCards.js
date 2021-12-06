@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./RestaurantCards.css";
 import Card from "./Card";
-import { getAllRestaurant } from "../Repository/RestaurantRepository";
+import { getAllRestaurant } from "../Apis/Restaurant";
 import SwipeButtonsBar from "./SwipeButtonsBar";
 
 const RestaurantCards = ({ onCardClick }) => {
@@ -15,18 +15,19 @@ const RestaurantCards = ({ onCardClick }) => {
   let swipeDirection;
   let currDisplayRestTopIndex = 0;
   const restaurants = []
-
+  
   useEffect(() => {
-    // TODO: get rests from backend
-    const rests = getAllRestaurant()
-    rests.forEach((restaurant) => (restaurants.push(
-      {
-        restaurant : restaurant,
-        card : <Card restaurant={ restaurant } onCardClick={ onCardClick } onCardSwipe={ onCardSwipe } onCardLeftScreen={ onCardLeftScreen }/>
-      })
-    ))
-    console.log(restaurants)
-    nextCard()
+    const fetchData = async () => {
+      const rests =  await getAllRestaurant();
+      rests.forEach((restaurant) => (restaurants.push(
+        {
+          restaurant : restaurant,
+          card : <Card restaurant={ restaurant } onCardClick={ onCardClick } onCardSwipe={ onCardSwipe } onCardLeftScreen={ onCardLeftScreen }/>
+        })
+      ))
+      nextCard()
+    }
+    fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
