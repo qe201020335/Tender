@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import "./RestaurantCards.css";
 import Card from "./Card";
 import { getAllRestaurant } from "../Apis/Restaurant";
+import { addUserFavorites, removeUserFavorites } from "../Apis/User";
 import SwipeButtonsBar from "./SwipeButtonsBar";
 
-const RestaurantCards = ({ onCardClick }) => {
+const RestaurantCards = ({ myAccountID, onCardClick }) => {
   // Use session storage to mimic database for now
   const [dislike, setDislike] = useState(false);
   const [like, setLike] = useState(false);
@@ -64,28 +65,43 @@ const RestaurantCards = ({ onCardClick }) => {
     nextCard()
   }
 
-  const onLikeClick = () => {
+  const onLikeClick = async () => {
     if (currDisplayTop) {
-      console.log("like " + currDisplayTop.restaurant.name)
+      if (!like) {
+        console.log("liked " + currDisplayTop.restaurant.name)
+        const result = await addUserFavorites(myAccountID, { like: currDisplayTop.restaurant._id });
+      } else {
+        console.log("undo like " + currDisplayTop.restaurant.name)
+        const result = await removeUserFavorites(myAccountID, { like: currDisplayTop.restaurant._id });
+      }
       setLike(!like)
-
     }
   }
 
-  const onDislikeClick = () => {
+  const onDislikeClick = async () => {
     if (currDisplayTop) {
-      console.log("dislike " + currDisplayTop.restaurant.name)
+      if (!dislike) {
+        console.log("disliked " + currDisplayTop.restaurant.name)
+        const result = await addUserFavorites(myAccountID, { dislike: currDisplayTop.restaurant._id });
+      } else {
+        console.log("undo dislike " + currDisplayTop.restaurant.name)
+        const result = await removeUserFavorites(myAccountID, { dislike: currDisplayTop.restaurant._id });
+      }
       setDislike(!dislike)
     }
   }
 
-  const onFavClick = () => {
+  const onFavClick = async () => {
     if (currDisplayTop) {
-      console.log("fav " + currDisplayTop.restaurant.name)
+      if (!fav) {
+        console.log("faved " + currDisplayTop.restaurant.name)
+        const result = await addUserFavorites(myAccountID, { favourite: currDisplayTop.restaurant._id });
+      } else {
+        console.log("undo fav " + currDisplayTop.restaurant.name)
+        const result = await removeUserFavorites(myAccountID, { favourite: currDisplayTop.restaurant._id });
+      }
       setFav(!fav)
-      // TODO: add to fav backend
     }
-
   }
 
 

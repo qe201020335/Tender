@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import FavouritesCard from './FavouritesCard';
-import { getUserFavorites, saveUserFavorites } from "../Apis/User";
+import { getUserFavorites, putUserFavorites } from "../Apis/User";
 import { getRestaurant } from "../Apis/Restaurant";
-import { Redirect } from 'react-router-dom';
 import "./MyFavourites.css";
 
 const MyFavourites = ({ myAccountID }) => {
@@ -15,7 +14,6 @@ const MyFavourites = ({ myAccountID }) => {
         const restaurant = await getRestaurant(restaurantId)
         return restaurant
       }))
-      console.log(favouriteRestaurants)
       setMyfavourites(favouriteRestaurants)
     }
     fetchData();
@@ -25,9 +23,8 @@ const MyFavourites = ({ myAccountID }) => {
     const restaruantsLeft = myfavourites.filter((curRestaurant) => { 
       return restaurant !== curRestaurant;
     });
-    console.log(restaruantsLeft)
     const favourites = { favourites: restaruantsLeft}
-    const updateFavourites = await saveUserFavorites(myAccountID, favourites)
+    const updateFavourites = await putUserFavorites(myAccountID, favourites)
     const favouriteRestaurants = await Promise.all(updateFavourites.favourites.map(async (restaurantId) => {
       const restaurant = await getRestaurant(restaurantId)
       return restaurant

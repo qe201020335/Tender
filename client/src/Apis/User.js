@@ -7,7 +7,7 @@ const UserApi = axios.create({
 
 export const getUserFavorites = async (id) => {
   try{
-    const res = await UserApi.get(`/favorites/${id}`);
+    const res = await UserApi.get(`/favourites/${id}`);
     return res.data;
   } catch (error) {
     return {
@@ -18,9 +18,38 @@ export const getUserFavorites = async (id) => {
   }
 }
 
-export const saveUserFavorites = async (id, favorites) => {
+export const putUserFavorites = async (id, favourites) => {
   try{
-    const res = await UserApi.put(`/favorites/${id}`, favorites);
+    const res = await UserApi.put(`/favourites/${id}`, favourites);
+    return res.data;
+  } catch (error) {
+    return {
+      favourites: [],
+      likes: [],
+      dislikes: []
+    }
+  }
+}
+
+export const addUserFavorites = async (id, favourites) => {
+  try{
+    const res = await UserApi.post(`/favourites/${id}`, favourites);
+    return res.data;
+  } catch (error) {
+    return {
+      favourites: [],
+      likes: [],
+      dislikes: []
+    }
+  }
+}
+
+export const removeUserFavorites = async (id, favourites) => {
+  try{
+    console.log("removing" + favourites.favourite + "from" + id)
+    const res = await UserApi.delete(`/favourites/${id}`, favourites);
+    console.log(res)
+    console.log(res.data)
     return res.data;
   } catch (error) {
     return {

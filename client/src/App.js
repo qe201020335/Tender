@@ -46,7 +46,7 @@ const App = () => {
 
           <Route exact path="/" render={() =>
             <div>
-              <RestaurantCards onCardClick={onCardClick}/>
+              <RestaurantCards myAccountID={myAccountID} onCardClick={onCardClick}/>
               {openRestDetail && <RestaurantDetail restaurant={clicked_restaurant} OnClickOutside={onClickOutside}/>}
             </div>}
           />
