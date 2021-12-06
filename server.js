@@ -14,7 +14,7 @@ const path = require('path')
 
 const app = express();
 
-if (process.env.NODE_ENV !== 'PROD') {
+if (process.env.NODE_ENV !== 'production') {
   dotenv.config({path: './config/config.env'});
   app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
