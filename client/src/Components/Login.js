@@ -78,8 +78,8 @@ const Login = ({ setUserID, setLoginType }) => {
         <br/>
         <span>New user?
           <MuiLink className="login_reg_link" variant="inherit" color="#66ccff"
-                   component={Link} to="/register" underline="hover">
-            Register!
+                   component={Link} to="/signup" underline="hover">
+            SignUp!
           </MuiLink>
         </span>
       </div>
