@@ -96,7 +96,7 @@ router.put('/restaurant/favorites/:id', mongoChecker, async (req, res) => {
 	}
 })
 
-router.put('/restaurant/comments/:id', mongoChecker, async (req, res) => {
+router.post('/restaurant/comments/:id', mongoChecker, async (req, res) => {
   // check valid id
 	if (!ObjectID.isValid(req.params.id)) {
 		res.status(404).send()
@@ -109,8 +109,8 @@ router.put('/restaurant/comments/:id', mongoChecker, async (req, res) => {
 		if (!restaurant) {
 			res.status(404).send('Resource not found')
 		} else {
-      if(req.body.comments) {
-        restaurant.comments = req.body.comments
+      if(req.body) {
+        restaurant.comments.push(req.body)
       }
 			// save restaurant to database
 			await restaurant.save()
