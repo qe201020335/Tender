@@ -64,7 +64,7 @@ const App = () => {
               if (loginType !== "USER" && loginType !== "ADMIN") {
                 return <Redirect to="/login"/>
               }
-              return <MyFavourites  myAccount={myAccountID}/>}
+              return <MyFavourites  myAccountID={myAccountID}/>}
             }
           />
 

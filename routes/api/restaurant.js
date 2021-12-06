@@ -22,6 +22,31 @@ router.get('/restaurant', mongoChecker, async (req, res) => {
   }
 })
 
+router.get('/restaurant/:id', mongoChecker, async (req, res) => {
+  // check valid id
+	if (!ObjectID.isValid(req.params.id)) {
+		res.status(404).send()
+		return;
+	}
+	try {
+    let restaurant = await Restaurant.findById(req.params.id)
+		// if restaurant not found return 404
+		if (!restaurant) {
+      res.status(404).send()
+		} else {
+      res.send(restaurant)
+    }
+	} catch (error) {
+		console.log(error)
+		if (isMongoError(error)) {
+			res.status(500).send('Internal server error')
+		} else {
+			console.log(error)
+			res.status(400).send('Bad Request')
+    }
+	}
+})
+
 router.put('/restaurant/:id', mongoChecker, async (req, res) => {
   // check valid id
 	if (!ObjectID.isValid(req.params.id)) {

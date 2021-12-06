@@ -15,26 +15,28 @@ export const getAllRestaurant = async () => {
   }
 };
 
-export const getOneRestaurant = async (id) => {
-  const allRests = await getAllRestaurant();
-
-  for (const rest of allRests) {
-    if (rest._id === id) {
-      return rest
+export const getRestaurant = async (id) => {
+  try{
+    const res = await RestaurantApi.get(`/${id}`);
+    return res.data;
+  } catch (error) {
+    return {
+      name: "",
+      phoneNumber: "",
+      image: "",
+      address: "",
+      description: ""
     }
   }
-  return null;
 }
 
 export const saveRestaurant = async (restaurant, id) => {
   console.log("try to save rest " + restaurant.name)
-  const url = `${apiBase}/restaurant/${id}`
   try {
-    const res = await axios.put(url, restaurant)
+    const res = await RestaurantApi.put(`/${id}`, restaurant)
     return res.data
   } catch (error) {
     console.log(error)
     return null
   }
-
 }
