@@ -36,6 +36,8 @@ router.post('/signup', mongoChecker, async (req, res) => {
 			})
 			await restaurant.save()
 		}
+		req.session.userId = newAccount._id
+		req.session.userType = newAccount.userType
 		res.send({ userId: newAccount._id, userType: newAccount.userType })
 	} catch (error) {
 		console.log(error)
