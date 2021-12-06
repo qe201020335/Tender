@@ -18,7 +18,7 @@ const AdminRestListEntry = ( {restaurant, onClickEdit} ) => {
           <IconButton className='edit_button'>
             <EditIcon onClick={onClickEditButton}> Edit </EditIcon>
           </IconButton><br/>
-          <span className="rest_info_span">{restaurant.contact}</span><br/>
+          <span className="rest_info_span">{restaurant.phoneNumber}</span><br/>
           <span className="rest_info_span">{restaurant.address}</span>
         </div>
       </li>

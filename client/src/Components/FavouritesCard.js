@@ -14,7 +14,7 @@ const FavouritesCard = ({ restaurant, handleUnFavorite }) => {
           <IconButton className='unfav'>
             <DeleteTwoToneIcon onClick={() => {handleUnFavorite(restaurant)}}> unfavorite </DeleteTwoToneIcon>
           </IconButton>
-          <br/><span className="rest_info_span">{restaurant.contact}</span><br/>
+          <br/><span className="rest_info_span">{restaurant.phoneNumber}</span><br/>
           <span className="rest_info_span">{restaurant.address}</span>
         </div>
       </li>

@@ -94,7 +94,7 @@ const RestaurantProfile = ({restaurantID, editingState, setEditedRest}) => {
                      onChange={onRestaurantEdit} margin="normal"/>
 
           <TextField className="restaurant_input" type="text" placeholder="Enter Contact Info" disabled={!isEditing}
-                     name="contact" label="Contact" variant="outlined" value={currRestaurant.contact}
+                     name="phoneNumber" label="Contact" variant="outlined" value={currRestaurant.phoneNumber}
                      onChange={onRestaurantEdit} margin="normal"/>
 
           <TextField className="restaurant_input" type="text" placeholder="Enter Address" disabled={!isEditing}
