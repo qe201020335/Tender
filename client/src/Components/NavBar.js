@@ -50,7 +50,7 @@ const NavBar = ({loginStatus, loginType, setUserID, setLoginType}) => {
     switch (type) {
       case "ADMIN":
         return "All Restaurants"
-      case "REST":
+      case "RESTAURANT":
         return "My Restaurant"
       default:
         return "My Account"
@@ -82,7 +82,7 @@ const NavBar = ({loginStatus, loginType, setUserID, setLoginType}) => {
           <Button variant="contained" component={Link} to={"/login"}>Login</Button>
         }
 
-        {loginStatus && (loginType === "REST" || loginType === "ADMIN") &&
+        {loginStatus && (loginType === "RESTAURANT" || loginType === "ADMIN") &&
         <Tooltip title={"My Restaurant"} placement="bottom">
           <IconButton component={Link} to={"/my-restaurant"} className="icon_button">
             <StorefrontIcon fontSize="large" className="header_icon"/>
