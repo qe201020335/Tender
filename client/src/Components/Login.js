@@ -8,7 +8,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import loginHandler from '../Actions/login'
 import {TextField} from "@material-ui/core";
 
-const Login = ({ setMyUser, setLoginType }) => {
+const Login = ({ setUserID, setLoginType }) => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -30,7 +30,7 @@ const Login = ({ setMyUser, setLoginType }) => {
       const response = await loginHandler(username, password);
       if(response) {
         setLoginType(response.userType)
-        setMyUser(response.userId)
+        setUserID(response.userId)
         history.push("/")
       } else {
         setErrorMsg("Invalid Username or Password!")

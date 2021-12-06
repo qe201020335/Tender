@@ -13,7 +13,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import logo from "../Images/tender_sq.png";
 
-const NavBar = ({loginStatus, loginType, setMyUser, setLoginType}) => {
+const NavBar = ({loginStatus, loginType, setUserID, setLoginType}) => {
 
   const history = useHistory()
 
@@ -22,7 +22,7 @@ const NavBar = ({loginStatus, loginType, setMyUser, setLoginType}) => {
       case "USER":
         return "/"
       case "RESTAURANT":
-        return "/my-restaruant"
+        return "/my-restaurant"
       case "ADMIN":
         return "/admin"
       default:
@@ -39,7 +39,7 @@ const NavBar = ({loginStatus, loginType, setMyUser, setLoginType}) => {
     if (!result) {
       console.log("Cannot logout!")
     } else {
-      setMyUser(null)
+      setUserID("")
       setLoginType("LOGGED_OUT")
       history.push("/")
       refreshPage()
@@ -66,7 +66,7 @@ const NavBar = ({loginStatus, loginType, setMyUser, setLoginType}) => {
         </IconButton>
         </Tooltip>
 
-        {(!loginStatus || loginType==="USER" ) &&
+        {(loginType === "ADMIN" || loginType === "USER" ) &&
         <Tooltip title="Favourites" placement="bottom">
         <IconButton component={Link} to="/my-favourites" className="icon_button">
           <StarIcon fontSize="large" className="header_icon"/>
@@ -82,10 +82,18 @@ const NavBar = ({loginStatus, loginType, setMyUser, setLoginType}) => {
           <Button variant="contained" component={Link} to={"/login"}>Login</Button>
         }
 
-        {loginStatus &&
+        {loginStatus && (loginType === "REST" || loginType === "ADMIN") &&
+        <Tooltip title={"My Restaurant"} placement="bottom">
+          <IconButton component={Link} to={"/my-restaurant"} className="icon_button">
+            <StorefrontIcon fontSize="large" className="header_icon"/>
+          </IconButton>
+        </Tooltip>
+        }
+
+        {loginStatus && (loginType === "USER" || loginType === "ADMIN") &&
         <Tooltip title={getAccountTitle(loginType)} placement="bottom">
           <IconButton component={Link} to={getRedirectLinkIfLogIn(loginType)} className="icon_button">
-            {loginType === "REST" ? <StorefrontIcon fontSize="large" className="header_icon"/> : <AccountCircleIcon fontSize="large" className="header_icon"/>}
+            <AccountCircleIcon fontSize="large" className="header_icon"/>
           </IconButton>
         </Tooltip>
         }

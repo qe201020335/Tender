@@ -5,29 +5,27 @@ import AdminRestListEntry from "./AdminRestListEntry";
 import RestaurantProfile from "./RestaurantProfile";
 import "./Admin.css"
 
-const Admin = ({ loginType}) => {
+const Admin = () => {
 
   const [isAdminEditing, setIsAdminEditing] = useState(false);
-  const [editingRest, setEditingRest] = useState(null);
+  const [editingRest, setEditingRest] = useState("");
 
   const onClickEdit = (restaurant) => {
     setIsAdminEditing(true)
     setEditingRest(restaurant)
   }
 
-  const setEditedRest = () => {
+  const setEditedRest = (EditedRest) => {
     setIsAdminEditing(false)
+    // TODO: update entry
   }
 
-  if (loginType !== "ADMIN") {
-    return (<Redirect to="/"/>)
-  }
 
   return (
     <div>
       <h2 id="admin_title">Admin Page</h2>
       <br/>
-      {isAdminEditing ? <RestaurantProfile restaurant={editingRest} loginType={loginType} setMyRestaurant={setEditedRest} editingState={true}/>
+      {isAdminEditing ? <RestaurantProfile RestaurantID={editingRest} etEditedRest={setEditedRest} editingState={true}/>
         :(<div id='rest_list_container'>
             <ul>
               { getAllRestaurant().map((restaurant) => {

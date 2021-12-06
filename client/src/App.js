@@ -40,7 +40,7 @@ const App = () => {
     <div>
       <BrowserRouter>
 
-        <NavBar loginStatus={myAccountID !== ""} loginType={loginType} setLoginType={setLoginType} setMyAccount={setMyAccountID}/>
+        <NavBar loginStatus={myAccountID !== ""} loginType={loginType} setLoginType={setLoginType} setUserID={setMyAccountID}/>
 
         <Switch>
 
@@ -52,16 +52,16 @@ const App = () => {
           />
 
           <Route exact path="/my-restaurant" render={() => {
-            if (loginType !== "RESTAURANT") {
+            if (loginType !== "RESTAURANT" && loginType !== "ADMIN") {
               return <Redirect to="/login"/>
             }
-            return <RestaurantProfile myAccount={myAccountID} editingState={false}/>
+            return <RestaurantProfile restaurantID={myAccountID} editingState={false} setEditedRest={null}/>
           }}
           />
 
           <Route exact path="/my-favourites" render={() =>
             {
-              if (loginType !== "USER") {
+              if (loginType !== "USER" && loginType !== "ADMIN") {
                 return <Redirect to="/login"/>
               }
               return <MyFavourites  myAccount={myAccountID}/>}
@@ -72,7 +72,7 @@ const App = () => {
             if (myAccountID !== "") {
               return <Redirect to="/"/>
             }
-            return <Login setMyAccount={setMyAccountID} setLoginType={setLoginType}/>}}/>
+            return <Login setUserID={setMyAccountID} setLoginType={setLoginType}/>}}/>
 
           <Route exact path="/signup" render={() => {
             if (myAccountID !== "") {
@@ -85,7 +85,7 @@ const App = () => {
             if (loginType !== "ADMIN") {
               return <Redirect to="/login"/>
             }
-            return <Admin myAccount={myAccountID}/>
+            return <Admin/>
           }}/>
 
         </Switch>

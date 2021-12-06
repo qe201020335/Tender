@@ -1,50 +1,60 @@
-import React, { useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import RestaurantProfileView from './RestaurantProfileView'
 import RestaurantProfileForm from './RestaurantProfileForm'
 import "./RestaurantProfile.css";
 import { Redirect } from 'react-router-dom';
 
-const RestaurantProfile = ({}) => {
-  // const [isEditing, setIsEditing] = useState(editingState);
-  // const [editingRestaruant, setEditingRestaruant] = useState(JSON.parse(JSON.stringify(restaurant)));
-  // const onEditClick = () => {
-  //   setIsEditing(true);
-  // }
+const RestaurantProfile = ({restaurantID, editingState, setEditedRest}) => {
+  const [isEditing, setIsEditing] = useState(editingState);
+  const [currRestaurant, setCurrRestaurant] = useState(null);
 
-  // const onEditSubmit = () => {
-  //   setMyRestaurant(editingRestaruant);
-  //   setIsEditing(false);
-  //   console.log(editingRestaruant)
-  //   //TODO: update database
-  // }
+  useEffect(() => {
+    // TODO: get current restaurant from backend
+    console.log(restaurantID)
+    setCurrRestaurant(null)
+  }, [])
 
-  // const onRestaurantEdit = (event) => {
-  //   setEditingRestaruant(prevState => ({
-  //     ...prevState,
-  //     [event.target.name]: event.target.value
-  //   }));
-  // }
+  const onEditClick = () => {
+    setIsEditing(true);
+  }
 
-  // if (loginType !== "RESTAURANT" && loginType !== "ADMIN") {
-  //   return (
-  //     <Redirect to="/"/>
-  //   )
-  // }
+  const onEditSubmit = () => {
+    setIsEditing(false);
+    console.log(currRestaurant)
 
-  // return(
-  //   <div>
-  //     <br/> <br/>
-  //     <h2 className='txtheader'>Store Profile</h2>
-  //     { isEditing ? <RestaurantProfileForm restaurant={editingRestaruant} onRestaurantEdit={onRestaurantEdit}/>
-  //       : <RestaurantProfileView restaurant={editingRestaruant}/> }
-  //     <div className='button_container'>
-  //       { isEditing ? <button type="submit" onClick={onEditSubmit}>Save Changes</button>
-  //         : <button type="submit" onClick={onEditClick}>Edit</button> }
-  //     </div>
-  //     <div className="restaurant_pic">
-  //       <img className="restaurant_pic" src={restaurant.image} alt="restaurant"/>
-  //     </div>
-  //   </div>
-  // )
+    //TODO: update database
+
+    if (setEditedRest) {
+      // for admin viewing state change
+      setEditedRest(currRestaurant)
+    }
+  }
+
+  const onRestaurantEdit = (event) => {
+    setCurrRestaurant(prevState => ({
+      ...prevState,
+      [event.target.name]: event.target.value
+    }));
+  }
+
+  return(
+    <div>
+      <br/> <br/>
+      <h2 className='txtheader'>Store Profile</h2>
+
+      { isEditing ? <RestaurantProfileForm restaurant={currRestaurant} onRestaurantEdit={onRestaurantEdit}/>
+        : <RestaurantProfileView restaurant={currRestaurant}/> }
+
+      <div className='button_container'>
+        { isEditing ? <button type="submit" onClick={onEditSubmit}>Save Changes</button>
+          : <button type="submit" onClick={onEditClick}>Edit</button> }
+      </div>
+
+      <div className="restaurant_pic">
+        <img className="restaurant_pic" src={currRestaurant.image} alt="restaurant"/>
+      </div>
+
+    </div>
+  )
 }
 export default RestaurantProfile
