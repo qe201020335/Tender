@@ -8,17 +8,20 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const RestaurantProfile = ({restaurantID, editingState, setEditedRest}) => {
   const [isEditing, setIsEditing] = useState(editingState);
   const [currRestaurant, setCurrRestaurant] = useState(null);
+  const [currImage, setCurrImage] = useState("")
 
   useEffect(() => {
     // TODO: get current restaurant from backend
     console.log(restaurantID)
-    setCurrRestaurant({ name: "McDonald's",
+    const restaurant = { name: "McDonald's",
       contact: "+1(416)413-1442",
       image: "https://www.eatthis.com/wp-content/uploads/sites/4/2021/06/mcdonalds-tray.jpg",
       address: "675 Yonge St, Toronto, ON M4Y 1T2",
       description: "McDonald's is an American fast food company, founded in 1940 as a restaurant operated by Richard and Maurice McDonald, in San Bernardino, California, United States."
-    })
-    console.log(currRestaurant)
+    }
+    console.log(restaurant)
+    setCurrRestaurant(restaurant)
+    setCurrImage(restaurant.image)
   }, [])
 
   const onEditClick = () => {
@@ -26,7 +29,11 @@ const RestaurantProfile = ({restaurantID, editingState, setEditedRest}) => {
   }
 
   const onEditSubmit = () => {
+    setCurrRestaurant(prevState => ({
+      ...prevState,
+      ["image"]:currImage}))
     setIsEditing(false);
+    // save the new image url
     console.log(currRestaurant)
 
     //TODO: update database
@@ -80,10 +87,8 @@ const RestaurantProfile = ({restaurantID, editingState, setEditedRest}) => {
     <div>
       <br/> <br/>
       <h2 className='txtheader'>Store Profile</h2>
-
-      <div className='restaurantInfo_container'>
-
-        <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
+        <div className='restaurantInfo_container'>
           <TextField className="restaurant_input" type="text" placeholder="Enter Name" disabled={!isEditing}
                      name="name" label="Name" variant="outlined" value={currRestaurant.name}
                      onChange={onRestaurantEdit} margin="normal"/>
@@ -98,24 +103,24 @@ const RestaurantProfile = ({restaurantID, editingState, setEditedRest}) => {
 
           <TextField className="restaurant_input" type="text" placeholder="Enter Description" disabled={!isEditing}
                      name="description" label="Description" variant="outlined" value={currRestaurant.description}
-                     onChange={onRestaurantEdit} margin="normal" minRows="6" multiline/>
-        </ThemeProvider>
-      </div>
+                     onChange={onRestaurantEdit} margin="normal" minRows="8" multiline/>
+        </div>
 
+        <div className="restaurant_pic_div">
+          <img className="restaurant_pic" src={currRestaurant.image} alt="restaurant"/> <br/><br/>
+          <TextField className="restaurant_image_input" type="url" placeholder="Restaurant Image URL" disabled={!isEditing}
+                     name="image" label="Image URL" variant="outlined" value={currImage} margin="normal"
+                     onChange={(e) => setCurrImage(e.target.value)} />
+        </div>
 
+        <div className='button_container'>
+            <Button type="submit" onClick={isEditing ? onEditSubmit : onEditClick}
+                    variant="contained" color="tender" fullWidth>
+              {isEditing ? "Save Changes!" : "Edit"}
+            </Button>
+        </div>
+      </ThemeProvider>
 
-      <div className='button_container'>
-        <ThemeProvider theme={theme}>
-          <Button type="submit" onClick={isEditing ? onEditSubmit : onEditClick}
-                  variant="contained" color="tender" fullWidth>
-            {isEditing ? "Save Changes!" : "Edit"}
-          </Button>
-        </ThemeProvider>
-      </div>
-
-      <div className="restaurant_pic">
-        <img className="restaurant_pic" src={currRestaurant.image} alt="restaurant"/>
-      </div>
 
     </div>
   )

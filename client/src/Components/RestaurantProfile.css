@@ -23,16 +23,23 @@
   justify-content: space-evenly;
 }
 
-.restaurant_pic{
+.restaurant_pic_div{
   position: fixed;
-  margin: 1em;
   top: 25%;
   right: 20%;
-  height: 30vh;
+}
+
+.restaurant_pic {
+  margin-top: 1em;
+  height: 20em;
   width: 25vw;
   object-fit: cover;
 }
 
 .restaurant_input{
   width: 30vw;
+}
+
+.restaurant_image_input {
+  width: 25vw;
 }
