@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import {TextField} from "@material-ui/core";
 import Button from "@mui/material/Button";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {getOneRestaurant} from "../Apis/Restaurant";
+import {getOneRestaurant, saveRestaurant} from "../Apis/Restaurant";
 import defaultImg from "../Images/tender_rec.png";
 
 const RestaurantProfile = ({restaurantID, editingState, setEditedRest}) => {
@@ -13,7 +13,6 @@ const RestaurantProfile = ({restaurantID, editingState, setEditedRest}) => {
   const [currImage, setCurrImage] = useState("")
 
   useEffect(() => {
-    // TODO: get current restaurant from backend
     const fetchRest = async () => {
       console.log(restaurantID)
 
@@ -46,7 +45,7 @@ const RestaurantProfile = ({restaurantID, editingState, setEditedRest}) => {
     setIsEditing(true);
   }
 
-  const onEditSubmit = () => {
+  const onEditSubmit = async () => {
     setCurrRestaurant(prevState => ({
       ...prevState,
       ["image"]:currImage}))
@@ -54,7 +53,7 @@ const RestaurantProfile = ({restaurantID, editingState, setEditedRest}) => {
     // save the new image url
     console.log(currRestaurant)
 
-    //TODO: update database
+    await saveRestaurant(currRestaurant, restaurantID)
 
     if (setEditedRest) {
       // for admin viewing state change

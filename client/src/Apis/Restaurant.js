@@ -25,3 +25,14 @@ export const getOneRestaurant = async (id) => {
   }
   return null;
 }
+
+export const saveRestaurant = async (restaurant, id) => {
+  console.log("try to save rest " + restaurant.name)
+  const url = `${apiBase}/restaurant/${id}`
+  try {
+    await axios.put(url, restaurant)
+  } catch (error) {
+    console.log(error)
+  }
+
+}
