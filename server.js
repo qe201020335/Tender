@@ -16,7 +16,10 @@ const app = express();
 
 if (process.env.NODE_ENV !== 'PROD') {
   dotenv.config({path: './config/config.env'});
-  app.use(cors());
+  app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  });
 }
 
 const { mongoose } = require("./config/mongoose");
