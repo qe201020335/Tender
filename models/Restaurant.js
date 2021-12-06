@@ -15,7 +15,8 @@ const RestaurantSchema = new mongoose.Schema({
   description: String,
   comments: [CommentSchema],
   likes: [String],
-  dislikes: [String]
+  dislikes: [String],
+  favorites:[String]
 });
 
 const Restaurant = mongoose.model('Restaurant', RestaurantSchema);

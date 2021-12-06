@@ -61,4 +61,67 @@ router.put('/restaurant/:id', mongoChecker, async (req, res) => {
 	}
 })
 
+router.put('/restaurant/favorites/:id', mongoChecker, async (req, res) => {
+  // check valid id
+	if (!ObjectID.isValid(req.params.id)) {
+		res.status(404).send()
+		return;
+	}
+	// find user by id
+	try {
+		const restaurant = await Restaurant.findById(req.params.id)
+		// if restaurant not found return 404
+		if (!restaurant) {
+			res.status(404).send('Resource not found')
+		} else {
+      if(req.body.favourites) {
+        restaurant.favourites = req.body.favourites
+      }
+      if(req.body.likes) {
+        restaurant.likes = req.body.likes
+      }
+      if(req.body.dislikes) {
+        restaurant.dislikes = req.body.dislikes
+      }
+			// save restaurant to database
+			await restaurant.save()
+			res.send({favourites: restaurant.favourites, likes: restaurant.likes, dislikes: restaurant.dislikes})
+		}
+	} catch(error) {
+		if (isMongoError(error)) {
+			res.status(500).send('Internal server error')
+		} else {
+			res.status(400).send('Bad Request')
+		}
+	}
+})
+
+router.put('/restaurant/comments/:id', mongoChecker, async (req, res) => {
+  // check valid id
+	if (!ObjectID.isValid(req.params.id)) {
+		res.status(404).send()
+		return;
+	}
+	// find user by id
+	try {
+		const restaurant = await Restaurant.findById(req.params.id)
+		// if restaurant not found return 404
+		if (!restaurant) {
+			res.status(404).send('Resource not found')
+		} else {
+      if(req.body.comments) {
+        restaurant.comments = req.body.comments
+      }
+			// save restaurant to database
+			await restaurant.save()
+			res.send({comments: restaurant.comments})
+		}
+	} catch(error) {
+		if (isMongoError(error)) {
+			res.status(500).send('Internal server error')
+		} else {
+			res.status(400).send('Bad Request')
+		}
+	}
+})
 module.exports = router;

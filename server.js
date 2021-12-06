@@ -7,6 +7,7 @@ const loginRoute = require('./routes/auth/login');
 const logoutRoute = require('./routes/auth/logout');
 const checkSessionRoute = require('./routes/auth/check-session');
 const restaurantRoute = require('./routes/api/restaurant');
+const userRoute = require('./routes/api/user');
 
 // const MongoStore = require('connect-mongo');
 const path = require('path')
@@ -39,6 +40,7 @@ app.use('/auth', logoutRoute);
 app.use('/auth', checkSessionRoute);
 app.use('/auth', signUpRoute);
 app.use('/api', restaurantRoute);
+app.use('/api', userRoute);
 
 app.use(express.static(path.join(__dirname, '/client/build/')));
 
