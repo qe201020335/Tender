@@ -15,6 +15,18 @@ router.post('/signup', mongoChecker, async (req, res) => {
     res.status(400).send('Bad Request missing usertype')
     return
   }
+	// check if account already exist
+	try{
+		const account = await Account.findOne({username: req.body.username})
+		if(account){
+			res.status(400).send('user already exist')
+			return
+		}
+	} catch (error) {
+		console.log(error)
+		res.status(500).send('server error')
+		return
+	}
 	const account = new Account({
 		username: req.body.username,
 		password: req.body.password,
