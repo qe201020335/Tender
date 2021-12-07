@@ -49,7 +49,7 @@ router.get('/restaurant/:id', mongoChecker, async (req, res) => {
 })
 
 router.put('/restaurant/:id', mongoChecker, authenticate, async (req, res) => {
-	if (req.session.userType !== "admin" && req.session.userId != req.params.id) {
+	if (req.session.userType !== "admin" && req.session.userId !== req.params.id) {
     res.status(401).send("Unauthorized")
     return;
   }
