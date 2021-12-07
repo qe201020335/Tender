@@ -3,26 +3,28 @@ const router = express.Router();
 const { ObjectID } = require('mongodb')
 const { User } = require('../../models/User');
 const { mongoChecker, isMongoError } = require("../helpers/mongo_helpers");
+const { authenticate } = require("../helpers/authentication");
 
-router.get('/user', mongoChecker, async (req, res) => {
-  try {
-    const user = await User.find();
-    if (!user) {
-      res.status(500).send("server error")
-    } else {
-      res.send(user)
-    }
-  } catch (error) {
-    if (isMongoError(error)) { 
-      res.status(500).send("database error")
-    } else {
-      console.log(error)
-      res.status(500).send("server error")
-    }
-  }
-})
 
-router.put('/user/favourites/:id', mongoChecker, async (req, res) => {
+// router.get('/user', mongoChecker, async (req, res) => {
+//   try {
+//     const user = await User.find();
+//     if (!user) {
+//       res.status(500).send("server error")
+//     } else {
+//       res.send(user)
+//     }
+//   } catch (error) {
+//     if (isMongoError(error)) { 
+//       res.status(500).send("database error")
+//     } else {
+//       console.log(error)
+//       res.status(500).send("server error")
+//     }
+//   }
+// })
+
+router.put('/user/favourites/:id', mongoChecker, authenticate, async (req, res) => {
   // check valid id
 	if (!ObjectID.isValid(req.params.id)) {
 		res.status(404).send()
@@ -57,7 +59,7 @@ router.put('/user/favourites/:id', mongoChecker, async (req, res) => {
 	}
 })
 
-router.get('/user/favourites/:id', mongoChecker, async (req, res) => {
+router.get('/user/favourites/:id', mongoChecker, authenticate, async (req, res) => {
   // check valid id
 	if (!ObjectID.isValid(req.params.id)) {
 		res.status(404).send()
@@ -81,7 +83,7 @@ router.get('/user/favourites/:id', mongoChecker, async (req, res) => {
 	}
 })
 
-router.post('/user/favourites/:id', mongoChecker, async (req, res) => {
+router.post('/user/favourites/:id', mongoChecker, authenticate, async (req, res) => {
   // check valid id
 	if (!ObjectID.isValid(req.params.id)) {
 		res.status(404).send()
@@ -116,7 +118,7 @@ router.post('/user/favourites/:id', mongoChecker, async (req, res) => {
 	}
 })
 
-router.delete('/user/favourites/:id', mongoChecker, async (req, res) => {
+router.delete('/user/favourites/:id', mongoChecker, authenticate, async (req, res) => {
   // check valid id
 	if (!ObjectID.isValid(req.params.id)) {
 		res.status(404).send()
