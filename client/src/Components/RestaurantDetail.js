@@ -89,7 +89,7 @@ const RestaurantDetail = ({ myAccountID, myUsername }) => {
                 <FavoriteIcon color={like ? "like" : ""} fontSize="large" className="swipeButtons_right" />
               </IconButton>
             </Tooltip>
-            <span classname="like-count"> {restaurant.likes ? restaurant.likes.length : null} </span>
+            <span className="like-count"> {restaurant.likes ? restaurant.likes.length : null} </span>
           </span>
           <span className="dislikes">
             <Tooltip title="Dislike!" placement="top">
@@ -97,7 +97,7 @@ const RestaurantDetail = ({ myAccountID, myUsername }) => {
                 <ClearIcon color={dislike ? "dislike" : ""} fontSize="large" className="swipeButtons_left" />
               </IconButton>
             </Tooltip>
-            <span classname="dislike-count"> {restaurant.dislikes ? restaurant.dislikes.length : null} </span>
+            <span className="dislike-count"> {restaurant.dislikes ? restaurant.dislikes.length : null} </span>
           </span>
           <Tooltip title="Favourite!" placement="top">
             <IconButton onClick={onFavClick}>
