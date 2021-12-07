@@ -6,6 +6,7 @@ import MuiLink from "@mui/material/Link";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {FormControlLabel, Radio, RadioGroup, TextField} from "@material-ui/core";
 import signup from "../Actions/signup";
+import RestaurantProfile from "./RestaurantProfile";
 
 const Signup = ({setLoginType, setUserID}) => {
 
@@ -15,6 +16,9 @@ const Signup = ({setLoginType, setUserID}) => {
   const [regType, setRegType] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const history = useHistory();
+
+  // const [accountCreated, setAccountCreated] = useState(false)
+  // const [accountID, setAccountID] = useState("")
 
   const onUsernameChange = (event) => {
     setUsername(event.target.value)
@@ -52,7 +56,9 @@ const Signup = ({setLoginType, setUserID}) => {
     if(response) {
       setLoginType(response.userType)
       setUserID(response.userId)
-      if (response.userId === "RESTAURANT") {
+      if (response.userType === "RESTAURANT") {
+        // setAccountID(response.userId)
+        // setAccountCreated(true)
         history.push("/my-restaurant")
       } else {
         history.push("/")
@@ -62,6 +68,10 @@ const Signup = ({setLoginType, setUserID}) => {
     }
 
   };
+
+  // const onProfileSaved = () => {
+  //
+  // }
 
 
 
@@ -79,6 +89,9 @@ const Signup = ({setLoginType, setUserID}) => {
   });
 
   return(
+
+    // accountCreated ? <RestaurantProfile restaurantID={accountID} setEditedRest={onProfileSaved} editingState={true}/> :
+
     <div>
       <h2 className='login_header'>Sign Up</h2>
       <div className="userLogin_header">

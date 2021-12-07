@@ -34,7 +34,7 @@ const Card = ({ restaurant, onCardClick, onCardSwipe, onCardLeftScreen }) => {
         onCardLeftScreen={() => onCardLeftScreen(restaurant)}
       >
         <div
-          style={{ backgroundImage: `url(${restaurant.image ?? logo_rec})` }}
+          style={{ backgroundImage: `url(${!restaurant.image ? logo_rec : restaurant.image})` }}
           className="card"
         >
           <h3>{restaurant.name ?? `Restaurant ${restaurant._id}`}</h3>
