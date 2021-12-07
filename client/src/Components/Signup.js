@@ -5,8 +5,9 @@ import Button from "@mui/material/Button";
 import MuiLink from "@mui/material/Link";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {FormControlLabel, Radio, RadioGroup, TextField} from "@material-ui/core";
+import signup from "../Actions/signup";
 
-const Signup = () => {
+const Signup = ({setLoginType, setUserID}) => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -30,7 +31,7 @@ const Signup = () => {
     setRegType(e.target.value)
   };
 
-  const onRegClick = () => {
+  const onRegClick = async () => {
     if (regType === "") {
       setErrorMsg("Please select an account type!")
       return
@@ -47,7 +48,19 @@ const Signup = () => {
       setErrorMsg("")
     }
 
-    //TODO: Do register
+    const response = await signup(username, password, regType);
+    if(response) {
+      setLoginType(response.userType)
+      setUserID(response.userId)
+      if (response.userId === "RESTAURANT") {
+        history.push("/my-restaurant")
+      } else {
+        history.push("/")
+      }
+    } else {
+      setErrorMsg("Something is Wrong!")
+    }
+
   };
 
 
@@ -72,8 +85,8 @@ const Signup = () => {
         <div id="select_type" onChange={onRegTypeSelect}>
           <label><b>Account Type</b></label><br/>
           <RadioGroup row name="Login_Type">
-            <FormControlLabel value="user" control={<Radio />} label="Normal User" />
-            <FormControlLabel value="rest" control={<Radio />} label="Restaurant" />
+            <FormControlLabel value="USER" control={<Radio />} label="Normal User" />
+            <FormControlLabel value="RESTAURANT" control={<Radio />} label="Restaurant" />
           </RadioGroup>
         </div>
         <br/>

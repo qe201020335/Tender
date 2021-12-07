@@ -78,7 +78,7 @@ const App = () => {
             if (myAccountID !== "") {
               return <Redirect to="/"/>
             }
-            return <Signup/>
+            return <Signup setUserID={setMyAccountID} setLoginType={setLoginType}/>
           }}/>
 
           <Route exact path="/admin" render={ () => {
