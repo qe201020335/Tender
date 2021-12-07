@@ -1,13 +1,13 @@
-const { User } = require('../../models/user')
+const { Account } = require('../../models/Account')
 
 module.exports = {
 	authenticate: (req, res, next) => {
 		if (req.session.userId) {
-			User.findById(req.session.userId).then((user) => {
-				if (!user) {
+			Account.findById(req.session.userId).then((account) => {
+				if (!account) {
 					return Promise.reject()
 				} else {
-					req.user=user
+					req.session.userType = account.userType
 					next()
 				}
 			}).catch((error) => {
