@@ -147,7 +147,7 @@ router.delete('/user/favourites/:id', mongoChecker, authenticate, async (req, re
         user.likes.remove(req.body.like)
         // also remove the like in restaurant table
         const restaurant = await Restaurant.findById(req.body.dislike)
-        restaurant.dislikes.remove(req.params.id)
+        restaurant.likes.remove(req.params.id)
         await restaurant.save()
       }
       if(req.body.dislike) {
