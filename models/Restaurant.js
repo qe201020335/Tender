@@ -1,5 +1,10 @@
 const mongoose = require('mongoose');
 
+const RatingSchema = new mongoose.Schema({
+  userId: String,
+  rating: Number
+});
+
 const CommentSchema = new mongoose.Schema({
   userId: String,
   username: String,
@@ -16,7 +21,8 @@ const RestaurantSchema = new mongoose.Schema({
   comments: [CommentSchema],
   likes: [String],
   dislikes: [String],
-  favorites:[String]
+  favourites:[String],
+  ratings:[RatingSchema]
 });
 
 const Restaurant = mongoose.model('Restaurant', RestaurantSchema);

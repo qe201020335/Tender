@@ -3,6 +3,7 @@ const router = express.Router();
 const { ObjectID } = require('mongodb')
 const { Restaurant } = require('../../models/Restaurant');
 const { mongoChecker, isMongoError } = require("../helpers/mongo_helpers");
+const { authenticate } = require("../helpers/authentication");
 
 router.get('/restaurant', mongoChecker, async (req, res) => {
   try {
@@ -47,7 +48,11 @@ router.get('/restaurant/:id', mongoChecker, async (req, res) => {
 	}
 })
 
-router.put('/restaurant/:id', mongoChecker, async (req, res) => {
+router.put('/restaurant/:id', mongoChecker, authenticate, async (req, res) => {
+	if (req.session.userType !== "admin" && req.session.userId !== req.params.id) {
+    res.status(401).send("Unauthorized")
+    return;
+  }
   // check valid id
 	if (!ObjectID.isValid(req.params.id)) {
 		res.status(404).send()
@@ -86,7 +91,7 @@ router.put('/restaurant/:id', mongoChecker, async (req, res) => {
 	}
 })
 
-router.put('/restaurant/favorites/:id', mongoChecker, async (req, res) => {
+router.put('/restaurant/favorites/:id', mongoChecker, authenticate, async (req, res) => {
   // check valid id
 	if (!ObjectID.isValid(req.params.id)) {
 		res.status(404).send()
@@ -121,7 +126,7 @@ router.put('/restaurant/favorites/:id', mongoChecker, async (req, res) => {
 	}
 })
 
-router.post('/restaurant/comments/:id', mongoChecker, async (req, res) => {
+router.post('/restaurant/comments/:id', mongoChecker, authenticate, async (req, res) => {
   // check valid id
 	if (!ObjectID.isValid(req.params.id)) {
 		res.status(404).send()
