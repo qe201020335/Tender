@@ -34,7 +34,7 @@ export const addUserFavorites = async (id, favourites) => {
 export const removeUserFavorites = async (id, favourites) => {
   try{
     console.log("removing" + favourites.favourite + "from" + id)
-    const res = await UserApi.delete(`/favourites/${id}`, favourites);
+    const res = await axios.delete(`${apiBase}/user/favourites/${id}`, { data: favourites})
     console.log(res.data)
     return res.data;
   } catch (error) {

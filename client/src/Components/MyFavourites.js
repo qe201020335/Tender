@@ -19,10 +19,6 @@ const MyFavourites = ({ myAccountID }) => {
   }, [])
 
   const unfavourite = async (restaurant) => {
-    const restaurantsLeft = myFavourites.filter((curRestaurant) => {
-      return restaurant !== curRestaurant;
-    });
-    const favourites = { favourites: restaurantsLeft}
 
     const updateFavourites = await removeUserFavorites(myAccountID, { favourite: restaurant._id });
 

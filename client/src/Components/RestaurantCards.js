@@ -60,8 +60,6 @@ const RestaurantCards = ({ myAccountID, onCardClick }) => {
   const onCardLeftScreen = (restaurant) => {
     // This is when we display next card
     console.log(`${restaurant.name} out ${swipeDirection}!`);
-    // setLike(false)
-    // setDislike(false)
     nextCard()
   }
 
