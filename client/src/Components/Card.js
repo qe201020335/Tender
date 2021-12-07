@@ -1,6 +1,7 @@
 import React from 'react';
 import "./RestaurantCards.css";
 import TinderCard from "react-tinder-card";
+import logo_rec from "../Images/tender_rec.png"
 
 const Card = ({ restaurant, onCardClick, onCardSwipe, onCardLeftScreen }) => {
 
@@ -27,17 +28,17 @@ const Card = ({ restaurant, onCardClick, onCardSwipe, onCardLeftScreen }) => {
   return (
     <div onMouseUp={onMouseUp} onMouseDown={onMouseDown} className="swipe">
       <TinderCard
-        key={restaurant.name}
+        key={restaurant._id}
         preventSwipe={["up","down"]}
         onSwipe={(direction) => onCardSwipe(direction, restaurant)}
         onCardLeftScreen={() => onCardLeftScreen(restaurant)}
       >
         <div
-          style={{ backgroundImage: "url(" + restaurant.image + ")" }}
+          style={{ backgroundImage: `url(${restaurant.image ?? logo_rec})` }}
           className="card"
         >
-          <h3>{restaurant.name}</h3>
-          <h4>{restaurant.address}</h4>
+          <h3>{restaurant.name ?? `Restaurant ${restaurant._id}`}</h3>
+          <h4>{restaurant.address ?? "Address"}</h4>
         </div>
       </TinderCard>
     </div>

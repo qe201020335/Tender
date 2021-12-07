@@ -28,11 +28,11 @@ const RestaurantProfile = ({restaurantID, editingState, setEditedRest}) => {
   }
 
   const onEditSubmit = async () => {
-    setCurrRestaurant(prevState => ({
-      ...prevState,
-      ["image"]:currImage}))
-    setIsEditing(false);
+    currRestaurant.image = currImage
     // save the new image url
+    setCurrRestaurant(currRestaurant)
+    setIsEditing(false);
+
     console.log(currRestaurant)
 
     const saved = await saveRestaurant(currRestaurant, restaurantID)
@@ -107,7 +107,7 @@ const RestaurantProfile = ({restaurantID, editingState, setEditedRest}) => {
 
         <div className="restaurant_pic_div">
           <div className="pic_container">
-            <img className="restaurant_pic" src={currRestaurant.image === "" ? defaultImg : currRestaurant.image} alt="restaurant"/> <br/><br/>
+            <img className="restaurant_pic" src={!currRestaurant.image ? defaultImg : currRestaurant.image} alt="restaurant"/> <br/><br/>
           </div>
           <TextField className="restaurant_image_input" type="url" placeholder="Restaurant Image URL" disabled={!isEditing}
                      name="image" label="Image URL" variant="outlined" value={currImage} margin="normal"
