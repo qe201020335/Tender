@@ -4,11 +4,14 @@ import Card from "./Card";
 import { getAllRestaurant } from "../Apis/Restaurant";
 import SwipeButtonsBar from "./SwipeButtonsBar";
 import tender_sq from "../Images/tender_sq.png"
+import { useHistory } from 'react-router-dom';
 
-const RestaurantCards = ({ myAccountID, onCardClick }) => {
+
+const RestaurantCards = ({ myAccountID }) => {
   const [currDisplayTop, setCurrDisplayTop] = useState(null)
   const [currDisplayBottom, setCurrDisplayBottom] = useState(null)
-
+  const history = useHistory();
+  
   let swipeDirection;
   let currDisplayRestTopIndex = 0;
   const restaurants = []
@@ -30,7 +33,9 @@ const RestaurantCards = ({ myAccountID, onCardClick }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-
+  const onCardClick = (restaurant) => {
+    history.push(`/restaurant/${restaurant._id}`)
+  }
 
   const nextCard = () => {
     console.log(`try to display card ${currDisplayRestTopIndex} and ${currDisplayRestTopIndex +1}`)

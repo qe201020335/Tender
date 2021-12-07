@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Route, Switch, BrowserRouter, Redirect} from 'react-router-dom';
+import {Route, Switch, BrowserRouter, Redirect, useHistory } from 'react-router-dom';
 import './App.css';
 import NavBar from "./Components/NavBar";
 import RestaurantCards from "./Components/RestaurantCards";
@@ -12,28 +12,16 @@ import Signup from "./Components/Signup";
 import checkSessionHandler from './Actions/check-session';
 
 const App = () => {
-  const [openRestDetail,  setOpenRestDetail] = useState(false);
-  const [clicked_restaurant, setRest] = useState(null);
   const [myAccountID, setMyAccountID] = useState("");
   const [loginType, setLoginType] = useState("LOGGED_OUT");
 
+
   useEffect( () => {
-    // React suggest this to avoid race condition
     const fetchData = async () => {
       await checkSessionHandler(setMyAccountID, setLoginType);
     }
     fetchData()
   }, [])
-
-  const onCardClick = (restaurant) => {
-    setOpenRestDetail(true);
-    setRest(restaurant);
-    console.log(restaurant);
-  }
-
-  const onClickOutside = () => {
-    setOpenRestDetail(false);
-  }
 
 
   return (
@@ -46,8 +34,7 @@ const App = () => {
 
           <Route exact path="/" render={() =>
             <div>
-              <RestaurantCards myAccountID={myAccountID} onCardClick={onCardClick}/>
-              {openRestDetail && <RestaurantDetail restaurant={clicked_restaurant} OnClickOutside={onClickOutside}/>}
+              <RestaurantCards myAccountID={myAccountID} />
             </div>}
           />
 
@@ -86,6 +73,10 @@ const App = () => {
               return <Redirect to="/login"/>
             }
             return <Admin/>
+          }}/>
+
+          <Route exact path="/restaurant/:id" render={ () => {
+            return <RestaurantDetail myAccountID={myAccountID}/>
           }}/>
 
         </Switch>

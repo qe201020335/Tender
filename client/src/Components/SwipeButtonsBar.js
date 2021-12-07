@@ -25,8 +25,6 @@ const SwipeButtonsBar = ({myAccountID, restaurant}) => {
   console.log(like)
   console.log(fav)
 
-
-
   const onLikeClick = async () => {
     if (dislike) {
       await onDislikeClick()
