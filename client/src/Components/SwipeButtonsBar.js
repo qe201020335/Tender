@@ -19,7 +19,7 @@ const SwipeButtonsBar = ({myAccountID, restaurant}) => {
   useEffect(() => {
     setDislike(restaurant !== null ? restaurant.dislikes.includes(myAccountID) : false)
     setLike(restaurant !== null ? restaurant.likes.includes(myAccountID) : false)
-    setFav(restaurant !== null ? restaurant.favorites.includes(myAccountID) : false)
+    setFav(restaurant !== null ? restaurant.favourites.includes(myAccountID) : false)
   }, [myAccountID, restaurant])
   console.log(dislike)
   console.log(like)

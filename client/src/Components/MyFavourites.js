@@ -1,35 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import FavouritesCard from './FavouritesCard';
-import { getUserFavorites, putUserFavorites } from "../Apis/User";
-import { getRestaurant } from "../Apis/Restaurant";
+import {getUserFavorites, removeUserFavorites} from "../Apis/User";
+import {getRestaurant} from "../Apis/Restaurant";
 import "./MyFavourites.css";
 
 const MyFavourites = ({ myAccountID }) => {
-  const [myfavourites, setMyfavourites] = useState([]);
+  const [myFavourites, setMyFavourites] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const favourites =  await getUserFavorites(myAccountID);
       const favouriteRestaurants = await Promise.all(favourites.favourites.map(async (restaurantId) => {
-        const restaurant = await getRestaurant(restaurantId)
-        return restaurant
+        return await getRestaurant(restaurantId)
       }))
-      setMyfavourites(favouriteRestaurants)
+      setMyFavourites(favouriteRestaurants)
     }
     fetchData();
   }, [])
 
   const unfavourite = async (restaurant) => {
-    const restaruantsLeft = myfavourites.filter((curRestaurant) => { 
+    const restaurantsLeft = myFavourites.filter((curRestaurant) => {
       return restaurant !== curRestaurant;
     });
-    const favourites = { favourites: restaruantsLeft}
-    const updateFavourites = await putUserFavorites(myAccountID, favourites)
+    const favourites = { favourites: restaurantsLeft}
+
+    const updateFavourites = await removeUserFavorites(myAccountID, { favourite: restaurant._id });
+
     const favouriteRestaurants = await Promise.all(updateFavourites.favourites.map(async (restaurantId) => {
-      const restaurant = await getRestaurant(restaurantId)
-      return restaurant
+      return await getRestaurant(restaurantId)
     }))
-    setMyfavourites(favouriteRestaurants);
+    setMyFavourites(favouriteRestaurants);
   }
 
   return (
@@ -38,7 +38,7 @@ const MyFavourites = ({ myAccountID }) => {
       <br/>
       <div className='list_container'>
         <ul>
-          { myfavourites.map((restaurant) => {
+          { myFavourites.map((restaurant) => {
               return (<FavouritesCard restaurant={restaurant} handleUnFavorite={unfavourite}/>);
             })
           }

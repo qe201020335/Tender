@@ -2,19 +2,12 @@ import React, { useState, useEffect } from 'react';
 import "./RestaurantCards.css";
 import Card from "./Card";
 import { getAllRestaurant } from "../Apis/Restaurant";
-import { addUserFavorites, getUserFavorites, removeUserFavorites } from "../Apis/User";
 import SwipeButtonsBar from "./SwipeButtonsBar";
-import {Link} from "react-router-dom";
-import MuiLink from "@mui/material/Link";
 import tender_sq from "../Images/tender_sq.png"
 
 const RestaurantCards = ({ myAccountID, onCardClick }) => {
   const [currDisplayTop, setCurrDisplayTop] = useState(null)
   const [currDisplayBottom, setCurrDisplayBottom] = useState(null)
-
-  let fav = false
-  let like = false
-  let dislike = false
 
   let swipeDirection;
   let currDisplayRestTopIndex = 0;
@@ -23,9 +16,6 @@ const RestaurantCards = ({ myAccountID, onCardClick }) => {
   
   useEffect(() => {
     const fetchData = async () => {
-      // console.log("account " + myAccountID)
-      // favourites = await getUserFavorites(myAccountID)
-      // console.log(favourites)
       const rests =  await getAllRestaurant();
       console.log(rests)
       rests.forEach((restaurant) => (restaurants.push(
@@ -78,7 +68,7 @@ const RestaurantCards = ({ myAccountID, onCardClick }) => {
   return (
     <div className="RestaurantCards">
       <div className="bg_div" >
-        <img src={tender_sq} className="cards_bg_img"/>
+        <img src={tender_sq} className="cards_bg_img" alt="tender_img"/>
         { !currDisplayTop &&
         <label className="cards_oops">{"Oops! We run out of restaurants (>﹏<) "}</label>}
       </div>
