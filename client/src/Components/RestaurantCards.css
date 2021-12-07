@@ -11,6 +11,36 @@
     background-position: center;
 }
 
+.bg_div {
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    alignment: center;
+    width: 100%;
+
+}
+
+.cards_bg_img {
+    height: 30vh;
+    display: block;
+    margin: 5vh auto;
+    max-width: 75vw;
+    border-radius: 15px;
+    box-shadow: 0px 18px 53px 0px rgba(0, 0, 0, 0.3);
+}
+
+.cards_oops {
+    display: block;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    margin-top: 5vh;
+    font-size: larger;
+    color: #f96c56;
+    font-weight: bold;
+}
+
+
 .RestaurantCards_cardContainer {
     display: flex;
     justify-content: center;
