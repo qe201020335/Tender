@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Route, Switch, BrowserRouter, Redirect, useHistory } from 'react-router-dom';
+import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
 import './App.css';
 import NavBar from "./Components/NavBar";
 import RestaurantCards from "./Components/RestaurantCards";
@@ -13,12 +13,13 @@ import checkSessionHandler from './Actions/check-session';
 
 const App = () => {
   const [myAccountID, setMyAccountID] = useState("");
+  const [myUsername, setMyUsername] = useState("");
   const [loginType, setLoginType] = useState("LOGGED_OUT");
 
 
   useEffect( () => {
     const fetchData = async () => {
-      await checkSessionHandler(setMyAccountID, setLoginType);
+      await checkSessionHandler(setMyAccountID, setMyUsername, setLoginType);
     }
     fetchData()
   }, [])
@@ -76,7 +77,7 @@ const App = () => {
           }}/>
 
           <Route exact path="/restaurant/:id" render={ () => {
-            return <RestaurantDetail myAccountID={myAccountID}/>
+            return <RestaurantDetail myAccountID={myAccountID} myUsername={myUsername}/>
           }}/>
 
         </Switch>

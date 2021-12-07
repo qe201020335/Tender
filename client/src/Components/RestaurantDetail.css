@@ -11,7 +11,6 @@
 
 .restDetailContainer {
     width: 700px;
-    height: 500px;
     border-radius: 12px;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -21,8 +20,7 @@
 }
 
 .titleAddress {
-    display: inline !important;
-    background-color: red !important;
+    display: inline;
 }
 
 .title {
@@ -35,7 +33,12 @@
 
 .statsBar {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: flex-start;
 }
 
+.description {
+    padding-bottom: 30px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid grey;
+}

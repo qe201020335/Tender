@@ -1,0 +1,16 @@
+.commentInput {
+    width: 100%;
+}
+
+.comments {
+    margin: 0; /* To remove default bottom margin */ 
+    padding: 0; /* To remove default left padding */
+}
+
+.commentSubmit {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid grey;
+}

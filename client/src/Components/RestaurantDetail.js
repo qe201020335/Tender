@@ -8,9 +8,10 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import {IconButton, Tooltip} from '@material-ui/core';
 import { getRestaurant } from "../Apis/Restaurant";
 import { addUserFavorites, removeUserFavorites } from "../Apis/User";
+import CommentSection from "./CommentSection"
 
 
-const RestaurantDetail = ({ myAccountID }) => {
+const RestaurantDetail = ({ myAccountID, myUsername }) => {
   const [restaurant, setRestaurant] = useState({});
   const [dislike, setDislike] = useState(false);
   const [like, setLike] = useState(false);
@@ -76,24 +77,28 @@ const RestaurantDetail = ({ myAccountID }) => {
       <div className="restDetailContainer">
         <img className="image" src={!restaurant.image ? logo_rec : restaurant.image} alt="restaurant"/>
         <br/>
-        <div classname="statsBar">
-          <div classname="titleAddress">
+        <div className="statsBar">
+          <div className="titleAddress">
             <h1 className="title">{restaurant.name ?? `Restaurant ${restaurant._id}`}</h1>
             <br/>
             <h4 className="address">{restaurant.address ?? "Address"}</h4>
           </div>
-          <Tooltip title="Like!" placement="top">
-            <IconButton onClick={onLikeClick}>
-              <FavoriteIcon color={like ? "like" : ""} fontSize="large" className="swipeButtons_right" />
-            </IconButton>
-          </Tooltip>
-          <span classname="like-count"> {restaurant.likes ? restaurant.likes.length : null} </span>
-          <Tooltip title="Dislike!" placement="top">
-            <IconButton onClick={onDislikeClick}>
-              <ClearIcon color={dislike ? "dislike" : ""} fontSize="large" className="swipeButtons_left" />
-            </IconButton>
-          </Tooltip>
-          <span classname="dislike-count"> {restaurant.dislikes ? restaurant.dislikes.length : null} </span>
+          <span className="likes">
+            <Tooltip title="Like!" placement="top">
+              <IconButton onClick={onLikeClick}>
+                <FavoriteIcon color={like ? "like" : ""} fontSize="large" className="swipeButtons_right" />
+              </IconButton>
+            </Tooltip>
+            <span classname="like-count"> {restaurant.likes ? restaurant.likes.length : null} </span>
+          </span>
+          <span className="dislikes">
+            <Tooltip title="Dislike!" placement="top">
+              <IconButton onClick={onDislikeClick}>
+                <ClearIcon color={dislike ? "dislike" : ""} fontSize="large" className="swipeButtons_left" />
+              </IconButton>
+            </Tooltip>
+            <span classname="dislike-count"> {restaurant.dislikes ? restaurant.dislikes.length : null} </span>
+          </span>
           <Tooltip title="Favourite!" placement="top">
             <IconButton onClick={onFavClick}>
               <StarIcon fontSize="large" color={fav ? "fav": ""} className="swipeButtons_star"/>
@@ -102,6 +107,9 @@ const RestaurantDetail = ({ myAccountID }) => {
         </div>
         <br/>
         <div className="description card_body"><p>{restaurant.description}</p></div>
+        { restaurant && <CommentSection comments={restaurant.comments}
+          myAccountID={myAccountID} myUsername={myUsername} restaurantId={restaurant._id}/>
+        }
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {authBase} from "../config/baseUrl";
 
-const checkSession = async (setMyUser, setLoginType) => {
+const checkSession = async (setMyAccountID, setMyUsername, setLoginType) => {
 
   const url = authBase + "/check-session"
 
@@ -10,7 +10,8 @@ const checkSession = async (setMyUser, setLoginType) => {
     console.log(response)
     if(response.data) {
       console.log(response.data)
-      setMyUser(response.data.userId)
+      setMyAccountID(response.data.userId)
+      setMyUsername(response.data.username)
       setLoginType(response.data.userType)
     }
   } catch (error) {

@@ -1,0 +1,12 @@
+.comment {
+  display: flex;
+  align-items: center;
+}
+
+.commentContent{
+  margin-left: 5px;
+}
+
+.commentText {
+  display: inline;
+}

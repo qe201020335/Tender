@@ -155,4 +155,41 @@ router.post('/restaurant/comments/:id', mongoChecker, authenticate, async (req, 
 		}
 	}
 })
+
+router.delete('/restaurant/comments/:id', mongoChecker, authenticate, async (req, res) => {
+	// check valid id
+	if (!ObjectID.isValid(req.params.id)) {
+		res.status(404).send("invalid id")
+		return;
+	}
+	// find restaurant by id
+	try {
+		const restaurant = await Restaurant.findById(req.params.id)
+		// if restaurant not found return 404
+		if (!restaurant) {
+			res.status(404).send('Resource not found')
+		} else {
+			if (req.body.commentId){
+				const comment = restaurant.comments.id(req.body.commentId)
+				if(comment) {
+					// remove the reservation
+					comment.remove()
+					// save restaurant to database
+					await restaurant.save()
+					res.send({ comments: restaurant.comments })
+				} else {
+					res.status(404).send('comment not found')
+				}
+			}
+
+		}
+	} catch(error) {
+		if (isMongoError(error)) {
+			res.status(500).send('Internal server error')
+		} else {
+			res.status(400).send('Bad Request')
+		}
+	}
+})
+
 module.exports = router;

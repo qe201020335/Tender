@@ -40,3 +40,12 @@ export const saveRestaurant = async (restaurant, id) => {
     return null
   }
 }
+
+export const commentOnRestaurant = async (id, comment) => {
+  try{
+    const res = await RestaurantApi.post(`/comments/${id}`, comment);
+    return res.data;
+  } catch (error) {
+    console.log(error)
+  }
+}
