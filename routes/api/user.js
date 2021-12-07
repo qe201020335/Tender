@@ -42,7 +42,7 @@ router.put('/user/favourites/:id', mongoChecker, authenticate, async (req, res) 
 })
 
 router.get('/user/favourites/:id', mongoChecker, authenticate, async (req, res) => {
-  if (req.session.userType !== "admin" && req.session.userId !== req.params.id) {
+  if (req.session.userType !== "ADMIN" && req.session.userId !== req.params.id) {
     res.status(401).send("Unauthorized")
     return;
   }
@@ -70,7 +70,7 @@ router.get('/user/favourites/:id', mongoChecker, authenticate, async (req, res) 
 })
 
 router.post('/user/favourites/:id', mongoChecker, authenticate, async (req, res) => {
-  if (req.session.userType !== "admin" && req.session.userId !== req.params.id) {
+  if (req.session.userType !== "ADMIN" && req.session.userId !== req.params.id) {
     res.status(401).send("Unauthorized")
     return;
   }
@@ -120,7 +120,7 @@ router.post('/user/favourites/:id', mongoChecker, authenticate, async (req, res)
 })
 
 router.delete('/user/favourites/:id', mongoChecker, authenticate, async (req, res) => {
-  if (req.session.userType !== "admin" && req.session.userId !== req.params.id) {
+  if (req.session.userType !== "ADMIN" && req.session.userId !== req.params.id) {
     res.status(401).send("Unauthorized")
     return;
   }
