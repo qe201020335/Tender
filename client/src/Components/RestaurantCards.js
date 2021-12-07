@@ -2,24 +2,32 @@ import React, { useState, useEffect } from 'react';
 import "./RestaurantCards.css";
 import Card from "./Card";
 import { getAllRestaurant } from "../Apis/Restaurant";
-import { addUserFavorites, removeUserFavorites } from "../Apis/User";
+import { addUserFavorites, getUserFavorites, removeUserFavorites } from "../Apis/User";
 import SwipeButtonsBar from "./SwipeButtonsBar";
+import {Link} from "react-router-dom";
+import MuiLink from "@mui/material/Link";
+import tender_sq from "../Images/tender_sq.png"
 
 const RestaurantCards = ({ myAccountID, onCardClick }) => {
-  // Use session storage to mimic database for now
-  const [dislike, setDislike] = useState(false);
-  const [like, setLike] = useState(false);
-  const [fav, setFav] = useState(false);
   const [currDisplayTop, setCurrDisplayTop] = useState(null)
   const [currDisplayBottom, setCurrDisplayBottom] = useState(null)
+
+  let fav = false
+  let like = false
+  let dislike = false
 
   let swipeDirection;
   let currDisplayRestTopIndex = 0;
   const restaurants = []
+
   
   useEffect(() => {
     const fetchData = async () => {
+      // console.log("account " + myAccountID)
+      // favourites = await getUserFavorites(myAccountID)
+      // console.log(favourites)
       const rests =  await getAllRestaurant();
+      console.log(rests)
       rests.forEach((restaurant) => (restaurants.push(
         {
           restaurant : restaurant,
@@ -31,6 +39,8 @@ const RestaurantCards = ({ myAccountID, onCardClick }) => {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+
 
   const nextCard = () => {
     console.log(`try to display card ${currDisplayRestTopIndex} and ${currDisplayRestTopIndex +1}`)
@@ -60,58 +70,23 @@ const RestaurantCards = ({ myAccountID, onCardClick }) => {
   const onCardLeftScreen = (restaurant) => {
     // This is when we display next card
     console.log(`${restaurant.name} out ${swipeDirection}!`);
-    setLike(false)
-    setDislike(false)
+    // setLike(false)
+    // setDislike(false)
     nextCard()
   }
 
-  const onLikeClick = async () => {
-    if (currDisplayTop) {
-      if (!like) {
-        console.log("liked " + currDisplayTop.restaurant.name)
-        const result = await addUserFavorites(myAccountID, { like: currDisplayTop.restaurant._id });
-      } else {
-        console.log("undo like " + currDisplayTop.restaurant.name)
-        const result = await removeUserFavorites(myAccountID, { like: currDisplayTop.restaurant._id });
-      }
-      setLike(!like)
-    }
-  }
-
-  const onDislikeClick = async () => {
-    if (currDisplayTop) {
-      if (!dislike) {
-        console.log("disliked " + currDisplayTop.restaurant.name)
-        const result = await addUserFavorites(myAccountID, { dislike: currDisplayTop.restaurant._id });
-      } else {
-        console.log("undo dislike " + currDisplayTop.restaurant.name)
-        const result = await removeUserFavorites(myAccountID, { dislike: currDisplayTop.restaurant._id });
-      }
-      setDislike(!dislike)
-    }
-  }
-
-  const onFavClick = async () => {
-    if (currDisplayTop) {
-      if (!fav) {
-        console.log("faved " + currDisplayTop.restaurant.name)
-        const result = await addUserFavorites(myAccountID, { favourite: currDisplayTop.restaurant._id });
-      } else {
-        console.log("undo fav " + currDisplayTop.restaurant.name)
-        const result = await removeUserFavorites(myAccountID, { favourite: currDisplayTop.restaurant._id });
-      }
-      setFav(!fav)
-    }
-  }
-
-
   return (
     <div className="RestaurantCards">
+      <div className="bg_div" >
+        <img src={tender_sq} className="cards_bg_img"/>
+        { !currDisplayTop &&
+        <label className="cards_oops">{"Oops! We run out of restaurants (>﹏<) "}</label>}
+      </div>
       <div className="RestaurantCards_cardContainer">
         {currDisplayBottom!==null && currDisplayBottom.card}
         {currDisplayTop!==null && currDisplayTop.card}
       </div>
-      <SwipeButtonsBar like={like} onLikeClick={onLikeClick} dislike={dislike} onDislikeClick={onDislikeClick} fav={fav} onFavClick={onFavClick}/>
+      <SwipeButtonsBar restaurant={currDisplayTop ? currDisplayTop.restaurant : null} myAccountID={myAccountID}/>
     </div>
   )
 }

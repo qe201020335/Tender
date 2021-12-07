@@ -19,6 +19,7 @@ export const getUserFavorites = async (id) => {
 }
 
 export const putUserFavorites = async (id, favourites) => {
+  return
   try{
     const res = await UserApi.put(`/favourites/${id}`, favourites);
     return res.data;
@@ -32,6 +33,7 @@ export const putUserFavorites = async (id, favourites) => {
 }
 
 export const addUserFavorites = async (id, favourites) => {
+  return
   try{
     const res = await UserApi.post(`/favourites/${id}`, favourites);
     return res.data;
@@ -45,6 +47,7 @@ export const addUserFavorites = async (id, favourites) => {
 }
 
 export const removeUserFavorites = async (id, favourites) => {
+  return
   try{
     console.log("removing" + favourites.favourite + "from" + id)
     const res = await UserApi.delete(`/favourites/${id}`, favourites);
