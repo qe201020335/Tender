@@ -20,6 +20,11 @@
     padding: 25px;
 }
 
+.titleAddress {
+    display: inline !important;
+    background-color: red !important;
+}
+
 .title {
     display: inline;
 }
@@ -28,13 +33,9 @@
     display: inline;
 }
 
-.titleAddress {
-    display: inline;
-    background-color: red;
-}
-
 .statsBar {
     display: flex;
     justify-content: center;
     align-items: flex-start;
 }
+
