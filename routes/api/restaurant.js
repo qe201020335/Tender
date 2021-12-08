@@ -145,7 +145,7 @@ router.post('/restaurant/comments/:id', mongoChecker, authenticate, async (req, 
       }
 			// save restaurant to database
 			await restaurant.save()
-			res.send({comments: restaurant.comments})
+			res.send(restaurant.comments)
 		}
 	} catch(error) {
 		if (isMongoError(error)) {
@@ -176,7 +176,7 @@ router.delete('/restaurant/comments/:id', mongoChecker, authenticate, async (req
 					comment.remove()
 					// save restaurant to database
 					await restaurant.save()
-					res.send({ comments: restaurant.comments })
+					res.send(restaurant.comments)
 				} else {
 					res.status(404).send('comment not found')
 				}

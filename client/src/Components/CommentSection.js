@@ -6,12 +6,15 @@ import { commentOnRestaurant } from "../Apis/Restaurant"
 
 const CommentSection = ({ comments, myAccountId, myUsername, restaurantId }) => {
   const [commentInput, setCommentInput] = useState(null);
+  const [curComments, setCurComments] = useState(comments);
+  
   const onCommentInputChange = (event) => {
     setCommentInput(event.target.value)
   }
 
   const onCommentSubmit = async () => {
-    await commentOnRestaurant(restaurantId, { userId: myAccountId, username: myUsername, message: commentInput})
+    const comments = await commentOnRestaurant(restaurantId, { userId: myAccountId, username: myUsername, message: commentInput});
+    setCurComments(comments)
   }
 
   return (
@@ -25,7 +28,7 @@ const CommentSection = ({ comments, myAccountId, myUsername, restaurantId }) => 
       
       <div>
         <ul className='comments'>
-          { comments && comments.map((comment) => {
+          { curComments && curComments.map((comment) => {
               return (<Comment comment={comment} key={comment._id}/>);
             })
           }

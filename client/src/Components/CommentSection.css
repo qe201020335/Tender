@@ -10,7 +10,10 @@
 .commentSubmit {
     display: flex;
     justify-content: flex-end;
-    padding-bottom: 15px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid grey;
+    margin-bottom: 15px;
+}
+
+.comments{
+    padding-top: 10px;
+    border-top: 1px solid grey;
 }

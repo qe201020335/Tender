@@ -1,4 +1,4 @@
-const apiBase = "http://localhost:5000/api"
-const authBase = "http://localhost:5000/auth"
+const apiBase = "/api"
+const authBase = "/auth"
 
 export {apiBase, authBase};

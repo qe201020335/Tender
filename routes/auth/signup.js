@@ -50,7 +50,7 @@ router.post('/signup', mongoChecker, async (req, res) => {
 		}
 		req.session.userId = newAccount._id
 		req.session.userType = newAccount.userType
-		res.send({ userId: newAccount._id, userType: newAccount.userType })
+		res.send({ userId: newAccount._id, userType: newAccount.userType, username: newAccount.username })
 	} catch (error) {
 		console.log(error)
 		if (isMongoError(error)) {

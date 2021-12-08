@@ -60,7 +60,7 @@ const App = () => {
             if (myAccountID !== "") {
               return <Redirect to="/"/>
             }
-            return <Login setUserID={setMyAccountID} setLoginType={setLoginType}/>}}/>
+            return <Login setUserID={setMyAccountID} setLoginType={setLoginType} setMyUsername={setMyUsername}/>}}/>
 
           <Route exact path="/signup" render={() => {
             if (myAccountID !== "") {

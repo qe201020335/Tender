@@ -15,7 +15,8 @@ router.post('/login', mongoChecker, async (req, res) => {
       console.log(account)
       req.session.userId = account._id
       req.session.userType = account.userType
-      res.status(200).send({ userId: account._id, userType: account.userType })
+      req.session.username = account.username
+      res.status(200).send({ userId: account._id, userType: account.userType, username: account.username })
     }
   } catch (error) {
     if (isMongoError(error)) { 

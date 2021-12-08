@@ -107,7 +107,7 @@ const RestaurantDetail = ({ myAccountID, myUsername }) => {
         </div>
         <br/>
         <div className="description card_body"><p>{restaurant.description}</p></div>
-        { restaurant && <CommentSection comments={restaurant.comments}
+        { restaurant.comments && <CommentSection comments={restaurant.comments}
           myAccountID={myAccountID} myUsername={myUsername} restaurantId={restaurant._id}/>
         }
       </div>
