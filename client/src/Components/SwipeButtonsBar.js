@@ -6,11 +6,14 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import {IconButton, Tooltip} from '@material-ui/core';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {addUserFavorites, removeUserFavorites} from "../Apis/User";
+import {useHistory} from "react-router-dom";
 
 const SwipeButtonsBar = ({myAccountID, restaurant}) => {
 
   console.log(restaurant)
   console.log(myAccountID)
+
+  const history = useHistory()
 
   const [dislike, setDislike] = useState(false);
   const [like, setLike] = useState(false);
@@ -26,6 +29,9 @@ const SwipeButtonsBar = ({myAccountID, restaurant}) => {
   console.log(fav)
 
   const onLikeClick = async () => {
+    if (!myAccountID) {
+      history.push("/login")
+    }
     if (dislike) {
       await onDislikeClick()
     }
@@ -42,6 +48,9 @@ const SwipeButtonsBar = ({myAccountID, restaurant}) => {
   }
 
   const onDislikeClick = async () => {
+    if (!myAccountID) {
+      history.push("/login")
+    }
     if (like) {
       await onLikeClick()
     }
@@ -58,6 +67,9 @@ const SwipeButtonsBar = ({myAccountID, restaurant}) => {
   }
 
   const onFavClick = async () => {
+    if (!myAccountID) {
+      history.push("/login")
+    }
     if (restaurant) {
       if (!fav) {
         console.log("faved " + restaurant.name)

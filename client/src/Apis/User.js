@@ -33,7 +33,7 @@ export const addUserFavorites = async (id, favourites) => {
 
 export const removeUserFavorites = async (id, favourites) => {
   try{
-    console.log("removing" + favourites.favourite + "from" + id)
+    console.log("removing" + favourites + "from" + id)
     const res = await axios.delete(`${apiBase}/user/favourites/${id}`, { data: favourites})
     console.log(res.data)
     return res.data;
