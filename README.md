@@ -49,21 +49,22 @@ csc309-tender.herokuapp.com
 ## /Auth
 * POST /auth/signup
 
+```
   request body: {
     "username": "user10",
     "password": "user10",
     "userType": "USER"
   }
-
+```
   userType can be USER or RESTAURANT, we disabled user self signup as admin
 
 * POST /auth/login
-
+```
   request body: {
     "username": "user",
     "password": "user"
   }
-
+```
 * GET /auth/logout
 
 * GET /auth/check-session
@@ -74,47 +75,47 @@ csc309-tender.herokuapp.com
   get all the like/dislike/favorites of :id user
 
 * POST /api/user/favourites/:id
-
+```
   request body: {
     "favourite":"61ad5650a85522e9527e3e81"
   }
-  
+```  
   &nbsp;&nbsp;&nbsp;&nbsp;:id user adds 61ad5650a85522e9527e3e81 restaurant to favorite
   
-
+```
   request body: {
     "like":"61ad5650a85522e9527e3e81"
   }
-  
+```
   &nbsp;&nbsp;&nbsp;&nbsp;:id user liked 61ad5650a85522e9527e3e81 restaurant
-
+```
   request body: {
     "dislike":"61ad5650a85522e9527e3e81"
   }
-  
+```  
   &nbsp;&nbsp;&nbsp;&nbsp;:id user disliked 61ad5650a85522e9527e3e81 restaurant
   
   changes will be reflected in both user collection and restaurant collection
 
 * DELETE /api/user/favourites/:id
-
+```
   request body: {
     "favourite":"61ad5650a85522e9527e3e81"
   }
-  
+```  
    &nbsp;&nbsp;&nbsp;&nbsp;:id user remove 61ad5650a85522e9527e3e81 restaurant from favorite
   
-
+```
   request body: {
     "like":"61ad5650a85522e9527e3e81"
   }
-  
+```  
    &nbsp;&nbsp;&nbsp;&nbsp;:id user undo like 61ad5650a85522e9527e3e81 restaurant
-
+```
   request body: {
     "dislike":"61ad5650a85522e9527e3e81"
   }
-  
+```  
    &nbsp;&nbsp;&nbsp;&nbsp;:id user undo dislike 61ad5650a85522e9527e3e81 restaurant
 
   changes will be reflected in both user collection and restaurant collection
@@ -127,7 +128,7 @@ csc309-tender.herokuapp.com
 
   get data of :id restaurant
 * PUT /api/restaurant/:id
-
+```
   request body: {
     "name": "Popeyes",
     "address": "553 Bloor St W, Toronto, ON M5S 1Y6",
@@ -135,25 +136,25 @@ csc309-tender.herokuapp.com
     "image": "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F20%2F2020%2F06%2F09%2Fpopeyes.jpg&q=85",
     "description": "Popeyes Louisiana Kitchen, Inc., also known as Popeyes and formerly named Popeyes Chicken & Biscuits and Popeyes Famous Fried Chicken & Biscuits."
   }
-
+```
   update profile of :id restaurant
 
 * POST /api/restaurant/favorites/:id
-
+```
   request body: {
     "userId": "61ad5a86e450f25fd6f5ac12",
     "username": "user",
     "message": "i love big mac!"
   }
-  
+```  
   add the comment in request body to :id restuarant
 
 * DELETE /api/restaurant/comments/:id
-
+```
   request body: {
     "commentId": "61aff8e0e51dae026f2cdad1"
   }
-
+```
   delete the commentId comment from :id restuarant
 
 # Log in credentials
