@@ -6,8 +6,9 @@ Find your favourite restaurant with Tender Web App
 
 npm run build then run on localhost:5000
 
-# Deployed URL
-csc309-tender.herokuapp.com
+# Deployment
+
+[csc309-tender.herokuapp.com](https://csc309-tender.herokuapp.com) on Heroku
 
 # Instruction
 ## User Guide
