@@ -86,25 +86,31 @@ router.post('/user/favourites/:id', mongoChecker, authenticate, async (req, res)
 			res.status(404).send('Resource not found')
 		} else {
       if(req.body.favourite) {
-        user.favourites.push(req.body.favourite)
-        // also record the favorite in restaurant table
-        const restaurant = await Restaurant.findById(req.body.favourite)
-        restaurant.favourites.push(req.params.id)
-        await restaurant.save()
+				if (!user.favourites.includes(req.body.favourite)){
+					user.favourites.push(req.body.favourite)
+					// also record the favorite in restaurant table
+					const restaurant = await Restaurant.findById(req.body.favourite)
+					restaurant.favourites.push(req.params.id)
+					await restaurant.save()
+				}
       }
       if(req.body.like) {
-        user.likes.push(req.body.like)
-        // also record the like in restaurant table
-        const restaurant = await Restaurant.findById(req.body.like)
-        restaurant.likes.push(req.params.id)
-        await restaurant.save()
+				if (!user.likes.includes(req.body.like)){
+					user.likes.push(req.body.like)
+					// also record the like in restaurant table
+					const restaurant = await Restaurant.findById(req.body.like)
+					restaurant.likes.push(req.params.id)
+					await restaurant.save()
+				}
       }
       if(req.body.dislike) {
-        user.dislikes.push(req.body.dislike)
-        // also record the like in restaurant table
-        const restaurant = await Restaurant.findById(req.body.dislike)
-        restaurant.dislikes.push(req.params.id)
-        await restaurant.save()
+				if (!user.dislikes.includes(req.body.dislike)){
+					user.dislikes.push(req.body.dislike)
+					// also record the like in restaurant table
+					const restaurant = await Restaurant.findById(req.body.dislike)
+					restaurant.dislikes.push(req.params.id)
+					await restaurant.save()
+				}
       }
 			// save restaurant to database
 			await user.save()
@@ -114,7 +120,7 @@ router.post('/user/favourites/:id', mongoChecker, authenticate, async (req, res)
 		if (isMongoError(error)) {
 			res.status(500).send('Internal server error')
 		} else {
-			res.status(400).send('Bad Request')
+			console.log(error)
 		}
 	}
 })
@@ -146,7 +152,7 @@ router.delete('/user/favourites/:id', mongoChecker, authenticate, async (req, re
       if(req.body.like) {
         user.likes.remove(req.body.like)
         // also remove the like in restaurant table
-        const restaurant = await Restaurant.findById(req.body.dislike)
+        const restaurant = await Restaurant.findById(req.body.like)
         restaurant.likes.remove(req.params.id)
         await restaurant.save()
       }
@@ -165,7 +171,7 @@ router.delete('/user/favourites/:id', mongoChecker, authenticate, async (req, re
 		if (isMongoError(error)) {
 			res.status(500).send('Internal server error')
 		} else {
-			res.status(400).send('Bad Request')
+			console.log(error)
 		}
 	}
 })
