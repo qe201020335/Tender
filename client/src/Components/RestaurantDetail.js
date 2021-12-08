@@ -19,6 +19,8 @@ const RestaurantDetail = ({ myAccountID, myUsername }) => {
   const history = useHistory()
 
   const [restaurant, setRestaurant] = useState({});
+  const [likeArray, setLikeArray] = useState([]);
+  const [dislikeArray, setDislikeArray] = useState([]);
   const [dislike, setDislike] = useState(false);
   const [like, setLike] = useState(false);
   const [fav, setFav] = useState(false);
@@ -28,6 +30,8 @@ const RestaurantDetail = ({ myAccountID, myUsername }) => {
     const fetchData = async () => {
       const restaurant = await getRestaurant(id);
       setRestaurant(restaurant)
+      setLikeArray(restaurant.likes)
+      setDislikeArray(restaurant.dislikes)
       console.log(restaurant)
       setDislike(restaurant !== null ? restaurant.dislikes.includes(myAccountID) : false)
       setLike(restaurant !== null ? restaurant.likes.includes(myAccountID) : false)
@@ -51,9 +55,11 @@ const RestaurantDetail = ({ myAccountID, myUsername }) => {
       if (!like) {
         console.log("liked " + restaurant.name)
         const result = await addUserFavorites(myAccountID, { like: restaurant._id });
+        setLikeArray(result.likes)
       } else {
         console.log("undo like " + restaurant.name)
         const result = await removeUserFavorites(myAccountID, { like: restaurant._id });
+        setLikeArray(result.likes)
       }
       setLike(!like)
     }
@@ -70,9 +76,11 @@ const RestaurantDetail = ({ myAccountID, myUsername }) => {
       if (!dislike) {
         console.log("disliked " + restaurant.name)
         const result = await addUserFavorites(myAccountID, { dislike: restaurant._id });
+        setDislikeArray(result.dislikes)
       } else {
         console.log("undo dislike " + restaurant.name)
         const result = await removeUserFavorites(myAccountID, { dislike: restaurant._id });
+        setDislikeArray(result.dislikes)
       }
       setDislike(!dislike)
     }
@@ -127,7 +135,7 @@ const RestaurantDetail = ({ myAccountID, myUsername }) => {
                 <FavoriteIcon color={like ? "like" : ""} fontSize="large" className="swipeButtons_right" />
               </IconButton>
             </Tooltip>
-            <span className="like-count"> {restaurant.likes ? restaurant.likes.length : 0} </span>
+            <span className="like-count"> {likeArray ? likeArray.length : 0} </span>
           </span>
 
           <span className="dislikes">
@@ -136,7 +144,7 @@ const RestaurantDetail = ({ myAccountID, myUsername }) => {
                 <ClearIcon color={dislike ? "dislike" : ""} fontSize="large" className="swipeButtons_left" />
               </IconButton>
             </Tooltip>
-            <span className="dislike-count"> {restaurant.dislikes ? restaurant.dislikes.length : 0} </span>
+            <span className="dislike-count"> {dislikeArray ? dislikeArray.length : 0} </span>
           </span>
 
           <Tooltip title="Favourite!" placement="top">
