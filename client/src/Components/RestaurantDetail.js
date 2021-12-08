@@ -47,6 +47,7 @@ const RestaurantDetail = ({ myAccountID, myUsername }) => {
   const onLikeClick = async () => {
     if (!myAccountID) {
       history.push("/login")
+      return
     }
     if (dislike) {
       await onDislikeClick()
@@ -68,6 +69,7 @@ const RestaurantDetail = ({ myAccountID, myUsername }) => {
   const onDislikeClick = async () => {
     if (!myAccountID) {
       history.push("/login")
+      return
     }
     if (like) {
       await onLikeClick()
@@ -89,6 +91,7 @@ const RestaurantDetail = ({ myAccountID, myUsername }) => {
   const onFavClick = async () => {
     if (!myAccountID) {
       history.push("/login")
+      return
     }
     if (restaurant) {
       if (!fav) {
