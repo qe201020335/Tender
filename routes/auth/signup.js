@@ -4,7 +4,7 @@ const { Account } = require('../../models/Account');
 const { User } = require('../../models/User');
 const { Restaurant } = require('../../models/Restaurant');
 const { mongoChecker, isMongoError } = require("../helpers/mongo_helpers");
-const userTypes = ["ADMIN", "USER", "RESTAURANT"]
+const userTypes = ["USER", "RESTAURANT"]
 
 router.post('/signup', mongoChecker, async (req, res) => {
   // if (req.body.userType === "ADMIN") {
