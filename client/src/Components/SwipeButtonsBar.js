@@ -31,6 +31,8 @@ const SwipeButtonsBar = ({myAccountID, restaurant}) => {
   const onLikeClick = async () => {
     if (!myAccountID) {
       history.push("/login")
+      return
+
     }
     if (dislike) {
       await onDislikeClick()
@@ -50,6 +52,8 @@ const SwipeButtonsBar = ({myAccountID, restaurant}) => {
   const onDislikeClick = async () => {
     if (!myAccountID) {
       history.push("/login")
+      return
+
     }
     if (like) {
       await onLikeClick()
@@ -69,6 +73,8 @@ const SwipeButtonsBar = ({myAccountID, restaurant}) => {
   const onFavClick = async () => {
     if (!myAccountID) {
       history.push("/login")
+      return
+
     }
     if (restaurant) {
       if (!fav) {

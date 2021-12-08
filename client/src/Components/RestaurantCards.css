@@ -59,6 +59,22 @@
     font-weight: bold;
 }
 
+.card_arrow {
+    position: fixed;
+    height: 30vh;
+    margin-top: 25px;
+    top: 25vh;
+    color: #ca3b28;
+
+}
+
+.left_arrow {
+    left: 3vw;
+}
+
+.right_arrow {
+    right: 3vw;
+}
 
 .RestaurantCards_cardContainer {
     display: flex;

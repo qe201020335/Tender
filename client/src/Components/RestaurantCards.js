@@ -5,11 +5,15 @@ import { getAllRestaurant } from "../Apis/Restaurant";
 import SwipeButtonsBar from "./SwipeButtonsBar";
 import tender_sq from "../Images/tender_sq.png"
 import { useHistory } from 'react-router-dom';
+import leftArrow from "../Images/left_arrow.png"
+import rightArrow from "../Images/right_arrow.png"
+import {addUserFavorites, removeUserFavorites} from "../Apis/User";
 
 
 const RestaurantCards = ({ myAccountID }) => {
   const [currDisplayTop, setCurrDisplayTop] = useState(null)
   const [currDisplayBottom, setCurrDisplayBottom] = useState(null)
+  const [swipeOnce, setSwipeOnce] = useState(false)
   const history = useHistory();
   
   let swipeDirection;
@@ -62,10 +66,50 @@ const RestaurantCards = ({ myAccountID }) => {
 
   };
 
-  const onCardLeftScreen = (restaurant) => {
+  const onCardLeftScreen = async (restaurant) => {
     // This is when we display next card
     console.log(`${restaurant.name} out ${swipeDirection}!`);
+    if (!swipeOnce) {
+      setSwipeOnce(true)
+    }
+    switch (swipeDirection) {
+      case "left":
+        await onDislike()
+        break
+      case "right":
+        await onLike()
+        break
+      default:
+        break
+    }
     nextCard()
+  }
+
+  const onLike = async () => {
+    if (!myAccountID) {
+      history.push("/login")
+      return
+    }
+    if (currDisplayTop) {
+      const restaurant = currDisplayTop.restaurant
+      console.log("liked " + restaurant.name)
+      await addUserFavorites(myAccountID, { like: restaurant._id });
+      await removeUserFavorites(myAccountID, { dislike: restaurant._id });
+    }
+  }
+
+  const onDislike = async () => {
+    if (!myAccountID) {
+      history.push("/login")
+      return
+    }
+
+    if (currDisplayTop) {
+      const restaurant = currDisplayTop.restaurant
+      console.log("disliked " + restaurant.name)
+      await addUserFavorites(myAccountID, { dislike: restaurant._id });
+      await removeUserFavorites(myAccountID, { like: restaurant._id });
+    }
   }
 
   return (
@@ -74,11 +118,17 @@ const RestaurantCards = ({ myAccountID }) => {
         <label className="slogan">TENDER - Find Your Favourite Restaurant!</label>
       </div>
       <div className="bg_div" >
-
         <img src={tender_sq} className="cards_bg_img" alt="tender_img"/>
         { !currDisplayTop &&
         <label className="cards_oops">{"Oops! We run out of restaurants (>﹏<) "}</label>}
       </div>
+
+      {!swipeOnce &&
+      <img src={leftArrow} className="card_arrow left_arrow" />}
+      {!swipeOnce &&
+      <img src={rightArrow} className="card_arrow right_arrow" />}
+
+
       <div className="RestaurantCards_cardContainer">
         {currDisplayBottom!==null && currDisplayBottom.card}
         {currDisplayTop!==null && currDisplayTop.card}
