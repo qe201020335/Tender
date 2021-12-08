@@ -72,45 +72,45 @@ const RestaurantCards = ({ myAccountID }) => {
     if (!swipeOnce) {
       setSwipeOnce(true)
     }
-    switch (swipeDirection) {
-      case "left":
-        await onDislike()
-        break
-      case "right":
-        await onLike()
-        break
-      default:
-        break
-    }
+    // switch (swipeDirection) {
+    //   case "left":
+    //     await onDislike()
+    //     break
+    //   case "right":
+    //     await onLike()
+    //     break
+    //   default:
+    //     break
+    // }
     nextCard()
   }
 
-  const onLike = async () => {
-    if (!myAccountID) {
-      history.push("/login")
-      return
-    }
-    if (currDisplayTop) {
-      const restaurant = currDisplayTop.restaurant
-      console.log("liked " + restaurant.name)
-      await addUserFavorites(myAccountID, { like: restaurant._id });
-      await removeUserFavorites(myAccountID, { dislike: restaurant._id });
-    }
-  }
-
-  const onDislike = async () => {
-    if (!myAccountID) {
-      history.push("/login")
-      return
-    }
-
-    if (currDisplayTop) {
-      const restaurant = currDisplayTop.restaurant
-      console.log("disliked " + restaurant.name)
-      await addUserFavorites(myAccountID, { dislike: restaurant._id });
-      await removeUserFavorites(myAccountID, { like: restaurant._id });
-    }
-  }
+  // const onLike = async () => {
+  //   if (!myAccountID) {
+  //     history.push("/login")
+  //     return
+  //   }
+  //   if (currDisplayTop) {
+  //     const restaurant = currDisplayTop.restaurant
+  //     console.log("liked " + restaurant.name)
+  //     await addUserFavorites(myAccountID, { like: restaurant._id });
+  //     await removeUserFavorites(myAccountID, { dislike: restaurant._id });
+  //   }
+  // }
+  //
+  // const onDislike = async () => {
+  //   if (!myAccountID) {
+  //     history.push("/login")
+  //     return
+  //   }
+  //
+  //   if (currDisplayTop) {
+  //     const restaurant = currDisplayTop.restaurant
+  //     console.log("disliked " + restaurant.name)
+  //     await addUserFavorites(myAccountID, { dislike: restaurant._id });
+  //     await removeUserFavorites(myAccountID, { like: restaurant._id });
+  //   }
+  // }
 
   return (
     <div className="RestaurantCards">
