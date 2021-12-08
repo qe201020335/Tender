@@ -11,7 +11,7 @@ import ExitIcon from '@material-ui/icons/ExitToApp'
 import StarIcon from '@material-ui/icons/Star';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
-import logo from "../Images/tender_sq.png";
+import logo from "../Images/tender_2_1_title.png";
 
 const NavBar = ({loginStatus, loginType, setUserID, setLoginType}) => {
 

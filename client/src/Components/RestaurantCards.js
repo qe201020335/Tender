@@ -70,7 +70,11 @@ const RestaurantCards = ({ myAccountID }) => {
 
   return (
     <div className="RestaurantCards">
+      <div className="slogan_div">
+        <label className="slogan">TENDER - Find Your Favourite Restaurant!</label>
+      </div>
       <div className="bg_div" >
+
         <img src={tender_sq} className="cards_bg_img" alt="tender_img"/>
         { !currDisplayTop &&
         <label className="cards_oops">{"Oops! We run out of restaurants (>﹏<) "}</label>}

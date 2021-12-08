@@ -20,6 +20,25 @@
 
 }
 
+.slogan_div {
+    top: 10%;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    alignment: center;
+    width: 100%;
+}
+
+.slogan {
+    display: block;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    font-size: x-large;
+    color: #ca3b28;
+    font-weight: bold;
+}
+
 .cards_bg_img {
     height: 30vh;
     display: block;

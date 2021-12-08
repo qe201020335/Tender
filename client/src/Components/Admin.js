@@ -48,7 +48,7 @@ const Admin = () => {
     isAdminEditing ? <RestaurantProfile restaurantID={editingRestID} setEditedRest={setEditedRest} editingState={true}/>
       :
       <div>
-        <h2 id="admin_title">All Restaurants</h2>
+        <h2 id="admin_title">Admin Restaurant Management</h2>
         <br/>
         <div id='rest_list_container'>
           <ul>

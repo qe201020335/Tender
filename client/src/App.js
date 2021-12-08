@@ -77,6 +77,9 @@ const App = () => {
           }}/>
 
           <Route exact path="/restaurant/:id" render={ () => {
+            if (!myAccountID) {
+              return <Redirect to="/login"/>
+            }
             return <RestaurantDetail myAccountID={myAccountID} myUsername={myUsername}/>
           }}/>
 
